@@ -1,11 +1,19 @@
 import axios from 'axios'
 import qs from 'qs'
 // import { ERROR_OK, ERROR_NOT_LOGIN } from 'common/js/constants'
-// import { getUserToken } from 'common/js/cache'
+import { getToken } from '../cache/token.js'
+import { message } from 'antd';
 
-let notLoginCallback = null
-axios.defaults.baseURL = 'https://zbdx.jzjtong.com/o2o-admin'
+let notLoginCallback = () => {
+    window.wx.miniProgram.navigateTo({url: '/pages/user/login/login'})
+}
+axios.defaults.baseURL = 'https://zbdx.jzjtong.com'
+axios.defaults.headers.common['Cross-Origin'] = '*'
 axios.defaults.headers.common['Accept'] = 'application/json'
+getToken().then((res) => {
+    axios.defaults.headers['Authorization'] = res
+})
+axios.defaults.headers.common['Cross-Origin'] = '*'
 /*axios.defaults.headers.delete['Content-Type'] = 'application/x-www-form-urlencoded'*/
 
 // 添加响应拦截器
@@ -14,6 +22,10 @@ axios.interceptors.response.use((response) => {
     return then(response)
 }, (error) => {
     // 对响应错误做点什么
+    if (error.response.status === 401) {
+        notLoginCallback && notLoginCallback()
+        return reject(error)
+    }
     return reject(error)
 })
 
@@ -23,18 +35,18 @@ function then (response) {
         if (typeof res === 'string') {
             res = JSON.parse(res)
         }
-        /*if (res.ret === ERROR_OK) {
+        /* if (res.ret === ERROR_OK) {
           return Promise.resolve(res.data)
         } else if (res.ret === ERROR_NOT_LOGIN) {
           notLoginCallback && notLoginCallback()
           return reject(res)
         } else {
           return reject(res)
-        }*/
+        } */
         if (res.code === 1) {
             return Promise.resolve(res.data)
         } else if (res.code === -1) {
-            alert(res.msg)
+            message.warning(res.msg)
             return reject(res)
         }
     } catch (e) {
@@ -77,6 +89,8 @@ export function setNotLoginCallback (callback) {
     notLoginCallback = callback
 }
 
-/*export function updateAuthorization () {
-  axios.defaults.headers.common['Authorization'] = getUserToken()
-}*/
+export function updateAuthorization () {
+    getToken().then((res) => {
+        axios.defaults.headers['Authorization'] = res
+    })
+}
