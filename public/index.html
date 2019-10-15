@@ -3,12 +3,13 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
       content="Web site created using create-react-app"
     />
+    <!-- <meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" /> -->
     <meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
     <link rel="apple-touch-icon" href="logo192.png" />
     <!--
@@ -48,7 +49,7 @@
         function setFontSize() {
             var baseFontSize = 100;
             var baseWidth = 320;
-            var clientWidth = document.documentElement.clientWidth ||         window.innerWidth;
+            var clientWidth = document.documentElement.clientWidth || window.innerWidth;
             var innerWidth = Math.max(Math.min(clientWidth, 480), 320);
             var rem = 100;
             if (innerWidth > 362 && innerWidth <= 375) {

@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import "lib-flexible"
 import './index.css';
 import './reset.scss';
 import App from './router/App.js';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router} from 'react-router-dom';
-import "lib-flexible"
 
 ReactDOM.render(
     <Router>
