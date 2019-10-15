@@ -16,7 +16,6 @@
     "react-dom": "^16.9.0",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.0",
-    "sass-loader": "^8.0.0",
     "typescript": "^3.5.3",
     "weixin-js-sdk": "^1.4.0-test"
   },
