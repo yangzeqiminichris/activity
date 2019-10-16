@@ -3,6 +3,9 @@
 # dependencies
 /node_modules
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 9d643fa5e6ea09bc166f94eb2b569cda2b21ba9e
 /.pnp
 .pnp.js
 
@@ -22,9 +25,12 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+<<<<<<< HEAD
 =======
 /package-lock.json
 
 # production
 /dist
 >>>>>>> 1d32e9425ae84e49e3953a89a35877e6eaaec76d
+=======
+>>>>>>> 9d643fa5e6ea09bc166f94eb2b569cda2b21ba9e
