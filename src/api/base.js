@@ -7,7 +7,7 @@ import { message } from 'antd';
 let notLoginCallback = () => {
     window.wx.miniProgram.navigateTo({url: '/pages/user/login/login'})
 }
-axios.defaults.baseURL = 'https://zbdx.jzjtong.com'
+/* axios.defaults.baseURL = 'https://jf-api.zbszkj.co/jf-api' */ // https://jf-api.zbszkj.com // https://zbdx.jzjtong.com
 axios.defaults.headers.common['Cross-Origin'] = '*'
 axios.defaults.headers.common['Accept'] = 'application/json'
 getToken().then((res) => {
@@ -70,18 +70,22 @@ function getErrorMessage (e) {
 }
 
 export function get (url, data) {
+    url = replacUrl(url)
     return axios.get(url, { params: data })
 }
 
 export function post (url, data, isFormData) {
+    url = replacUrl(url)
     return axios.post(url, isFormData ? data : qs.stringify(data, { arrayFormat: 'repeat' }))
 }
 
 export function put (url, data, isRawData) {
+    url = replacUrl(url)
     return axios.put(url, isRawData ? data : qs.stringify(data, { arrayFormat: 'repeat' }))
 }
 
 export function apiDelete (url, data) {
+    url = replacUrl(url)
     return axios.delete(url, {data: qs.stringify(data, { arrayFormat: 'repeat' })})
 }
 
@@ -93,4 +97,12 @@ export function updateAuthorization () {
     getToken().then((res) => {
         axios.defaults.headers['Authorization'] = res
     })
+}
+
+function replacUrl (url) {
+    url = url.replace('/jf-api', 'https://jf-api.zbszkj.com')
+    url = url.replace('/zbdx-api', 'https://zbdx.jzjtong.com/zbdx-api')
+    /*url = url.replace('/jf-api', 'https://zbdx.jzjtong.com/jf-api')
+    url = url.replace('/zbdx-api', 'https://zbdx.jzjtong.com/zbdx-api')*/
+    return url
 }
