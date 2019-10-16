@@ -8,19 +8,19 @@
 }
 
 .choose {
-  padding: 15px 12px 12px 12px;
+  padding: 30px 24px 24px 24px;
   background: #F02F34;
 
   &-title {
-    font-size: 28px;
+    font-size: 56px;
     color: #9D9D9D;
   }
   &-coupon {
     background: #ffffff;
-    height: 92px;
-    margin-top: 12px;
-    padding: 12px 0px 12px 12px;
-    border-radius: 6px;
+    height: 184px;
+    margin-top: 24px;
+    padding: 24px 0px 24px 24px;
+    border-radius: 12px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -32,47 +32,47 @@
       align-items: center;
       flex: 1;
       &-img {
-        width: 68px;
-        height: 68px;
+        width: 136px;
+        height: 136px;
       }
       &-info {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        padding: 5px 0;
-        height: 68px;
+        padding: 10px 0;
+        height: 136px;
         box-sizing: border-box;
-        margin-left: 12px;
+        margin-left: 24px;
         &-name {
           line-height: 1;
-          font-size: 14px;
+          font-size: 28px;
           overflow: hidden;
           text-overflow: ellipsis;
           display: -webkit-box;
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
-          width: 112px;
+          width: 224px;
         }
       }
     }
     &-right {
-      width: 92px;
-      border-left: 2px dashed #E0E0E0;
-      height: 77px;
+      width: 184px;
+      border-left: 4px dashed #E0E0E0;
+      height: 154px;
       display: flex;
       flex-direction: row;
       justify-content: center;
       align-items: center;
       &-btn {
-        width: 64px;
-        height: 24px;
+        width: 128px;
+        height: 48px;
         background: rgba(249,32,81,1);
-        border-radius: 22px;
-        border: 1px solid rgba(5,5,5,0.1);
+        border-radius: 44px;
+        border: 2px solid rgba(5,5,5,0.1);
         color: #ffffff;
         text-align: center;
-        font-size: 12px;
-        line-height: 24px;
+        font-size: 24px;
+        line-height: 48px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -86,25 +86,25 @@
   align-items: center;
   .money{
     color: #F92051;
-    font-size: 20px;
+    font-size: 40px;
     display: flex;
     flex-direction: row;
     align-items: center;
     float: left;
     .sign{
-      font-size: 12px;
+      font-size: 24px;
     }
     .sum {
       line-height: 1;
     }
   }
   .reduction{
-    margin-left: 13px;
-    border-radius: 2px;
+    margin-left: 26px;
+    border-radius: 4px;
     float: left;
-    padding: 3px 6px;
+    padding: 6px 12px;
     line-height: 1;
-    font-size: 10px;
+    font-size: 20px;
     color: #8C8C8C;
     background: #F0F0F0;
   }

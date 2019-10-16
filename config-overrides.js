@@ -1,4 +1,4 @@
-const { override, fixBabelImports, addLessLoader, addBabelPlugin, addBabelPreset, useBabelRc, addWebpackAlias } = require('customize-cra')
+const { override, fixBabelImports, addLessLoader, addBabelPlugin, addBabelPreset, useBabelRc, addWebpackAlias, addPostcssPlugins } = require('customize-cra')
 const path = require('path')
 
 module.exports = override(
@@ -22,5 +22,8 @@ module.exports = override(
     addBabelPreset([
         '@babel/preset-react'
     ]),
-    useBabelRc()
+    useBabelRc(),
+    addPostcssPlugins([
+        require('postcss-px2rem-exclude')({remUnit:75,exclude: /node_modules/i})
+    ])
 )

@@ -1,0 +1,22 @@
+body{
+    background: #B70117;
+}
+.activity-modal{
+    .banner{
+        width: 100%;
+        overflow: hidden;
+        .img{
+            width: 100%;
+            float: left;
+        }
+    }
+    .coupon-list{
+        height: 75px;
+        padding: 0 48px;
+        .coupon-item{
+            width: 226px;
+            height: 241px;
+            border-radius: 12px;
+        }
+    }
+}
