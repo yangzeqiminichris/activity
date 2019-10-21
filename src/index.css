@@ -11,3 +11,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  font-size: 0;
+  clear: both;
+  visibility: hidden;
+}
+    
+  .clearfix {
+  zoom: 1;
+  }
+
+  .am-tabs-default-bar-top .am-tabs-default-bar-nextpage, .am-tabs-default-bar-top .am-tabs-default-bar-prevpage{
+    background: none!important;
+  }
+  .am-tabs-default-bar-top .am-tabs-default-bar-tab-active{
+    /* background: #FBCBB6; */
+  }

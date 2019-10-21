@@ -22,7 +22,7 @@ axios.interceptors.response.use((response) => {
     return then(response)
 }, (error) => {
     // 对响应错误做点什么
-    if (error.response.status === 401) {
+    if (error.response && error.response.status === 401) {
         notLoginCallback && notLoginCallback()
         return reject(error)
     }
@@ -102,6 +102,7 @@ export function updateAuthorization () {
 function replacUrl (url) {
     url = url.replace('/jf-api', 'https://jf-api.zbszkj.com')
     url = url.replace('/zbdx-api', 'https://zbdx.jzjtong.com/zbdx-api')
+    // url = url.replace('/v1', 'http://192.168.1.199:8098/v1')
     /*url = url.replace('/jf-api', 'https://zbdx.jzjtong.com/jf-api')
     url = url.replace('/zbdx-api', 'https://zbdx.jzjtong.com/zbdx-api')*/
     return url
