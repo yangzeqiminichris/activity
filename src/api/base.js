@@ -3,6 +3,7 @@ import qs from 'qs'
 // import { ERROR_OK, ERROR_NOT_LOGIN } from 'common/js/constants'
 import { getToken } from '../cache/token.js'
 import { message } from 'antd';
+import { Toast } from 'antd-mobile'
 
 let notLoginCallback = () => {
     window.wx.miniProgram.navigateTo({url: '/pages/user/login/login'})
@@ -47,6 +48,7 @@ function then (response) {
             return Promise.resolve(res.data)
         } else if (res.code === -1) {
             message.warning(res.msg)
+            Toast.hide()
             return reject(res)
         }
     } catch (e) {
@@ -100,9 +102,10 @@ export function updateAuthorization () {
 }
 
 function replacUrl (url) {
-    url = url.replace('/jf-api', 'https://jf-api.zbszkj.com')
+    // http://zbdx.jzjtong.com/jf-api/coupon/list
+    url = url.replace('/jf-api', 'http://zbdx.jzjtong.com/jf-api/')
     url = url.replace('/zbdx-api', 'https://zbdx.jzjtong.com/zbdx-api')
-    // url = url.replace('/v1', 'http://192.168.1.199:8098/v1')
+    url = url.replace('/o2o-api', 'https://zbdx.jzjtong.com/o2o-api')
     /*url = url.replace('/jf-api', 'https://zbdx.jzjtong.com/jf-api')
     url = url.replace('/zbdx-api', 'https://zbdx.jzjtong.com/zbdx-api')*/
     return url

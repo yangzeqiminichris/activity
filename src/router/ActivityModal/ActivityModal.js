@@ -1,8 +1,10 @@
 import React from 'react'
-import { Tabs, WhiteSpace } from 'antd-mobile';
-import iconBanner from '@/assets/位图@2x.png'
-import axios from 'axios'
-import { getActivityDetail } from '@/api/custom-modal'
+
+import { Tabs, Toast } from 'antd-mobile'
+import { message } from 'antd'
+import { animateScroll as scroll } from 'react-scroll'
+import { setToken } from '@/cache/token.js'
+import { getActivityDetail, getCouponDetail, postReceiveCoupon } from '@/api/custom-modal'
 import './index.scss'
 
 const LAYOUT_LISt = 2
@@ -11,36 +13,64 @@ export default class ActivityModal extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      activityConfig: {}
+      activityConfig: {},
+      couponList: [],
+      tabTopShow: true,
+      currentPage: 0
     }
   }
 
-  componentDidMount () {
-    // let antdTabs = document.getElementsByClassName('am-tabs-default-bar-tab')
-    // style.cssText='background: red'
+  componentWillMount () {
+    window.addEventListener('scroll', this.handleScroll.bind(this), true)
   }
 
   componentDidMount () {
-    getActivityDetail(12, 25).then(res => {
-      document.title = res.name
-      this.setState({
-        activityConfig: res
-      }, () => {
-        let activityModal = document.getElementsByClassName('activity-modal')
-        let tabActive = document.getElementsByClassName('am-tabs-default-bar-tab-active')
-        activityModal[0] && (activityModal[0].style.background = res.colorInfo.bgColor)
-        tabActive[0] && (tabActive[0].style.background = res.colorInfo && res.colorInfo.groupSelectedColor)
+    Toast.loading('Loading...', 20)
+    this.props.history.listen(() => {
+      window.location.reload()
+    })
+    let token = this.getUrlToken('token', this.props.location.search)
+    let shopCode = this.getUrlToken('shopCode', this.props.location.search)
+    let activityId = this.getUrlToken('activityId', this.props.location.search)
+    setToken(token).then(() => {
+      // 获取活动详情
+      getActivityDetail(activityId, shopCode).then(res => {
+        if (!res) {
+          message.error('暂无该活动')
+          setTimeout(() => {
+            window.wx.miniProgram.navigateBack({
+              delta: -1
+            })
+          }, 1500)
+          return 
+        }
+        if (res && res.name) {
+          document.title = res.name
+        }
+        // 获取券详情
+        res && getCouponDetail(res.couponList).then(coupon => {
+          Toast.hide();
+          this.setState({
+            couponList: coupon ? coupon.records : []
+          })
+        })
+        this.setState({
+          activityConfig: res
+        }, () => {
+          let activityModal = document.getElementsByClassName('activity-modal')
+          let tabActive = document.getElementsByClassName('am-tabs-default-bar-tab-active')
+          activityModal[0] && (activityModal[0].style.background = res.colorInfo.bgColor)
+          tabActive[0] && (tabActive[0].style.background = res.colorInfo && res.colorInfo.groupSelectedColor)
+        })
       })
-      
     })
   }
 
   render () {
-    
-    const { activityConfig } = this.state
+    const { activityConfig, couponList } = this.state
     const cul = activityConfig.templateType || 1
     let tabs = []
-    if (activityConfig.activityGroup && activityConfig.activityGroup.length > 0) {
+    if (activityConfig && activityConfig.activityGroup && activityConfig.activityGroup.length > 0) {
       activityConfig.activityGroup.forEach(item => {
         tabs.push({
           ...item,
@@ -50,15 +80,54 @@ export default class ActivityModal extends React.Component {
     }
     return <div className='activity-modal clearfix'>
       <div className='banner'>
-        <img className='img' src={ activityConfig.bgImg } />
+        <img className='img' src={ activityConfig ? activityConfig.bgImg : '' } alt='暂无图片' />
       </div>
       <div className='coupon-list'>
-        {this.renderConponsItem(activityConfig)}
+        {
+          couponList && couponList.map((item, index) => {
+            return this.renderConponsItem(activityConfig, item, index === couponList.length - 1)
+          })
+        }
+        <div className='white-space'></div>
       </div>
+      <div id='floor'>
+        {
+          activityConfig && this.renderActivityFloor(activityConfig, tabs)
+        }
+        {
+          activityConfig.activityGroup && activityConfig.activityGroup.map((item, index) => {
+            return index === 0 ? <div className={ `tabs-content click-autor ${ cul === LAYOUT_LISt && 'tabs-content-2' }` } key={item.id}>
+              {
+                item.goodsList.map((goods, index) => {
+                  return this.renderTabsContentItem (cul, goods)
+
+                })
+              }
+            </div> : <div className='click-autor' key={ item.id }>
+              <img className='banner-icon' src={ item.icon } alt='暂无图片' />
+              <div className='custom-list'>
+                {
+                  item.goodsList.map((goods, index) => {
+                    return this.renderCustomItem (goods, index === item.goodsList.length - 1)
+                  })
+                }
+                <div className='white-space'></div>
+              </div>
+            </div>
+          })
+        }
+
+      </div>
+    </div>
+  }
+  renderActivityFloor (activityConfig, tabs) {
+    const { currentPage, tabTopShow } = this.state
+    return (
       <div>
         {
-          tabs.length > 0 && <Tabs
+          <Tabs
             tabs={tabs}
+            page={ currentPage }
             animated={ false }
             tabBarUnderlineStyle={ {
               border: '2px #BA1D3A solid',
@@ -80,66 +149,88 @@ export default class ActivityModal extends React.Component {
             renderTabBar={props => <Tabs.DefaultTabBar {...props} page={5} />}
           ></Tabs>
         }
-
-
         {
-          activityConfig.activityGroup && activityConfig.activityGroup.map((item, index) => {
-            return index ===0 ? <div className={ `tabs-content ${ cul === LAYOUT_LISt && 'tabs-content-2' }` }>
-              {this.renderTabsContentItem (cul)}
-            </div> : <div>
-              <img className='banner-icon' src={ item.icon } />
-              <div className='custom-list'>
-                { this.renderCustomItem() }
-                {/* <div className='white-space'></div> */}
-              </div>
-            </div>
-
-          })
+          <div className='top-floor' style={ {
+            background: '#FFF',
+            width: '100%',
+            display: !tabTopShow ? 'block' : 'none'
+          } }>
+            <Tabs
+              tabs={tabs}
+              page={ currentPage }
+              animated={ false }
+              tabBarUnderlineStyle={ {
+                border: '2px #BA1D3A solid',
+                bottom: '6px',
+                width: '18px',
+                marginLeft: tabs.length >= 5 ? '10%' : 100/2/tabs.length + '%' ,
+                transform: 'translateX(-9px)',
+                height: '2px',
+                borderRadius: '2px'
+              } }
+              tabBarBackgroundColor={ activityConfig && activityConfig.colorInfo && activityConfig.colorInfo.groupBgColor }
+              tabBarActiveTextColor={ activityConfig && activityConfig.colorInfo && activityConfig.colorInfo.fontSelectedColor }
+              tabBarInactiveTextColor={ activityConfig && activityConfig.colorInfo && activityConfig.colorInfo.groupFontColor }
+              tabBarTextStyle={ {
+                fontSize: '14px',
+                fontWeight: '600'
+              } }
+              onTabClick={ this.tabsClick.bind(this) }
+              renderTabBar={props => <Tabs.DefaultTabBar {...props} page={5} />}
+            ></Tabs>
+          </div>
         }
-
       </div>
-    </div>
+    )
   }
-  renderConponsItem (activityConfig) {
+  // 顶部优惠券列表
+  renderConponsItem (activityConfig, item, islast) {
     return (
-      <div className='coupon-item' style={ {
+      <div className={ `coupon-item ${ islast && 'white-space-none'}` } key={ item.id } style={ {
         backgroundImage: `url(${ activityConfig.couponBgImg })`,
         color: activityConfig.colorInfo ? activityConfig.colorInfo.couponFontColor : ''
         } }>
         <div className='top'>
           <div className='price'>
             <span className='sign'>￥</span>
-            <span className='money'>5</span>
+            <span className='money'>{ item.couponGoodsInfo.couponValue }</span>
           </div>
-          <div className='reduction'>满50可用</div>
-          <div className='limit'>仅生鲜品类可用</div>
+          <div className='reduction'>满{ item.couponGoodsInfo.thresholdAmount }可用</div>
+          <div className='limit points'>{ item.couponGoodsInfo.intro }</div>
         </div>
         <div className='bottom'>
-          <button style={ { background: activityConfig.colorInfo ? activityConfig.colorInfo.couponFontColor : '' } }>立即领券</button>
+          <button
+            onClick={ this.getCoupon.bind(this, item.id, item.reachPurchaseLimit) }
+            style={ { background: activityConfig.colorInfo ? activityConfig.colorInfo.couponFontColor : '' } }
+          >{item.reachPurchaseLimit === 1 ? '已领取' : '立即领券'}</button>
         </div>
       </div>
     )
   }
-  renderTabsContentItem (cul) {
+  // 楼层 1楼 单列双列
+  renderTabsContentItem (cul, goods) {
     return (
-      <div className='tabs-content-item'>
-        <img src='https://zbszkj-dev.oss-cn-hangzhou.aliyuncs.com/image/190830/c7c96edb9b1e49388c54b93b2f8c41606907376203049.jfif?x-oss-process=image/resize,h_348,w_348' className='img' />
+      <div className='tabs-content-item' onClick={ this.goBuyGoods.bind(this, goods.goodsId) } key={ goods.goodsId }>
+        <img src={ goods.goodsCover } className='img' alt='暂无图片' />
         <div className='info'>
-          <div className={`name points ${ cul === LAYOUT_LISt ? 'width310' : 'width380' }`}>土鸡土蛋土鸡土蛋  土在自然</div>
-          <div className='title'>叽嘟嘟土鸡蛋6枚/盒</div>
+          <div className={`name points ${ cul === LAYOUT_LISt ? 'width310' : 'width380' }`}>{ goods.goodsName }</div>
+          <div className='title'>{ goods.goodsIntro }</div>
           {
             cul === LAYOUT_LISt ? <div className='col-2'>
               <div className='activity'>
                 <span className='name'>限时活动价</span>
-                <span className='price'><span className='sign'>￥</span>0.99</span>
+                <span className='price'><span className='sign'>￥</span>{ goods.goodsPrice }</span>
               </div>
               <div className='price'>
-                <span className='origin-price'>原价9.90</span>
+                {/* {
+                  goods.goodsOriginalPrice > goods.goodsPrice
+                } */}
+                <span className='origin-price'>原价{ goods.goodsOriginalPrice }</span>
                 <span className='btn'>立即抢购</span>
               </div>
             </div> : <div>
               <div className='activity'>
-                活动价：<span className='price'>0.99</span>元 <span className='origin-price'>9.90</span>
+                活动价：<span className='price'>{ goods.goodsPrice }</span>元 <span className='origin-price'>{ goods.goodsOriginalPrice }</span>
               </div>
               <div className='btn'>立即抢购</div>
             </div>
@@ -148,16 +239,17 @@ export default class ActivityModal extends React.Component {
       </div>
     )
   }
-  renderCustomItem () {
+  // 底部多个楼层
+  renderCustomItem (goods, islast) {
     return (
-      <div className='custom-item'>
+      <div className={ `custom-item ${ islast && 'white-space-none'}` } onClick={ this.goBuyGoods.bind(this, goods.goodsId) } key={ goods.goodsId }>
         <div className='img'>
-          <img src='https://zbszkj-dev.oss-cn-hangzhou.aliyuncs.com/image/190830/c7c96edb9b1e49388c54b93b2f8c41606907376203049.jfif?x-oss-process=image/resize,h_348,w_348' />
+          <img src={ goods.goodsCover } alt='暂无图片' />
         </div>
         <div className='goods-info'>
-          <div className='title points'>纯享半熟芝士半熟芝士不好吃</div>
+          <div className='title points'>{ goods.goodsName }</div>
           <div className='price clearfix'>
-            <span className='sign'>￥</span><span className='amount'>12.00</span><span className='origin-price'>19.00</span>
+            <span className='sign'>￥</span><span className='amount'>{ goods.goodsPrice }</span><span className='origin-price'>{ goods.goodsOriginalPrice }</span>
           </div>
           <div className='btn'>
             立即抢购 >
@@ -166,16 +258,65 @@ export default class ActivityModal extends React.Component {
       </div>
     )
   }
+
+  // 点击tabs
   tabsClick (title, index) {
+    // 设置选中tabs
+    this.setState({currentPage: index})
+
+    // antd-mobile无选中背景颜色 配置选中背景色
+    let tabsLength = this.state.activityConfig.activityGroup.length
     const { activityConfig } = this.state
-    
     let tabs = document.getElementsByClassName('am-tabs-default-bar-tab')
-    // tabs.forEach((item, index) => {
-    //   // item.style.background = '#FFF'
-    // })
     for (let i in tabs) {
       tabs[i].style && (tabs[i].style.background = activityConfig.colorInfo.groupBgColor)
     }
+
+    // 页面中tabs 设置选中背景色
     tabs[index].style.background = activityConfig.colorInfo.groupSelectedColor
+    // 顶部tabs 设置选中背景色
+    tabs[index + tabsLength].style.background = activityConfig.colorInfo.groupSelectedColor
+    
+    // 滚动到 锚点
+    let tabHeight = document.getElementsByClassName('am-tabs-top')[0].offsetHeight
+    scroll.scrollTo(document.getElementsByClassName('click-autor')[index].offsetTop - tabHeight)
+  }
+  handleScroll () {
+    let floorTop = document.getElementById('floor').offsetTop
+    let scrollTop = this.getScrollTop()
+    this.setState({
+      tabTopShow: floorTop > scrollTop
+    })
+  }
+  getCoupon (goodsId, reachPurchaseLimit) {
+    if (reachPurchaseLimit === 1) {
+      return
+    }
+    Toast.loading('Loading...', 10)
+    postReceiveCoupon(goodsId).then(res => {
+      console.log(res)
+      Toast.hide();
+      message.success('领取成功')
+    })
+  }
+  goBuyGoods (goodsId) {
+    window.wx.miniProgram.navigateTo({
+      url: '/o2o/pages/goods/detail/detail?goodsId=' + goodsId
+    })
+  }
+  getUrlToken(name, str) {
+    const reg = new RegExp(`(^|&)${ name}=([^&]*)(&|$)`);
+    const r = str.substr(1).match(reg);
+    if (r != null) return  decodeURIComponent(r[2]); return null;
+  }
+  getScrollTop() {
+    var scroll_top = 0;
+    if (document.documentElement && document.documentElement.scrollTop) {
+        scroll_top = document.documentElement.scrollTop;
+    }
+    else if (document.body) {
+        scroll_top = document.body.scrollTop;
+    }
+    return scroll_top;
   }
 }
