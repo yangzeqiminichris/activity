@@ -1,0 +1,82 @@
+.floor1 {
+  position: relative;
+  width: 100%;
+  height: 374px;
+  overflow: hidden;
+  margin-top: 10px;
+  background-image: url("../../../../assets/coupon_big.png");
+  background-size: 100% 374px;
+  .floor1-img {
+    width: 100%;
+    height: 374px;
+  }
+  &-limit {
+    width: 300px;
+    height: 70px;
+    background: #f92051;
+    font-size: 24px;
+    color: #fff;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    left: -110px;
+    top: 5px;
+    transform: rotate(-45deg);
+  }
+  .floor1-content {
+    width: 100%;
+    height: 100%;
+    padding-top: 50px;
+    padding-left: 30px;
+    .floor1-flex {
+      display: flex;
+    }
+    .floor1-money {
+      color: #fe0036;
+      font-size: 72px;
+      letter-spacing: -6px;
+      width: 190px;
+      &-icon {
+        font-size: 36px;
+      }
+      &-text {
+        font-weight: 600;
+      }
+    }
+    .floor1-title {
+      font-size: 26px;
+      font-weight: 500;
+      color: rgba(38, 38, 38, 1);
+      margin-left: 40px;
+      margin-top: 30px;
+    }
+    .floor1-type {
+      font-size: 40px;
+      width: 190px;
+      text-align: right;
+      font-weight: 600;
+      color: rgba(38, 38, 38, 1);
+    }
+    .floor1-date {
+      font-size: 24px;
+      font-weight: 400;
+      color: rgba(140, 140, 140, 1);
+      margin-left: 40px;
+    }
+  }
+  .floor1-btn {
+    width: 676px;
+    height: 80px;
+    background: rgba(249, 32, 81, 1);
+    border-radius: 40px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 28px;
+    margin: auto;
+    text-align: center;
+    color: #fff;
+  }
+}
