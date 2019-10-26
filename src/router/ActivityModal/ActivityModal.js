@@ -16,7 +16,8 @@ export default class ActivityModal extends React.Component {
       activityConfig: {},
       couponList: [],
       tabTopShow: true,
-      currentPage: 0
+      currentPage: 0,
+      couponListIds: []
     }
   }
 
@@ -48,14 +49,10 @@ export default class ActivityModal extends React.Component {
           document.title = res.name
         }
         // 获取券详情
-        res && getCouponDetail(res.couponList).then(coupon => {
-          Toast.hide();
-          this.setState({
-            couponList: coupon ? coupon.records : []
-          })
-        })
+        res && this.getCouponList(res.couponList)
         this.setState({
-          activityConfig: res
+          activityConfig: res,
+          couponListIds: res.couponList
         }, () => {
           let activityModal = document.getElementsByClassName('activity-modal')
           let tabActive = document.getElementsByClassName('am-tabs-default-bar-tab-active')
@@ -98,9 +95,8 @@ export default class ActivityModal extends React.Component {
           activityConfig.activityGroup && activityConfig.activityGroup.map((item, index) => {
             return index === 0 ? <div className={ `tabs-content click-autor ${ cul === LAYOUT_LISt && 'tabs-content-2' }` } key={item.id}>
               {
-                item.goodsList.map((goods, index) => {
+                item.goodsList.map((goods) => {
                   return this.renderTabsContentItem (cul, goods)
-
                 })
               }
             </div> : <div className='click-autor' key={ item.id }>
@@ -200,9 +196,9 @@ export default class ActivityModal extends React.Component {
         </div>
         <div className='bottom'>
           <button
-            onClick={ this.getCoupon.bind(this, item.id, item.reachPurchaseLimit) }
+            onClick={ this.getCoupon.bind(this, item.id, item.reachPurchaseLimit, item.stock) }
             style={ { background: activityConfig.colorInfo ? activityConfig.colorInfo.couponFontColor : '' } }
-          >{item.reachPurchaseLimit === 1 ? '已领取' : '立即领券'}</button>
+          >{item.reachPurchaseLimit === 1 ? '已领取' : item.stock > 0 ? '立即领券' : '已抢光'}</button>
         </div>
       </div>
     )
@@ -258,7 +254,15 @@ export default class ActivityModal extends React.Component {
       </div>
     )
   }
-
+  // 获取优惠券列表
+  getCouponList (couponList) {
+    getCouponDetail(couponList).then(coupon => {
+      Toast.hide();
+      this.setState({
+        couponList: coupon ? coupon.records : []
+      })
+    })
+  }
   // 点击tabs
   tabsClick (title, index) {
     // 设置选中tabs
@@ -288,15 +292,18 @@ export default class ActivityModal extends React.Component {
       tabTopShow: floorTop > scrollTop
     })
   }
-  getCoupon (goodsId, reachPurchaseLimit) {
-    if (reachPurchaseLimit === 1) {
+  getCoupon (goodsId, reachPurchaseLimit, stock) {
+    if (reachPurchaseLimit === 1 || stock === 0) {
       return
     }
-    Toast.loading('Loading...', 10)
+    Toast.loading('Loading...', 20)
     postReceiveCoupon(goodsId).then(res => {
       console.log(res)
-      Toast.hide();
+      // Toast.hide();
       message.success('领取成功')
+      this.getCouponList (this.state.couponListIds)
+    }).catch(() => {
+      this.getCouponList (this.state.couponListIds)
     })
   }
   goBuyGoods (goodsId) {
