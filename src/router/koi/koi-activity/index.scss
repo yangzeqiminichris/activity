@@ -1,0 +1,35 @@
+.koi-activity {
+  min-height: 100vh;
+  background-color: #fedac0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding-bottom: 40px;
+  box-sizing: border-box;
+  background-image: url("../../../assets/koi/koi_bg.png");
+  -webkit-background-size: contain;
+  background-size: contain;
+  background-repeat: no-repeat;
+  &-img {
+    width: 100%;
+    display: flex;
+  }
+  &-lottery-area {
+    height: 323px;
+    width: 698px;
+    border-left: 1px solid #EB9F76;
+    border-right: 1px solid #EB9F76;
+    background-color: #fff;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  &-first {
+    margin-top: 640px;
+  }
+}
+
+p {
+  margin-bottom: 0 !important;
+}

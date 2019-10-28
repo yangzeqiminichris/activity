@@ -1,0 +1,99 @@
+.popup {
+  background: rgba(0,0,0,0.5);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &-body {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-top: 254px;
+    &-head {
+      width: 640px;
+    }
+    &-bottom {
+      width: 640px;
+      transform: rotateX(180deg);
+      margin-top: -2px;
+    }
+    &-rule {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      &-area {
+        width: 640px;
+        border-left: 1px solid #EB9F76;
+        border-right: 1px solid #EB9F76;
+        background-color: #fff;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+
+        &-head {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          &-icon {
+            width: 24px;
+            height: 14px;
+          }
+          &-title {
+            font-size: 32px;
+            color: #E88C5A;
+            margin: 0 18px;
+          }
+        }
+
+        &-body {
+          display: flex;
+          flex-direction: column;
+          padding: 0 40px;
+          &-item {
+            display: flex;
+            flex-direction: column;
+            padding: 24px 0 22px 0;
+            border-bottom: 1px solid rgba(174,147,126,0.2);
+            &-title {
+              font-size: 28px;
+              font-weight: normal;
+              color: #E88C5A;
+              margin: 0 0 18px 0;
+            }
+            &-content {
+              font-size: 26px;
+              font-weight: normal;
+              color: #AE937E;
+            }
+          }
+          &-tips {
+            font-size: 24px;
+            font-weight: normal;
+            color: #C99857;
+          }
+        }
+      }
+    }
+    &-title {
+      width: 318px;
+      height: 88px;
+      position: absolute;
+      top: -44px;
+      left: 0;
+      transform: translateX(50%);
+    }
+    &-close {
+      width: 58px;
+      height: 58px;
+      position: absolute;
+      top: -112px;
+      right: 0;
+    }
+  }
+}

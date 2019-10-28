@@ -1,7 +1,7 @@
 import axios from 'axios'
 import qs from 'qs'
 // import { ERROR_OK, ERROR_NOT_LOGIN } from 'common/js/constants'
-import { getToken } from '../cache/token.js'
+import { getToken } from '@/cache/token.js'
 import { message } from 'antd';
 
 let notLoginCallback = () => {
@@ -15,6 +15,20 @@ getToken().then((res) => {
 })
 axios.defaults.headers.common['Cross-Origin'] = '*'
 /*axios.defaults.headers.delete['Content-Type'] = 'application/x-www-form-urlencoded'*/
+
+axios.interceptors.request.use(async (config) => {
+  // 在发送请求之前做些什么
+
+  await getToken().then((res) => {
+    config.headers.Authorization = res
+    axios.defaults.headers['Authorization'] = res
+  })
+  console.log('config', config)
+  return config;
+}, function (error) {
+  // 对请求错误做些什么
+  return Promise.reject(error);
+});
 
 // 添加响应拦截器
 axios.interceptors.response.use((response) => {
@@ -102,6 +116,7 @@ export function updateAuthorization () {
 function replacUrl (url) {
     url = url.replace('/jf-api', 'https://jf-api.zbszkj.com')
     url = url.replace('/zbdx-api', 'https://zbdx.jzjtong.com/zbdx-api')
+    url = url.replace('/koiActivity', 'https://zbdx.jzjtong.com/zbdx-api/koiActivity')
     // url = url.replace('/v1', 'http://192.168.1.199:8098/v1')
     /*url = url.replace('/jf-api', 'https://zbdx.jzjtong.com/jf-api')
     url = url.replace('/zbdx-api', 'https://zbdx.jzjtong.com/zbdx-api')*/

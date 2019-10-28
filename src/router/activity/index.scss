@@ -44,7 +44,7 @@
         box-sizing: border-box;
         margin-left: 24px;
         &-name {
-          line-height: 1;
+          line-height: 30px;
           font-size: 28px;
           overflow: hidden;
           text-overflow: ellipsis;
@@ -52,6 +52,7 @@
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
           width: 224px;
+          height: 61px;
         }
       }
     }

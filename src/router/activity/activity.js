@@ -8,8 +8,8 @@ import couponZhekou from '@/assets/zhukuo_img_normal.png'
 import couponShip from '@/assets/yunfei_img_normal.png'
 import activityImg from '@/assets/activity_img.png'
 import { setToken } from '@/cache/token.js'
-import {getCouponDetail, postReceiveCoupon, getCouponIds} from "../../api/coupon";
-import {getToken} from "../../cache/token";
+import { getCouponDetail, postReceiveCoupon, getCouponIds } from "../../api/coupon";
+import { getToken } from "../../cache/token";
 
 const COUPON_IMG = {
     1: couponDikou,

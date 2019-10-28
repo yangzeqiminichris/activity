@@ -9,6 +9,5 @@ export async function setToken (token) {
 
 export async function getToken () {
     let t = await getStorage('___token___')
-    console.log('getStorage', t)
     return t
 }
