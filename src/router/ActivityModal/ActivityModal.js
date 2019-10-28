@@ -221,12 +221,18 @@ export default class ActivityModal extends React.Component {
                 {/* {
                   goods.goodsOriginalPrice > goods.goodsPrice
                 } */}
-                <span className='origin-price'>原价{ goods.goodsOriginalPrice }</span>
+                {
+                  goods.activityType === 2 && <span className='origin-price'>原价{ goods.goodsOriginalPrice }</span>
+                }
+                
                 <span className='btn'>立即抢购</span>
               </div>
             </div> : <div>
               <div className='activity'>
-                活动价：<span className='price'>{ goods.goodsPrice }</span>元 <span className='origin-price'>{ goods.goodsOriginalPrice }</span>
+                活动价：<span className='price'>{ goods.goodsPrice }</span>元 
+                {
+                  goods.activityType === 2 && <span className='origin-price'>{ goods.goodsOriginalPrice }</span>
+                }
               </div>
               <div className='btn'>立即抢购</div>
             </div>
@@ -245,7 +251,10 @@ export default class ActivityModal extends React.Component {
         <div className='goods-info'>
           <div className='title points'>{ goods.goodsName }</div>
           <div className='price clearfix'>
-            <span className='sign'>￥</span><span className='amount'>{ goods.goodsPrice }</span><span className='origin-price'>{ goods.goodsOriginalPrice }</span>
+            <span className='sign'>￥</span><span className='amount'>{ goods.goodsPrice }</span>
+            {
+              goods.activityType === 2 && <span className='origin-price'>{ goods.goodsOriginalPrice }</span>
+            }
           </div>
           <div className='btn'>
             立即抢购 >
