@@ -1,5 +1,7 @@
 .activity-modal{
     background: #B70117;
+    overflow-y: scroll;
+    padding-bottom: 48px;
     .banner{
         width: 100%;
         overflow: hidden;
@@ -20,10 +22,12 @@
         flex-wrap: nowrap;
         flex-direction: row;
         overflow-x: scroll;
-        justify-content: space-between;
+        -webkit-overflow-scrolling: touch;
+        // justify-content: space-between;
         width: auto;
         // min-width: 100%;
         box-sizing: border-box;
+        
         .coupon-item{
             width: 226px;
             height: 241px;
@@ -32,16 +36,18 @@
             background: url('../../assets/coupon-bac-item.png');
             // background-image: ;
             background-size: 100% 100%;
+            
             .top{
                 // color: #BA1D3A;
                 text-align: center;
                 letter-spacing: 0;
                 box-sizing: border-box;
-                padding-top: 4px;
+                padding-top: 8px;
                 .price{
-                    font-size: 80px;
+                    font-size: 76px;
                     line-height: 1;
                     height: 80px;
+                    letter-spacing: 0;
                     .sign{
                         font-size: 24px;
                     }
@@ -49,6 +55,7 @@
                         display: inline-block;
                         line-height: 1;
                         // box-sizing: border-box;
+                        font-weight: 600;
                     }
                 }
                 .reduction{
@@ -59,6 +66,12 @@
                 .limit{
                     font-size: 20px;
                     // margin-top: 8px;
+                    box-sizing: border-box;
+                    width: 100%;
+                    padding: 0 16px;
+                    height: 20px;
+                    line-height: 20px;
+                    margin-top: 6px;
                 }
             }
             .bottom{
@@ -84,6 +97,12 @@
                 }
             }
         }
+    }
+    .top-floor{
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 10001;
     }
     .tabs-content{
         padding: 22px 23px;
@@ -252,7 +271,7 @@
         flex-direction: row;
         flex-wrap: nowrap;
         overflow-x: auto;
-        
+        -webkit-overflow-scrolling: touch;
         .custom-item{
             flex-shrink: 0;
             width: 230px;
@@ -335,4 +354,6 @@
     margin: 0;
     padding: 0;
 }
-
+.white-space-none{
+    margin-right: 0!important;
+}

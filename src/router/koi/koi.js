@@ -92,23 +92,10 @@ export default class Koi extends React.Component {
         })
       });//返回定位信息
       window.AMap.event.addListener(geolocation, 'error', (res) => {
-        that.setState({
-          longitude: 120.2985,
-          latitude: 30.41875
-        }, () => {
-          setToken(token).then(() => {
-            getKoiIndex(false, that.state.longitude, that.state.latitude).then((res) => {
-              if (!res.isNew) {
-                that.setState({
-                  showFirstPage: false
-                })
-              }
-              that.setState({
-                activityStatus: res.activityStatus,
-                loading: false
-              })
-            })
-          })
+        setToken(token).then(() => {
+          that.setState({
+            loading: false
+          }, () => { message.warn('获取定位失败') })
         })
       });      //返回定位出错信息
     })
@@ -182,7 +169,7 @@ export default class Koi extends React.Component {
     } else if (!token) {
       window.wx.miniProgram.navigateTo({url: '/pages/user/login/login'})
     } else if ( !latitude || !longitude) {
-      message.warn('参加此活动需开启定位')
+      message.warn('参加此活动需开启定位,若您已拒绝，请清理微信缓存后再次尝试')
     }
   }
 

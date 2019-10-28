@@ -1,8 +1,9 @@
 import axios from 'axios'
 import qs from 'qs'
 // import { ERROR_OK, ERROR_NOT_LOGIN } from 'common/js/constants'
-import { getToken } from '@/cache/token.js'
+// import { getToken } from '../cache/token.js'
 import { message } from 'antd';
+import { Toast } from 'antd-mobile'
 
 let notLoginCallback = () => {
     window.wx.miniProgram.navigateTo({url: '/pages/user/login/login'})
@@ -10,6 +11,10 @@ let notLoginCallback = () => {
 /* axios.defaults.baseURL = 'https://jf-api.zbszkj.co/jf-api' */ // https://jf-api.zbszkj.com // https://zbdx.jzjtong.com
 axios.defaults.headers.common['Cross-Origin'] = '*'
 axios.defaults.headers.common['Accept'] = 'application/json'
+function getToken() {
+    let res = sessionStorage.getItem('___token___')
+    return Promise.resolve(res)
+}
 getToken().then((res) => {
     axios.defaults.headers['Authorization'] = res
 })
@@ -21,9 +26,7 @@ axios.interceptors.request.use(async (config) => {
 
   await getToken().then((res) => {
     config.headers.Authorization = res
-    axios.defaults.headers['Authorization'] = res
   })
-  console.log('config', config)
   return config;
 }, function (error) {
   // 对请求错误做些什么
@@ -61,6 +64,7 @@ function then (response) {
             return Promise.resolve(res.data)
         } else if (res.code === -1) {
             message.warning(res.msg)
+            Toast.hide()
             return reject(res)
         }
     } catch (e) {
@@ -114,8 +118,10 @@ export function updateAuthorization () {
 }
 
 function replacUrl (url) {
-    url = url.replace('/jf-api', 'https://jf-api.zbszkj.com')
+    // http://zbdx.jzjtong.com/jf-api/coupon/list
+    url = url.replace('/jf-api', 'https://zbdx.jzjtong.com/jf-api/')
     url = url.replace('/zbdx-api', 'https://zbdx.jzjtong.com/zbdx-api')
+    url = url.replace('/o2o-api', 'https://zbdx.jzjtong.com/o2o-api')
     url = url.replace('/koiActivity', 'https://zbdx.jzjtong.com/zbdx-api/koiActivity')
     // url = url.replace('/v1', 'http://192.168.1.199:8098/v1')
     /*url = url.replace('/jf-api', 'https://zbdx.jzjtong.com/jf-api')

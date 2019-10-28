@@ -36,21 +36,24 @@ export default class Koi extends React.Component {
       showRulePopup: false,
       showLotteryPopup: true,
       award: '',
-      winLottery: false
+      winLottery: false,
+      interfaceFinish: false
     }
   }
 
-  componentDidMount() {
-    getKoiAwardResult().then((res) => {
-      this.setState({
+  async componentWillMount() {
+    await getKoiAwardResult().then(async (res) => {
+      await this.setState({
         award: res.award,
-        winLottery: res.winLottery
+        winLottery: res.winLottery,
+        interfaceFinish: true
       })
     })
   }
 
   render () {
-    const { showRulePopup, showLotteryPopup, award, winLottery } = this.state
+    const { showRulePopup, showLotteryPopup, award, winLottery, interfaceFinish } = this.state
+    console.log('winLottery', winLottery)
     return (
       <div className='koi-lottery'>
         <img src={ koiIndexRule } className='koi-lottery-ruleicon' onClick={ this.showRuleModal }/>
@@ -71,7 +74,7 @@ export default class Koi extends React.Component {
           <Rule />
         </div>
         { showRulePopup && <RulePopUp showRulePopup={ showRulePopup } onClosePopup={ this.showRuleModal } /> }
-        <div style={{ display: showLotteryPopup ? 'block' : 'none'}}>
+        <div style={{ display: showLotteryPopup && interfaceFinish ? 'block' : 'none'}}>
           <LotteryPopup winLottery={ winLottery } closeLotteryPopup={ this.closeLotteryPopup.bind(this) }/>
         </div>
       </div>
