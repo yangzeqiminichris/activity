@@ -1,7 +1,7 @@
 import axios from 'axios'
 import qs from 'qs'
 // import { ERROR_OK, ERROR_NOT_LOGIN } from 'common/js/constants'
-import { getToken } from '../cache/token.js'
+// import { getToken } from '../cache/token.js'
 import { message } from 'antd';
 import { Toast } from 'antd-mobile'
 
@@ -11,6 +11,10 @@ let notLoginCallback = () => {
 /* axios.defaults.baseURL = 'https://jf-api.zbszkj.co/jf-api' */ // https://jf-api.zbszkj.com // https://zbdx.jzjtong.com
 axios.defaults.headers.common['Cross-Origin'] = '*'
 axios.defaults.headers.common['Accept'] = 'application/json'
+function getToken() {
+    let res = sessionStorage.getItem('___token___')
+    return Promise.resolve(res)
+}
 getToken().then((res) => {
     axios.defaults.headers['Authorization'] = res
 })
@@ -103,7 +107,7 @@ export function updateAuthorization () {
 
 function replacUrl (url) {
     // http://zbdx.jzjtong.com/jf-api/coupon/list
-    url = url.replace('/jf-api', 'http://zbdx.jzjtong.com/jf-api/')
+    url = url.replace('/jf-api', 'https://zbdx.jzjtong.com/jf-api/')
     url = url.replace('/zbdx-api', 'https://zbdx.jzjtong.com/zbdx-api')
     url = url.replace('/o2o-api', 'https://zbdx.jzjtong.com/o2o-api')
     /*url = url.replace('/jf-api', 'https://zbdx.jzjtong.com/jf-api')
