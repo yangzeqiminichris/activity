@@ -42,6 +42,7 @@ export default class Koi extends React.Component {
       showFirstPage: true,
       showRulePopup: false,
       showTipsPopup: false,
+      showTimesPopup: false,
       longitude: '',
       latitude: '',
       activityStatus: 0, // -1 已结束 0 未开始 1 进行中
@@ -53,6 +54,10 @@ export default class Koi extends React.Component {
     const that = this
     let t = this.props.location.search.split('&')
     let token = t[0].replace('?token=', '')
+    this.props.history.listen(() => {
+      console.log('this.props.history')
+      window.location.reload()
+    })
     let mapObj = new window.AMap.Map('iCenter');
     var geolocation
     mapObj.plugin('AMap.Geolocation', function () {
@@ -102,7 +107,7 @@ export default class Koi extends React.Component {
   }
 
   render () {
-    const { showRulePopup, showTipsPopup, loading } = this.state
+    const { showRulePopup, showTipsPopup, loading, showTimesPopup } = this.state
     return (
       <Spin spinning={loading}>
         <div>
@@ -111,6 +116,9 @@ export default class Koi extends React.Component {
           { showRulePopup && <RulePopUp showRulePopup={ showRulePopup } onClosePopup={ this.showRuleModal } /> }
           <div style={{ display: showTipsPopup ? 'block' : 'none'}}>
             <TipsPopup tips='活动尚未开始' closeTipsPopup={ this.closeTipsPopup } />
+          </div>
+          <div style={{ display: showTimesPopup ? 'block' : 'none'}}>
+            <TipsPopup times='1' closeTipsPopup={ this.closeTipsPopup } />
           </div>
         </div>
       </Spin>
@@ -163,7 +171,8 @@ export default class Koi extends React.Component {
     if (token && latitude && longitude) {
       this.getKoiTime().then(() => {
         this.setState({
-          showFirstPage: false
+          showFirstPage: false,
+          showTimesPopup: true
         })
       })
     } else if (!token) {
