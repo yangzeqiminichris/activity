@@ -123,6 +123,7 @@ function replacUrl (url) {
     url = url.replace('/zbdx-api', 'https://zbdx.jzjtong.com/zbdx-api')
     url = url.replace('/o2o-api', 'https://zbdx.jzjtong.com/o2o-api')
     url = url.replace('/koiActivity', 'https://zbdx.jzjtong.com/zbdx-api/koiActivity')
+    url = url.replace('/test', 'https://zbdx.jzjtong.com/zbdx-api')
     // url = url.replace('/v1', 'http://192.168.1.199:8098/v1')
     /*url = url.replace('/jf-api', 'https://zbdx.jzjtong.com/jf-api')
     url = url.replace('/zbdx-api', 'https://zbdx.jzjtong.com/zbdx-api')*/
