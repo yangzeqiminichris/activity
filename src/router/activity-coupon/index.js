@@ -4,15 +4,12 @@ import { Tabs, Toast } from "antd-mobile";
 import { message } from "antd";
 import { animateScroll as scroll } from "react-scroll";
 import { setToken } from "@/cache/token.js";
-import {
-  getActivityDetail,
-  getCouponDetail,
-  postReceiveCoupon
-} from "@/api/custom-modal";
+import { getCouponDetail, postReceiveCoupon } from "@/api/custom-modal";
 import "./index.scss";
 import FirstFloor from "./view/first-floor";
 import OtherFloor from "./view/other-floor";
-// import { getActivityDetail } from "./api/api";
+import CouponItemTop from "./component/coupon-item-t";
+import { getActivityDetail } from "./api/api";
 
 const LAYOUT_LISt = 2;
 
@@ -23,7 +20,9 @@ export default class ActivityModal extends React.Component {
       activityConfig: {},
       couponList: [],
       tabTopShow: true,
-      currentPage: 0
+      currentPage: 0,
+      tabs: [],
+      floorCouponList: {}
     };
   }
 
@@ -37,11 +36,10 @@ export default class ActivityModal extends React.Component {
       window.location.reload();
     });
     let token = this.getUrlToken("token", this.props.location.search);
-    let shopCode = this.getUrlToken("shopCode", this.props.location.search);
     let activityId = this.getUrlToken("activityId", this.props.location.search);
     setToken(token).then(() => {
       // 获取活动详情
-      getActivityDetail(activityId, shopCode).then(res => {
+      getActivityDetail({ id: activityId }).then(res => {
         if (!res) {
           message.error("暂无该活动");
           setTimeout(() => {
@@ -51,33 +49,47 @@ export default class ActivityModal extends React.Component {
           }, 1500);
           return;
         }
-        if (res && res.name) {
-          document.title = res.name;
+        if (res.title) {
+          document.title = res.title;
         }
+        Toast.hide();
         // 获取券详情
-        res &&
-          getCouponDetail(res.couponList).then(coupon => {
-            Toast.hide();
-            this.setState({
-              couponList: coupon ? coupon.records : []
-            });
+        console.log(res);
+        const { firstFloor = {}, floors = [] } = res;
+        const otherFloor = floors.map(item => ({
+          title: item.floorName
+        }));
+        const tabs = [{ title: firstFloor.floorName }, ...otherFloor];
+        getCouponDetail(res.limitCoupons).then(coupon => {
+          this.setState({
+            couponList: coupon ? coupon.records : []
           });
+        });
+        floors.map((floor, index) => {
+          getCouponDetail(floor.couponList).then(coupon => {
+            const floorCouponList = { ...this.state.floorCouponList };
+            floorCouponList[index] = coupon ? coupon.records : [];
+            this.setState({ floorCouponList });
+          });
+        });
         this.setState(
           {
-            activityConfig: res
+            activityConfig: res,
+            tabs
           },
           () => {
             let activityModal = document.getElementsByClassName(
               "activity-modal"
             );
-            let tabActive = document.getElementsByClassName(
-              "am-tabs-default-bar-tab-active"
-            );
+            let tabActive =
+              document.getElementsByClassName(
+                "am-tabs-default-bar-tab-active"
+              ) || [];
             activityModal[0] &&
-              (activityModal[0].style.background = res.colorInfo.bgColor);
-            tabActive[0] &&
-              (tabActive[0].style.background =
-                res.colorInfo && res.colorInfo.groupSelectedColor);
+              (activityModal[0].style.background = res.colors.bgColor);
+            [...tabActive].forEach(item => {
+              item.style.background = res.colors.floorSelectedColor;
+            });
           }
         );
       });
@@ -85,21 +97,7 @@ export default class ActivityModal extends React.Component {
   }
 
   render() {
-    const { activityConfig, couponList } = this.state;
-    const cul = activityConfig.templateType || 1;
-    let tabs = [];
-    if (
-      activityConfig &&
-      activityConfig.activityGroup &&
-      activityConfig.activityGroup.length > 0
-    ) {
-      activityConfig.activityGroup.forEach(item => {
-        tabs.push({
-          ...item,
-          title: item.name
-        });
-      });
-    }
+    const { activityConfig, couponList, floorCouponList } = this.state;
     return (
       <div className="activity-modal clearfix">
         <div className="banner">
@@ -112,29 +110,27 @@ export default class ActivityModal extends React.Component {
         <div className="coupon-list">
           {couponList &&
             couponList.map((item, index) => {
-              return this.renderConponsItem(
-                activityConfig,
-                item,
-                index === couponList.length - 1
-              );
+              return <CouponItemTop key={"coupon" + index} dataSource={item} />;
             })}
           <div className="white-space"></div>
         </div>
         <div id="floor">
-          {activityConfig && this.renderActivityFloor(activityConfig, tabs)}
-          <div
-            className={`tabs-content click-autor ${cul === LAYOUT_LISt &&
-              "tabs-content-2"}`}
-          >
-            <FirstFloor />
-            <OtherFloor />
+          {activityConfig && this.renderActivityFloor(activityConfig)}
+          <div className={`tabs-content`}>
+            <FirstFloor dataSource={activityConfig.firstFloor} />
+            <OtherFloor
+              dataSource={activityConfig.floors}
+              floorCouponList={floorCouponList}
+            />
           </div>
         </div>
       </div>
     );
   }
-  renderActivityFloor(activityConfig, tabs) {
-    const { currentPage, tabTopShow } = this.state;
+  renderActivityFloor(activityConfig = {}) {
+    const { currentPage, tabTopShow, tabs } = this.state;
+    const { colors = {} } = activityConfig;
+    console.log(colors);
     return (
       <div>
         {
@@ -152,17 +148,9 @@ export default class ActivityModal extends React.Component {
               height: "2px",
               borderRadius: "2px"
             }}
-            tabBarBackgroundColor={
-              activityConfig.colorInfo && activityConfig.colorInfo.groupBgColor
-            }
-            tabBarActiveTextColor={
-              activityConfig.colorInfo &&
-              activityConfig.colorInfo.fontSelectedColor
-            }
-            tabBarInactiveTextColor={
-              activityConfig.colorInfo &&
-              activityConfig.colorInfo.groupFontColor
-            }
+            tabBarBackgroundColor={colors.floorBgColor}
+            tabBarActiveTextColor={colors.fontSelectedColor}
+            tabBarInactiveTextColor={colors.floorFontColor}
             tabBarTextStyle={{
               fontSize: "14px",
               fontWeight: "600"
@@ -194,21 +182,9 @@ export default class ActivityModal extends React.Component {
                 height: "2px",
                 borderRadius: "2px"
               }}
-              tabBarBackgroundColor={
-                activityConfig &&
-                activityConfig.colorInfo &&
-                activityConfig.colorInfo.groupBgColor
-              }
-              tabBarActiveTextColor={
-                activityConfig &&
-                activityConfig.colorInfo &&
-                activityConfig.colorInfo.fontSelectedColor
-              }
-              tabBarInactiveTextColor={
-                activityConfig &&
-                activityConfig.colorInfo &&
-                activityConfig.colorInfo.groupFontColor
-              }
+              tabBarBackgroundColor={colors.floorBgColor}
+              tabBarActiveTextColor={colors.fontSelectedColor}
+              tabBarInactiveTextColor={colors.floorFontColor}
               tabBarTextStyle={{
                 fontSize: "14px",
                 fontWeight: "600"
@@ -221,53 +197,6 @@ export default class ActivityModal extends React.Component {
       </div>
     );
   }
-  // 顶部优惠券列表
-  renderConponsItem(activityConfig, item, islast) {
-    return (
-      <div
-        className={`coupon-item ${islast && "white-space-none"}`}
-        key={item.id}
-        style={{
-          backgroundImage: `url(${activityConfig.couponBgImg})`,
-          color: activityConfig.colorInfo
-            ? activityConfig.colorInfo.couponFontColor
-            : ""
-        }}
-      >
-        <div className="top">
-          <div className="price">
-            <span className="sign">￥</span>
-            <span className="money">{item.couponGoodsInfo.couponValue}</span>
-          </div>
-          <div className="reduction">
-            满{item.couponGoodsInfo.thresholdAmount}可用
-          </div>
-          <div className="limit points">{item.couponGoodsInfo.intro}</div>
-        </div>
-        <div className="bottom">
-          <button
-            onClick={this.getCoupon.bind(
-              this,
-              item.id,
-              item.reachPurchaseLimit
-            )}
-            style={{
-              background: activityConfig.colorInfo
-                ? activityConfig.colorInfo.couponFontColor
-                : ""
-            }}
-          >
-            {item.reachPurchaseLimit === 1 ? "已领取" : "立即领券"}
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  // 底部多个楼层
-  renderCustomItem(goods, islast) {
-    return <div>123</div>;
-  }
 
   // 点击tabs
   tabsClick(title, index) {
@@ -275,19 +204,19 @@ export default class ActivityModal extends React.Component {
     this.setState({ currentPage: index });
 
     // antd-mobile无选中背景颜色 配置选中背景色
-    let tabsLength = this.state.activityConfig.activityGroup.length;
+    let tabsLength = this.state.tabs.length;
     const { activityConfig } = this.state;
     let tabs = document.getElementsByClassName("am-tabs-default-bar-tab");
     for (let i in tabs) {
       tabs[i].style &&
-        (tabs[i].style.background = activityConfig.colorInfo.groupBgColor);
+        (tabs[i].style.background = activityConfig.colors.floorBgColor);
     }
 
     // 页面中tabs 设置选中背景色
-    tabs[index].style.background = activityConfig.colorInfo.groupSelectedColor;
+    tabs[index].style.background = activityConfig.colors.floorSelectedColor;
     // 顶部tabs 设置选中背景色
     tabs[index + tabsLength].style.background =
-      activityConfig.colorInfo.groupSelectedColor;
+      activityConfig.colors.floorSelectedColor;
 
     // 滚动到 锚点
     let tabHeight = document.getElementsByClassName("am-tabs-top")[0]

@@ -106,6 +106,7 @@ function replacUrl (url) {
     url = url.replace('/jf-api', 'http://zbdx.jzjtong.com/jf-api/')
     url = url.replace('/zbdx-api', 'https://zbdx.jzjtong.com/zbdx-api')
     url = url.replace('/o2o-api', 'https://zbdx.jzjtong.com/o2o-api')
+    url = url.replace('/test', 'https://zbdx.jzjtong.com/zbdx-api')
     /*url = url.replace('/jf-api', 'https://zbdx.jzjtong.com/jf-api')
     url = url.replace('/zbdx-api', 'https://zbdx.jzjtong.com/zbdx-api')*/
     return url
