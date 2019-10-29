@@ -19,10 +19,6 @@ export default class ActivityModal extends React.Component {
     floorCouponList: {}
   };
 
-  componentWillMount() {
-    // window.addEventListener("scroll", this.handleScroll.bind(this), true);
-  }
-
   componentDidMount() {
     Toast.loading("Loading...", 20);
     this.props.history.listen(() => {

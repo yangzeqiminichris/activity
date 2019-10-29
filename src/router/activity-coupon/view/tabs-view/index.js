@@ -119,7 +119,7 @@ export default function FirstFloor(props) {
             tabBarActiveTextColor={colors.fontSelectedColor}
             tabBarInactiveTextColor={colors.floorFontColor}
             tabBarTextStyle={{
-              fontSize: "14px",
+              fontSize: "0.32rem",
               fontWeight: "600"
             }}
             onTabClick={tabsClick}
