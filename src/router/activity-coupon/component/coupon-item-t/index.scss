@@ -34,18 +34,17 @@
     background-size: 100% 100%;
     .cit-coupon-top {
       padding-top: 10px;
-      padding-left: 15px;
+      padding-left: 24px;
       display: flex;
       font-size: 14px;
     }
     .cit-coupon-icon {
-      font-size: 12px;
-      margin-top: 12px;
+      font-size: 18px;
+      margin-top: 14px;
     }
     .cit-coupon-money {
       display: flex;
       justify-content: top;
-      letter-spacing: -3px;
     }
     .cit-coupon-text {
       font-weight: 600;
@@ -53,10 +52,11 @@
     }
     .cit-coupon-detail {
       margin-top: 5px;
-      letter-spacing: -2px;
+      margin-left: 10px;
+      // letter-spacing: -2px;
       line-height: 30px;
       white-space: nowrap;
-      transform: scale(0.8);
+      // transform: scale(0.8);
     }
     .cit-coupon-describe {
       font-size: 22px;

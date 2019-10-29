@@ -24,8 +24,9 @@ export default class ActivityModal extends React.Component {
     this.props.history.listen(() => {
       window.location.reload();
     });
+    console.log(this.props)
     let token = this.getUrlToken("token", this.props.location.search);
-    let activityId = this.getUrlToken("activityId", this.props.location.search);
+    let activityId = this.props.match.params.activityId;
     setToken(token).then(() => {
       // 获取活动详情
       getActivityDetail({ id: activityId }).then(res => {
@@ -85,15 +86,25 @@ export default class ActivityModal extends React.Component {
         <div className="coupon-list">
           {couponList &&
             couponList.map((item, index) => {
-              return <CouponItemTop key={"coupon" + index} dataSource={item} />;
+              return (
+                <CouponItemTop
+                  goCouponDetail={this.goCouponDetail}
+                  key={"coupon" + index}
+                  dataSource={item}
+                />
+              );
             })}
           <div className="white-space"></div>
         </div>
         <div id="floor">
           {activityConfig && <TabsView dataSource={activityConfig} />}
           <div className={`tabs-content`}>
-            <FirstFloor dataSource={activityConfig.firstFloor} />
+            <FirstFloor
+              goCouponDetail={this.goCouponDetail}
+              dataSource={activityConfig.firstFloor}
+            />
             <OtherFloor
+              goCouponDetail={this.goCouponDetail}
               dataSource={activityConfig.floors}
               floorCouponList={floorCouponList}
             />
@@ -103,22 +114,12 @@ export default class ActivityModal extends React.Component {
     );
   }
 
-  getCoupon(goodsId, reachPurchaseLimit) {
-    if (reachPurchaseLimit === 1) {
-      return;
-    }
-    Toast.loading("Loading...", 10);
-    postReceiveCoupon(goodsId).then(res => {
-      console.log(res);
-      Toast.hide();
-      message.success("领取成功");
-    });
-  }
-  goBuyGoods(goodsId) {
+  goCouponDetail = couponId => {
+    console.log(couponId);
     window.wx.miniProgram.navigateTo({
-      url: "/o2o/pages/goods/detail/detail?goodsId=" + goodsId
+      url: "/packageA/pages/integral/reduction/index?id=" + couponId
     });
-  }
+  };
   getUrlToken(name, str) {
     const reg = new RegExp(`(^|&)${name}=([^&]*)(&|$)`);
     const r = str.substr(1).match(reg);

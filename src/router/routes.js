@@ -9,7 +9,7 @@ const ActivityCoupon = loadable(() => import('./activity-coupon'))
 
 const routes = [
 	{
-		path: '/activity-coupon',
+		path: '/activity-coupon/:activityId',
 		component: ActivityCoupon
 	},
 	{

@@ -10,7 +10,7 @@ export default function(props) {
   const start = moment(beginDatetime).format("MM.DD");
   const end = moment(endDatetime).format("MM.DD");
   return (
-    <div className="cif">
+    <div className="cif" onClick={() => props.goCouponDetail(dataSource.id)}>
       <div className="cif-header">
         <div className="cif-logo" style={{ backgroundColor: color }}>
           {dataSource.name}

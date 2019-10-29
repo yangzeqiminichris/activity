@@ -26,6 +26,9 @@
     font-size: 20px;
     color: #f92051;
     text-align: center;
+    .cif-money-num {
+      font-size: 46px;
+    }
   }
   .cif-footer {
     position: absolute;
@@ -44,8 +47,6 @@
     font-size: 18px;
     font-weight: 400;
     color: rgba(38, 38, 38, 1);
-    letter-spacing: -2px;
-    transform: scale(0.8);
     white-space: nowrap;
   }
   .cif-btn {

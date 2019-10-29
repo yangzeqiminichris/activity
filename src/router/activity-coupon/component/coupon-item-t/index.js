@@ -17,7 +17,7 @@ export default function(props) {
   const end = moment(endDatetime).format("MM.DD");
   console.log(dataSource);
   return (
-    <div className="cit">
+    <div className="cit" onClick={() => props.goCouponDetail(dataSource.id)}>
       <div className="cit-limit">
         <div>限购</div>
         <div>{stock}份</div>

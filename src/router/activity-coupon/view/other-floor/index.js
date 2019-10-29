@@ -11,9 +11,10 @@ export default function FirstFloor(props) {
     <div>
       {dataSource.map((floor, index) => (
         <div key={floor.floorName + index} className="other-floor click-autor">
-          <img style={{ width: "100%" }} src={floor.floorBanner} />
+          <img className="other-img" src={floor.floorBanner} />
           {(floorCouponList[index] || []).map((item, i) => (
             <CouponItem
+              goCouponDetail={props.goCouponDetail}
               key={item.id + index}
               dataSource={item}
               color={colorList[i % 9]}
