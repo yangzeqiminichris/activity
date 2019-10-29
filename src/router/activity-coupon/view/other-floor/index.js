@@ -1,7 +1,6 @@
 import React from "react";
 
 import { colorList } from "../../config";
-import FloorTitle from "../../component/floor-title";
 import CouponItem from "../../component/coupon-item-f";
 import "./index.scss";
 

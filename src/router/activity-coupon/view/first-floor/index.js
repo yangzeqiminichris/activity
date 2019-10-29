@@ -1,6 +1,5 @@
 import React from "react";
 
-import FloorTitle from "../../component/floor-title";
 import "./index.scss";
 
 export default function FirstFloor(props) {
