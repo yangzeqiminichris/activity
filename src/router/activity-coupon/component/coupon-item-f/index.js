@@ -7,8 +7,17 @@ import "./index.scss";
 export default function(props) {
   const { dataSource = {}, color } = props;
   const { couponGoodsInfo = {} } = dataSource;
-  const start = moment(couponGoodsInfo.effectTime).format("MM.DD");
-  const end = moment(couponGoodsInfo.invalidTime).format("MM.DD");
+  const { effectTime, invalidTime, timeType, invalidDay } = couponGoodsInfo;
+  let start, end;
+  if (timeType == 1) {
+    start = moment(effectTime).format("MM.DD");
+    end = moment(invalidTime).format("MM.DD");
+  } else {
+    start = moment().format("MM.DD");
+    end = moment()
+      .add(+invalidDay, "days")
+      .format("MM.DD");
+  }
   return (
     <div className="cif" onClick={() => props.goCouponDetail(dataSource.id)}>
       <div className="cif-header">
