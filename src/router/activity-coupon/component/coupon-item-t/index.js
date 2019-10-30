@@ -7,20 +7,25 @@ import "./index.scss";
 
 export default function(props) {
   const { dataSource = {} } = props;
-  const {
-    stock,
-    beginDatetime,
-    endDatetime,
-    couponGoodsInfo = {}
-  } = dataSource;
-  const start = moment(beginDatetime).format("MM.DD");
-  const end = moment(endDatetime).format("MM.DD");
+  const { stock, couponGoodsInfo = {} } = dataSource;
+  const start = moment(couponGoodsInfo.effectTime).format("MM.DD");
+  const end = moment(couponGoodsInfo.invalidTime).format("MM.DD");
   console.log(dataSource);
   return (
-    <div className="cit" onClick={() => props.goCouponDetail(dataSource.id)}>
+    <div
+      className={`cit`}
+      onClick={() => props.goCouponDetail(dataSource.id, stock)}
+    >
+      {stock === 0 && <div className="disable"></div>}
       <div className="cit-limit">
-        <div>限购</div>
-        <div>{stock}份</div>
+        {stock === 0 ? (
+          <div>抢光了</div>
+        ) : (
+          <>
+            <div>限购</div>
+            <div>{stock}份</div>
+          </>
+        )}
       </div>
       <div className="cit-coupon">
         <div className="cit-coupon-top">
@@ -32,7 +37,7 @@ export default function(props) {
           </div>
           <div className="cit-coupon-detail">
             <div>{couponType[couponGoodsInfo.couponType] || "优惠券"}</div>
-            <div>
+            <div className="cit-coupon-detail-date">
               {start}-{end}
             </div>
           </div>
@@ -46,14 +51,7 @@ export default function(props) {
         </div>
         <div className="cit-btn">
           {dataSource.credit}积分兑
-          <Icon
-            type="right-circle"
-            style={{
-              backgroundColor: "#fff",
-              color: "red",
-              borderRadius: "50%"
-            }}
-          />
+          <Icon type="right-circle" theme="filled" />
         </div>
       </div>
     </div>

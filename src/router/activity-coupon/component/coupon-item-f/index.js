@@ -6,9 +6,9 @@ import "./index.scss";
 
 export default function(props) {
   const { dataSource = {}, color } = props;
-  const { beginDatetime, endDatetime, couponGoodsInfo = {} } = dataSource;
-  const start = moment(beginDatetime).format("MM.DD");
-  const end = moment(endDatetime).format("MM.DD");
+  const { couponGoodsInfo = {} } = dataSource;
+  const start = moment(couponGoodsInfo.effectTime).format("MM.DD");
+  const end = moment(couponGoodsInfo.invalidTime).format("MM.DD");
   return (
     <div className="cif" onClick={() => props.goCouponDetail(dataSource.id)}>
       <div className="cif-header">

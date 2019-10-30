@@ -24,7 +24,6 @@ export default class ActivityModal extends React.Component {
     this.props.history.listen(() => {
       window.location.reload();
     });
-    console.log(this.props)
     let token = this.getUrlToken("token", this.props.location.search);
     let activityId = this.props.match.params.activityId;
     setToken(token).then(() => {
@@ -114,11 +113,14 @@ export default class ActivityModal extends React.Component {
     );
   }
 
-  goCouponDetail = couponId => {
-    console.log(couponId);
-    window.wx.miniProgram.navigateTo({
-      url: "/packageA/pages/integral/reduction/index?id=" + couponId
-    });
+  goCouponDetail = (couponId, stock) => {
+    if (stock == 0) {
+      message.warn("该券已被抢光");
+    } else {
+      window.wx.miniProgram.navigateTo({
+        url: "/packageA/pages/integral/reduction/index?id=" + couponId
+      });
+    }
   };
   getUrlToken(name, str) {
     const reg = new RegExp(`(^|&)${name}=([^&]*)(&|$)`);
