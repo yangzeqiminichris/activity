@@ -84,12 +84,12 @@ export default class ActivityModal extends React.Component {
     }
     return <div className='activity-modal clearfix'>
       {
-        couponList.length === 0 && <div className='banner'>
-          <img className='img' src={ activityConfig ? activityConfig.bgImg : '' } alt='暂无图片' />
+        couponList.length !== 0 && <div className='banner'>
+          <img className='img' src={ activityConfig ? activityConfig.bgImg : '' } alt='' />
         </div>
       }
       {
-        couponList.length === 0 && <div className='coupon-list'>
+        couponList.length !== 0 && <div className='coupon-list'>
           {
             couponList && couponList.map((item, index) => {
               return this.renderConponsItem(activityConfig, item, index === couponList.length - 1)
@@ -119,7 +119,9 @@ export default class ActivityModal extends React.Component {
                     return this.renderCustomItem (goods, index === item.goodsList.length - 1)
                   })
                 }
-                <div className='white-space'></div>
+                {
+                  item.goodsList.length > 3 && <div className='white-space'></div>
+                }
               </div>
             </div>
           })
