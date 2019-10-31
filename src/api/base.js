@@ -41,7 +41,7 @@ axios.interceptors.response.use((response) => {
     // 对响应错误做点什么
     if (error.response && error.response.status === 401) {
         notLoginCallback && notLoginCallback()
-        return reject(error)
+        return reject({ msg: '用户未登录，请登陆后重试' })
     }
     return reject(error)
 })
@@ -129,6 +129,7 @@ function replacUrl (url) {
         url = url.replace('/jf-api', 'https://jf-api.zbszkj.com')
         url = url.replace('/zbdx-api', 'https://zbdx-api.zbszkj.com')
         url = url.replace('/o2o-api', 'https://o2o-api.zbszkj.com')
+      url = url.replace('/koiActivity', 'https://zbdx.zbszkj.com/zbdx-api/koiActivity')
     } else if (process.env.NODE_ENV === 'development') {
         url = url.replace('/jf-api', 'https://zbdx.jzjtong.com/jf-api/')
         url = url.replace('/zbdx-api', 'https://zbdx.jzjtong.com/zbdx-api')
