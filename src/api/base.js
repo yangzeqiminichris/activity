@@ -129,7 +129,7 @@ function replacUrl (url) {
         url = url.replace('/jf-api', 'https://jf-api.zbszkj.com')
         url = url.replace('/zbdx-api', 'https://zbdx-api.zbszkj.com')
         url = url.replace('/o2o-api', 'https://o2o-api.zbszkj.com')
-      url = url.replace('/koiActivity', 'https://zbdx.zbszkj.com/zbdx-api/koiActivity')
+        url = url.replace('/koiActivity', 'https://zbdx-api.zbszkj.com/koiActivity')
     } else if (process.env.NODE_ENV === 'development') {
         url = url.replace('/jf-api', 'https://zbdx.jzjtong.com/jf-api/')
         url = url.replace('/zbdx-api', 'https://zbdx.jzjtong.com/zbdx-api')
