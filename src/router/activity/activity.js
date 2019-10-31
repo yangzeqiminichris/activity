@@ -6,10 +6,9 @@ import couponCash from '@/assets/cash-coupon.png'
 import couponDikou from '@/assets/manjian_img_normal.png'
 import couponZhekou from '@/assets/zhukuo_img_normal.png'
 import couponShip from '@/assets/yunfei_img_normal.png'
-import activityImg from '@/assets/activity_img.png'
 import { setToken } from '@/cache/token.js'
-import {getCouponDetail, postReceiveCoupon, getCouponIds} from "../../api/coupon";
-import {getToken} from "../../cache/token";
+import { getCouponDetail, postReceiveCoupon, getActivityInfo } from "../../api/coupon";
+import { getToken } from "../../cache/token";
 
 const COUPON_IMG = {
     1: couponDikou,
@@ -17,6 +16,7 @@ const COUPON_IMG = {
     4: couponCash,
     5: couponShip
 }
+var activityImg = ''
 
 export default class App extends React.Component {
     constructor(props) {
@@ -33,18 +33,23 @@ export default class App extends React.Component {
     }
 
     componentDidMount() {
-        let t = this.props.location.search.split('&')
-        let token = t[0].replace('?token=', '')
+      let t = this.props.location.search.split('&')
+      let token = t[0].replace('?token=', '')
+      this.props.history.listen(() => {
+        window.location.reload()
+      })
         setToken(token).then(() => {
-            getCouponIds().then((couponIds) => {
-                getCouponDetail(couponIds).then((res) => {
-                    this.setState({
-                        settlementInfo: {
-                            couponVos: res.records
-                        }
-                    })
+          getActivityInfo().then((res) => {
+            console.log(res)
+            activityImg = res.bgImg
+            getCouponDetail(res.couponList).then((res) => {
+                this.setState({
+                    settlementInfo: {
+                        couponVos: res.records
+                    }
                 })
             })
+          })
         })
     }
 
@@ -90,26 +95,26 @@ export default class App extends React.Component {
         )
     }
 
-    receiveCoupon = (item) => {
-        let token = getToken()
-        if (token) {
-            if (!item.reachPurchaseLimit) {
-                postReceiveCoupon(item.id).then(() => {
-                    message.success('领取成功')
-                    getCouponIds().then((couponIds) => {
-                        getCouponDetail(couponIds).then((res) => {
-                            this.setState({
-                                settlementInfo: {
-                                    couponVos: res.records
-                                }
-                            })
-                        })
-                    })
-                })
-            }
-        } else {
-            window.wx.miniProgram.navigateTo({url: '/pages/user/login/login'})
-        }
-
+  receiveCoupon = (item) => {
+    let token = getToken()
+    if (token) {
+      if (!item.reachPurchaseLimit) {
+        postReceiveCoupon(item.id).then(() => {
+          message.success('领取成功')
+          getActivityInfo().then((res) => {
+            activityImg = res.bgImg
+            getCouponDetail(res.couponList).then((res) => {
+              this.setState({
+                settlementInfo: {
+                  couponVos: res.records
+                }
+              })
+            })
+          })
+        })
+      }
+    } else {
+        window.wx.miniProgram.navigateTo({url: '/pages/user/login/login'})
     }
+  }
 }

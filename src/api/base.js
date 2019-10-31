@@ -21,6 +21,18 @@ getToken().then((res) => {
 axios.defaults.headers.common['Cross-Origin'] = '*'
 /*axios.defaults.headers.delete['Content-Type'] = 'application/x-www-form-urlencoded'*/
 
+axios.interceptors.request.use(async (config) => {
+  // 在发送请求之前做些什么
+
+  await getToken().then((res) => {
+    config.headers.Authorization = res
+  })
+  return config;
+}, function (error) {
+  // 对请求错误做些什么
+  return Promise.reject(error);
+});
+
 // 添加响应拦截器
 axios.interceptors.response.use((response) => {
     // 对响应数据做点什么
@@ -111,6 +123,8 @@ function replacUrl (url) {
         url = url.replace('/jf-api', 'https://zbdx.jzjtong.com/jf-api/')
         url = url.replace('/zbdx-api', 'https://zbdx.jzjtong.com/zbdx-api')
         url = url.replace('/o2o-api', 'https://zbdx.jzjtong.com/o2o-api')
+        url = url.replace('/koiActivity', 'https://zbdx.jzjtong.com/zbdx-api/koiActivity')
+        url = url.replace('/test', 'https://zbdx.jzjtong.com/zbdx-api')
     } else if (process.env.NODE_ENV === 'production') {
         url = url.replace('/jf-api', 'https://jf-api.zbszkj.com')
         url = url.replace('/zbdx-api', 'https://zbdx-api.zbszkj.com')
@@ -119,6 +133,8 @@ function replacUrl (url) {
         url = url.replace('/jf-api', 'https://zbdx.jzjtong.com/jf-api/')
         url = url.replace('/zbdx-api', 'https://zbdx.jzjtong.com/zbdx-api')
         url = url.replace('/o2o-api', 'https://zbdx.jzjtong.com/o2o-api')
+        url = url.replace('/koiActivity', 'https://zbdx.jzjtong.com/zbdx-api/koiActivity')
+        url = url.replace('/test', 'https://zbdx.jzjtong.com/zbdx-api')
     }
     /*url = url.replace('/jf-api', 'https://zbdx.jzjtong.com/jf-api')
     url = url.replace('/zbdx-api', 'https://zbdx.jzjtong.com/zbdx-api')*/

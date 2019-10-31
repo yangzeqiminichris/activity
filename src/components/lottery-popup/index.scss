@@ -1,0 +1,56 @@
+.lotterypop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  transform: translateY(-50%);
+  top: 50%;
+  width: 100%;
+  animation: mymove 0.5s linear 1;
+  -webkit-animation: mymove 0.5s linear 1;
+  &-bodybg {
+    width: 100%;
+    position: absolute;
+    z-index: 1100;
+    top: -160px;
+    animation: lightmove 4s linear infinite 0.5s;
+    -webkit-animation: lightmove 4s linear infinite 0.5s;
+  }
+  &-body {
+    width: 583px;
+    height: 717px;
+    z-index: 1200;
+  }
+  &-btn {
+    width: 470px;
+    height: 80px;
+    position: absolute;
+    bottom: 61px;
+    z-index: 1300;
+  }
+}
+
+@keyframes mymove {
+  /*以百分比来规定改变发生的时间 也可以通过"from"和"to",等价于0% 和 100%*/
+  0%{
+    /*rotate(2D旋转) scale(放大或者缩小) translate(移动) skew(翻转)*/
+    transform: scale(0.1) translateY(-50%);
+
+  }
+  100%{
+    transform: scale(1) translateY(-50%);
+  }
+}
+
+/*
+@keyframes lightmove {
+  !*以百分比来规定改变发生的时间 也可以通过"from"和"to",等价于0% 和 100%*!
+  0%{
+    !*rotate(2D旋转) scale(放大或者缩小) translate(移动) skew(翻转)*!
+    transform: rotateZ(0deg);
+
+  }
+  100%{
+    transform: rotateZ(360deg);
+  }
+}*/

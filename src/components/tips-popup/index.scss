@@ -1,0 +1,41 @@
+.tipspop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  &-bodybg {
+    width: 582px;
+    z-index: 1100;
+  }
+  &-body {
+    width: 583px;
+    height: 717px;
+    z-index: 1200;
+  }
+  &-closebtn {
+    position: absolute;
+    top: 0;
+    width: 58px;
+    height: 58px;
+    right: 100px;
+    z-index: 1300;
+  }
+  &-btn {
+    width: 317px;
+    height: 94px;
+    position: absolute;
+    bottom: 0px;
+    z-index: 1300;
+  }
+  &-tips {
+    color: #B34400;
+    position: absolute;
+    bottom: 184px;
+    z-index: 1200;
+    font-size: 60px;
+    font-weight: bold;
+  }
+}

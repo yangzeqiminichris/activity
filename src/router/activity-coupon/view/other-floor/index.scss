@@ -1,0 +1,10 @@
+.other-floor {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  .other-img {
+    max-width: 700px;
+    max-height: 200px;
+    object-fit: cover;
+  }
+}
