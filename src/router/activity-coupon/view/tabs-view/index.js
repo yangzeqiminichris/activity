@@ -89,7 +89,7 @@ export default function FirstFloor(props) {
             fontWeight: "600"
           }}
           onTabClick={tabsClick}
-          renderTabBar={props => <Tabs.DefaultTabBar {...props} page={5} />}
+          renderTabBar={props => <Tabs.DefaultTabBar {...props} page={3} />}
         ></Tabs>
       }
       {
@@ -123,7 +123,7 @@ export default function FirstFloor(props) {
               fontWeight: "600"
             }}
             onTabClick={tabsClick}
-            renderTabBar={props => <Tabs.DefaultTabBar {...props} page={5} />}
+            renderTabBar={props => <Tabs.DefaultTabBar {...props} page={3} />}
           ></Tabs>
         </div>
       }

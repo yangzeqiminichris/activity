@@ -41,7 +41,7 @@ axios.interceptors.response.use((response) => {
     // 对响应错误做点什么
     if (error.response && error.response.status === 401) {
         notLoginCallback && notLoginCallback()
-        return reject(error)
+        return reject({ msg: '用户未登录，请登陆后重试' })
     }
     return reject(error)
 })
@@ -118,23 +118,26 @@ export function updateAuthorization () {
 }
 
 function replacUrl (url) {
-  // http://zbdx.jzjtong.com/jf-api/coupon/list
-  // 测试
-  console.log(process.env.REACT_APP_ENV)
-  url = url.replace('/jf-api', 'https://zbdx.jzjtong.com/jf-api/')
-  url = url.replace('/zbdx-api', 'https://zbdx.jzjtong.com/zbdx-api')
-  url = url.replace('/o2o-api', 'https://zbdx.jzjtong.com/o2o-api')
-  url = url.replace('/koiActivity', 'https://zbdx.jzjtong.com/zbdx-api/koiActivity')
-  url = url.replace('/test', 'https://zbdx.jzjtong.com/zbdx-api')
-
-  // 正式
-  /* url = url.replace('/jf-api', 'https://jf-api.zbszkj.com/jf-api')
-  url = url.replace('/zbdx-api', 'https://zbdx-api.zbszkj.com/zbdx-api')
-  url = url.replace('/o2o-api', 'https://o2o-api.zbszkj.com/o2o-mapi')
-  url = url.replace('/koiActivity', 'https://zbdx.zbszkj.com/zbdx-api/koiActivity')
-  url = url.replace('/test', 'https://zbdx.jzjtong.com/zbdx-api') */
-  // url = url.replace('/v1', 'http://192.168.1.199:8098/v1')
-  /*url = url.replace('/jf-api', 'https://zbdx.jzjtong.com/jf-api')
-  url = url.replace('/zbdx-api', 'https://zbdx.jzjtong.com/zbdx-api')*/
-  return url
+    // http://zbdx.jzjtong.com/jf-api/coupon/list
+    if (process.env.REACT_APP_ENV === 'test') {
+        url = url.replace('/jf-api', 'https://zbdx.jzjtong.com/jf-api/')
+        url = url.replace('/zbdx-api', 'https://zbdx.jzjtong.com/zbdx-api')
+        url = url.replace('/o2o-api', 'https://zbdx.jzjtong.com/o2o-api')
+        url = url.replace('/koiActivity', 'https://zbdx.jzjtong.com/zbdx-api/koiActivity')
+        url = url.replace('/test', 'https://zbdx.jzjtong.com/zbdx-api')
+    } else if (process.env.NODE_ENV === 'production') {
+        url = url.replace('/jf-api', 'https://jf-api.zbszkj.com')
+        url = url.replace('/zbdx-api', 'https://zbdx-api.zbszkj.com')
+        url = url.replace('/o2o-api', 'https://o2o-api.zbszkj.com')
+      url = url.replace('/koiActivity', 'https://zbdx.zbszkj.com/zbdx-api/koiActivity')
+    } else if (process.env.NODE_ENV === 'development') {
+        url = url.replace('/jf-api', 'https://zbdx.jzjtong.com/jf-api/')
+        url = url.replace('/zbdx-api', 'https://zbdx.jzjtong.com/zbdx-api')
+        url = url.replace('/o2o-api', 'https://zbdx.jzjtong.com/o2o-api')
+        url = url.replace('/koiActivity', 'https://zbdx.jzjtong.com/zbdx-api/koiActivity')
+        url = url.replace('/test', 'https://zbdx.jzjtong.com/zbdx-api')
+    }
+    /*url = url.replace('/jf-api', 'https://zbdx.jzjtong.com/jf-api')
+    url = url.replace('/zbdx-api', 'https://zbdx.jzjtong.com/zbdx-api')*/
+    return url
 }

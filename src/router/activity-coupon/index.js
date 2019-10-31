@@ -19,16 +19,17 @@ export default class ActivityModal extends React.Component {
     floorCouponList: {}
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     Toast.loading("Loading...", 20);
-    this.props.history.listen(() => {
-      window.location.reload();
+    this.props.history.listen(async () => {
+      await this.componentDidMount();
+      window.history.back(-1);
     });
     let token = this.getUrlToken("token", this.props.location.search);
     let activityId = this.props.match.params.activityId;
-    setToken(token).then(() => {
+    await setToken(token).then(async () => {
       // 获取活动详情
-      getActivityDetail({ id: activityId }).then(res => {
+      await getActivityDetail({ id: activityId }).then(res => {
         if (!res) {
           message.error("暂无该活动");
           setTimeout(() => {

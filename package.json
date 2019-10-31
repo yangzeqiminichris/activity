@@ -79,7 +79,7 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
-    "build:test": "dotenv -e .env.test react-app-rewired build"
+    "build:test": "dotenv -e .env.development react-app-rewired build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -102,6 +102,7 @@
     "@loadable/component": "^5.10.2",
     "babel-plugin-import": "^1.12.0",
     "customize-cra": "^0.5.0",
+    "dotenv-cli": "^3.0.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
