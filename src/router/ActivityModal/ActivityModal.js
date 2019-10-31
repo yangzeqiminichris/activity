@@ -58,6 +58,10 @@ export default class ActivityModal extends React.Component {
           let tabActive = document.getElementsByClassName('am-tabs-default-bar-tab-active')
           activityModal[0] && (activityModal[0].style.background = res.colorInfo.bgColor)
           tabActive[0] && (tabActive[0].style.background = res.colorInfo && res.colorInfo.groupSelectedColor)
+
+          let tabsLength = res.activityGroup.length
+          let tabs = document.getElementsByClassName('am-tabs-default-bar-tab')
+          tabs[0 + tabsLength].style.background = res.colorInfo.groupSelectedColor
         })
       }).catch(() => {
         message.error('暂无该活动信息')
