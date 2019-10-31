@@ -120,6 +120,7 @@ export function updateAuthorization () {
 function replacUrl (url) {
   // http://zbdx.jzjtong.com/jf-api/coupon/list
   // 测试
+  console.log(process.env.REACT_APP_ENV)
   url = url.replace('/jf-api', 'https://zbdx.jzjtong.com/jf-api/')
   url = url.replace('/zbdx-api', 'https://zbdx.jzjtong.com/zbdx-api')
   url = url.replace('/o2o-api', 'https://zbdx.jzjtong.com/o2o-api')
