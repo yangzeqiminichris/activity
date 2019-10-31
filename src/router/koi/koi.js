@@ -92,15 +92,40 @@ export default class Koi extends React.Component {
                 activityStatus: res.activityStatus,
                 loading: false
               })
+            }).catch((error) => {
+              that.setState({
+                loading: false
+              }, () => {
+                message.warn(error.msg)
+              })
             })
           })
         })
       });//返回定位信息
       window.AMap.event.addListener(geolocation, 'error', (res) => {
-        setToken(token).then(() => {
-          that.setState({
-            loading: false
-          }, () => { message.warn('获取定位失败') })
+        that.setState({
+          longitude: 0,
+          latitude: 0
+        }, () => {
+          setToken(token).then(() => {
+            getKoiIndex(false, that.state.longitude, that.state.latitude).then((res) => {
+              if (!res.isNew) {
+                that.setState({
+                  showFirstPage: false
+                })
+              }
+              that.setState({
+                activityStatus: res.activityStatus,
+                loading: false
+              })
+            }).catch((error) => {
+              that.setState({
+                loading: false
+              }, () => {
+                message.warn(error.msg)
+              })
+            })
+          })
         })
       });      //返回定位出错信息
     })
@@ -118,7 +143,7 @@ export default class Koi extends React.Component {
             <TipsPopup tips='活动尚未开始' closeTipsPopup={ this.closeTipsPopup } />
           </div>
           <div style={{ display: showTimesPopup ? 'block' : 'none'}}>
-            <TipsPopup times='1' closeTipsPopup={ this.closeTipsPopup } />
+            <TipsPopup times='1' closeTipsPopup={ this.closeTimesPopup } />
           </div>
         </div>
       </Spin>
@@ -168,18 +193,20 @@ export default class Koi extends React.Component {
   gotoKoiActivity = () => {
     const { latitude, longitude } = this.state
     const token  = getToken()
-    if (token && latitude && longitude) {
+    if (token) {
       this.getKoiTime().then(() => {
         this.setState({
           showFirstPage: false,
           showTimesPopup: true
         })
+      }).catch((error) => {
+        message.warn(error.msg)
       })
     } else if (!token) {
       window.wx.miniProgram.navigateTo({url: '/pages/user/login/login'})
-    } else if ( !latitude || !longitude) {
+    }/* else if ( !latitude || !longitude) {
       message.warn('参加此活动需开启定位,若您已拒绝，请清理微信缓存后再次尝试')
-    }
+    }*/
   }
 
   getKoiTime = () => {
@@ -210,6 +237,12 @@ export default class Koi extends React.Component {
   closeTipsPopup = () => {
     this.setState({
       showTipsPopup: false
+    })
+  }
+
+  closeTimesPopup = () => {
+    this.setState({
+      showTimesPopup: false
     })
   }
 }
