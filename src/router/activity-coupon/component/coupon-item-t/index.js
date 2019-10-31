@@ -16,7 +16,7 @@ export default function(props) {
   } else {
     start = moment().format("MM.DD");
     end = moment()
-      .add(+invalidDay, "day")
+      .add(+invalidDay, "days")
       .format("MM.DD");
   }
   console.log(dataSource);

@@ -34,7 +34,10 @@ export default function(props) {
       </div>
       <div className="cif-footer">
         <div className="cif-limit">
-          {start}-{end} 满{couponGoodsInfo.thresholdAmount}元可用
+          <div>满{couponGoodsInfo.thresholdAmount}元可用</div>
+          <div>
+            {start}-{end}
+          </div>
         </div>
         <div className="cif-btn">{dataSource.credit}积分兑</div>
       </div>
