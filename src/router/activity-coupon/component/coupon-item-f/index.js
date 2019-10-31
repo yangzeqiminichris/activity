@@ -22,7 +22,10 @@ export default function(props) {
     <div className="cif" onClick={() => props.goCouponDetail(dataSource.id)}>
       <div className="cif-header">
         <div className="cif-logo" style={{ backgroundColor: color }}>
+          <div className="cif-logo-text">
           {dataSource.name}
+
+          </div>
         </div>
         <div className="cif-money">
           <span className="cif-money-icon">￥</span>
@@ -39,7 +42,7 @@ export default function(props) {
             {start}-{end}
           </div>
         </div>
-        <div className="cif-btn">{dataSource.credit}积分兑</div>
+        <div className="cif-btn">{`${dataSource.credit?`${dataSource.credit}积分`:`${dataSource.price/100}元`}`}兑</div>
       </div>
     </div>
   );

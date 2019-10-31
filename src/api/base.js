@@ -120,20 +120,19 @@ export function updateAuthorization () {
 function replacUrl (url) {
   // http://zbdx.jzjtong.com/jf-api/coupon/list
   // 测试
-  url = url.replace('/jf-api', 'https://zbdx.jzjtong.com/jf-api/')
-  url = url.replace('/zbdx-api', 'https://zbdx.jzjtong.com/zbdx-api')
-  url = url.replace('/o2o-api', 'https://zbdx.jzjtong.com/o2o-api')
-  url = url.replace('/koiActivity', 'https://zbdx.jzjtong.com/zbdx-api/koiActivity')
-  url = url.replace('/test', 'https://zbdx.jzjtong.com/zbdx-api')
-
+//   url = url.replace('/jf-api', 'https://zbdx.jzjtong.com/jf-api/')
+//   url = url.replace('/zbdx-api', 'https://zbdx.jzjtong.com/zbdx-api')
+//   url = url.replace('/o2o-api', 'https://zbdx.jzjtong.com/o2o-api')
+//   url = url.replace('/koiActivity', 'https://zbdx.jzjtong.com/zbdx-api/koiActivity')
+//     url = url.replace('/couponActivity', 'https://zbdx.jzjtong.com/zbdx-api')
   // 正式
-  /* url = url.replace('/jf-api', 'https://jf-api.zbszkj.com/jf-api')
+   url = url.replace('/jf-api', 'https://jf-api.zbszkj.com')
   url = url.replace('/zbdx-api', 'https://zbdx-api.zbszkj.com/zbdx-api')
   url = url.replace('/o2o-api', 'https://o2o-api.zbszkj.com/o2o-mapi')
   url = url.replace('/koiActivity', 'https://zbdx.zbszkj.com/zbdx-api/koiActivity')
-  url = url.replace('/test', 'https://zbdx.jzjtong.com/zbdx-api') */
+  url = url.replace('/couponActivity', 'https://zbdx-api.zbszkj.com')
   // url = url.replace('/v1', 'http://192.168.1.199:8098/v1')
-  /*url = url.replace('/jf-api', 'https://zbdx.jzjtong.com/jf-api')
-  url = url.replace('/zbdx-api', 'https://zbdx.jzjtong.com/zbdx-api')*/
+//   url = url.replace('/jf-api', 'https://zbdx.jzjtong.com/jf-api')
+//   url = url.replace('/zbdx-api', 'https://zbdx.jzjtong.com/zbdx-api')
   return url
 }

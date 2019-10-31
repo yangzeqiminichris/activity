@@ -59,7 +59,7 @@ export default function(props) {
           满{couponGoodsInfo.thresholdAmount}使用
         </div>
         <div className="cit-btn">
-          {dataSource.credit}积分兑
+          {`${dataSource.credit?`${dataSource.credit}积分`:`${dataSource.price/100}元`}`}兑
           <Icon type="right-circle" theme="filled" />
         </div>
       </div>
