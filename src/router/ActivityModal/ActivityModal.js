@@ -37,7 +37,7 @@ export default class ActivityModal extends React.Component {
       // 获取活动详情
       getActivityDetail(activityId, shopCode).then(res => {
         if (!res) {
-          message.error('暂无该活动')
+          message.error('暂无该活动信息')
           setTimeout(() => {
             window.wx.miniProgram.navigateBack({
               delta: -1
@@ -59,6 +59,13 @@ export default class ActivityModal extends React.Component {
           activityModal[0] && (activityModal[0].style.background = res.colorInfo.bgColor)
           tabActive[0] && (tabActive[0].style.background = res.colorInfo && res.colorInfo.groupSelectedColor)
         })
+      }).catch(() => {
+        message.error('暂无该活动信息')
+        setTimeout(() => {
+          window.wx.miniProgram.navigateBack({
+            delta: -1
+          })
+        }, 1500)
       })
     })
   }
@@ -76,20 +83,25 @@ export default class ActivityModal extends React.Component {
       });
     }
     return <div className='activity-modal clearfix'>
-      <div className='banner'>
-        <img className='img' src={ activityConfig ? activityConfig.bgImg : '' } alt='暂无图片' />
-      </div>
-      <div className='coupon-list'>
-        {
-          couponList && couponList.map((item, index) => {
-            return this.renderConponsItem(activityConfig, item, index === couponList.length - 1)
-          })
-        }
-        <div className='white-space'></div>
-      </div>
+      {
+        couponList.length === 0 && <div className='banner'>
+          <img className='img' src={ activityConfig ? activityConfig.bgImg : '' } alt='暂无图片' />
+        </div>
+      }
+      {
+        couponList.length === 0 && <div className='coupon-list'>
+          {
+            couponList && couponList.map((item, index) => {
+              return this.renderConponsItem(activityConfig, item, index === couponList.length - 1)
+            })
+          }
+          <div className='white-space'></div>
+        </div>
+      }
+      
       <div id='floor'>
         {
-          activityConfig && this.renderActivityFloor(activityConfig, tabs)
+          activityConfig && tabs.length > 1 && this.renderActivityFloor(activityConfig, tabs)
         }
         {
           activityConfig.activityGroup && activityConfig.activityGroup.map((item, index) => {
@@ -192,7 +204,8 @@ export default class ActivityModal extends React.Component {
             <span className='money'>{ item.couponGoodsInfo.couponValue }</span>
           </div>
           <div className='reduction'>满{ item.couponGoodsInfo.thresholdAmount }可用</div>
-          <div className='limit points'>{ item.couponGoodsInfo.intro }</div>
+          <div className='limit points'></div>
+          {/* item.couponGoodsInfo.intro */}
         </div>
         <div className='bottom'>
           <button

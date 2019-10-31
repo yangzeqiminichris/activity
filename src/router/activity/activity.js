@@ -28,6 +28,10 @@ export default class App extends React.Component {
         }
     }
 
+    componentWillMount () {
+        document.title = '新人专区'
+    }
+
     componentDidMount() {
         let t = this.props.location.search.split('&')
         let token = t[0].replace('?token=', '')
