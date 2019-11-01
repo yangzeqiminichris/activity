@@ -211,7 +211,7 @@ export default class ActivityModal extends React.Component {
           </div>
           {
             item.couponGoodsInfo.couponType === 5 ? <div 
-              className='reduction'>兑换券</div> : item.couponGoodsInfo.thresholdAmount > 0 ? <div 
+              className='reduction'>运费券</div> : item.couponGoodsInfo.thresholdAmount > 0 ? <div 
               className='reduction'>满{ item.couponGoodsInfo.thresholdAmount }可用</div> : <div 
               className='reduction'></div>
           }
