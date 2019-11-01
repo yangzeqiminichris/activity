@@ -47,7 +47,7 @@ export default class RulePopup extends React.Component {
                 </div>
                 <div className='popup-body-rule-area-body-item' style={{ borderBottom: 'none' }}>
                   <span className='popup-body-rule-area-body-item-title'>活动奖品：</span>
-                  <span className='popup-body-rule-area-body-item-content'>锦鲤礼包总价值30845元，锦鲤礼包详情见活动页面。</span>
+                  <span className='popup-body-rule-area-body-item-content'>锦鲤礼包总价值39048.9元，锦鲤礼包详情见活动页面。</span>
                 </div>
                 <span className='popup-body-rule-area-body-tips'>有任何疑问，电话咨询0572-2105066</span>
               </div>
