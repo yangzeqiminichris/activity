@@ -9,7 +9,6 @@ export default function FirstFloor(props) {
       {/* <FloorTitle title="900购1100" label="单笔购1100，不与其他活动优惠" /> */}
       <div className="floor1">
         <img
-          style={{ width: "100%" }}
           className="floor1-banner"
           src={floorBanner}
         />

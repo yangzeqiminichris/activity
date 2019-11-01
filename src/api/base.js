@@ -124,18 +124,19 @@ function replacUrl (url) {
         url = url.replace('/zbdx-api', 'https://zbdx.jzjtong.com/zbdx-api')
         url = url.replace('/o2o-api', 'https://zbdx.jzjtong.com/o2o-api')
         url = url.replace('/koiActivity', 'https://zbdx.jzjtong.com/zbdx-api/koiActivity')
-        url = url.replace('/test', 'https://zbdx.jzjtong.com/zbdx-api')
+        url = url.replace('/couponActivity', 'https://zbdx.jzjtong.com/zbdx-api')
     } else if (process.env.NODE_ENV === 'production') {
         url = url.replace('/jf-api', 'https://jf-api.zbszkj.com')
         url = url.replace('/zbdx-api', 'https://zbdx-api.zbszkj.com')
         url = url.replace('/o2o-api', 'https://o2o-api.zbszkj.com')
         url = url.replace('/koiActivity', 'https://zbdx-api.zbszkj.com/koiActivity')
+        url = url.replace('/couponActivity', 'https://zbdx-api.zbszkj.com')
     } else if (process.env.NODE_ENV === 'development') {
         url = url.replace('/jf-api', 'https://zbdx.jzjtong.com/jf-api/')
         url = url.replace('/zbdx-api', 'https://zbdx.jzjtong.com/zbdx-api')
         url = url.replace('/o2o-api', 'https://zbdx.jzjtong.com/o2o-api')
         url = url.replace('/koiActivity', 'https://zbdx.jzjtong.com/zbdx-api/koiActivity')
-        url = url.replace('/test', 'https://zbdx.jzjtong.com/zbdx-api')
+        url = url.replace('/couponActivity', 'https://zbdx.jzjtong.com/zbdx-api')
     }
     /*url = url.replace('/jf-api', 'https://zbdx.jzjtong.com/jf-api')
     url = url.replace('/zbdx-api', 'https://zbdx.jzjtong.com/zbdx-api')*/

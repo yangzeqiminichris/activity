@@ -11,7 +11,7 @@ export default function FirstFloor(props) {
   const otherFloor = floors.map(item => ({
     title: item.floorName
   }));
-  const tabs = [{ title: firstFloor.floorName }, ...otherFloor];
+  let tabs = [{ title: firstFloor.floorName }, ...otherFloor];
   // userState
   const [tabTopShow, setTabTopShow] = useState(true);
   const [currentPage, setCurrentPage] = useState(0);
@@ -67,66 +67,71 @@ export default function FirstFloor(props) {
 
   return (
     <div>
-      {
-        <Tabs
-          tabs={tabs}
-          page={currentPage}
-          animated={false}
-          tabBarUnderlineStyle={{
-            border: "2px #BA1D3A solid",
-            bottom: "6px",
-            width: "18px",
-            marginLeft: tabs.length >= 5 ? "10%" : 100 / 2 / tabs.length + "%",
-            transform: "translateX(-9px)",
-            height: "2px",
-            borderRadius: "2px"
-          }}
-          tabBarBackgroundColor={colors.floorBgColor}
-          tabBarActiveTextColor={colors.fontSelectedColor}
-          tabBarInactiveTextColor={colors.floorFontColor}
-          tabBarTextStyle={{
-            fontSize: "14px",
-            fontWeight: "600"
-          }}
-          onTabClick={tabsClick}
-          renderTabBar={props => <Tabs.DefaultTabBar {...props} page={3} />}
-        ></Tabs>
-      }
-      {
-        <div
-          className="top-floor"
-          style={{
-            background: "#FFF",
-            width: "100%",
-            display: !tabTopShow ? "block" : "none"
-          }}
-        >
-          <Tabs
-            tabs={tabs}
-            page={currentPage}
-            animated={false}
-            tabBarUnderlineStyle={{
-              border: "2px #BA1D3A solid",
-              bottom: "6px",
-              width: "18px",
-              marginLeft:
-                tabs.length >= 5 ? "10%" : 100 / 2 / tabs.length + "%",
-              transform: "translateX(-9px)",
-              height: "2px",
-              borderRadius: "2px"
-            }}
-            tabBarBackgroundColor={colors.floorBgColor}
-            tabBarActiveTextColor={colors.fontSelectedColor}
-            tabBarInactiveTextColor={colors.floorFontColor}
-            tabBarTextStyle={{
-              fontSize: "0.32rem",
-              fontWeight: "600"
-            }}
-            onTabClick={tabsClick}
-            renderTabBar={props => <Tabs.DefaultTabBar {...props} page={3} />}
-          ></Tabs>
+      {tabs.length<=1?null:(
+        <div>
+          {
+            <Tabs
+              tabs={tabs}
+              page={currentPage}
+              animated={false}
+              tabBarUnderlineStyle={{
+                border: "2px #BA1D3A solid",
+                bottom: "6px",
+                width: "18px",
+                marginLeft: tabs.length >= 5 ? "10%" : 100 / 2 / tabs.length + "%",
+                transform: "translateX(-9px)",
+                height: "2px",
+                borderRadius: "2px"
+              }}
+              tabBarBackgroundColor={colors.floorBgColor}
+              tabBarActiveTextColor={colors.fontSelectedColor}
+              tabBarInactiveTextColor={colors.floorFontColor}
+              tabBarTextStyle={{
+                fontSize: "0.32rem",
+                fontWeight: "600"
+              }}
+              onTabClick={tabsClick}
+              renderTabBar={props => <Tabs.DefaultTabBar {...props} page={3} />}
+            ></Tabs>
+          }
+          {
+            <div
+              className="top-floor"
+              style={{
+                background: "#FFF",
+                width: "100%",
+                display: !tabTopShow ? "block" : "none"
+              }}
+            >
+              <Tabs
+                tabs={tabs}
+                page={currentPage}
+                animated={false}
+                tabBarUnderlineStyle={{
+                  border: "2px #BA1D3A solid",
+                  bottom: "6px",
+                  width: "18px",
+                  marginLeft:
+                    tabs.length >= 5 ? "10%" : 100 / 2 / tabs.length + "%",
+                  transform: "translateX(-9px)",
+                  height: "2px",
+                  borderRadius: "2px"
+                }}
+                tabBarBackgroundColor={colors.floorBgColor}
+                tabBarActiveTextColor={colors.fontSelectedColor}
+                tabBarInactiveTextColor={colors.floorFontColor}
+                tabBarTextStyle={{
+                  fontSize: "0.32rem",
+                  fontWeight: "600"
+                }}
+                onTabClick={tabsClick}
+                renderTabBar={props => <Tabs.DefaultTabBar {...props} page={3} />}
+              ></Tabs>
+            </div>
+          }
+
         </div>
-      }
+      )}
     </div>
   );
 }
