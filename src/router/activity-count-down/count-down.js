@@ -4,13 +4,13 @@ import './index.scss'
 
 export default class CountDown extends Component{
     state = {
-        lastMS:new Date('2019/11/01 14:00').getTime() - new Date().getTime()
+        lastMS:new Date('2019/11/01 15:00').getTime() - new Date().getTime()
     }
 
     timeInterval = null
     componentDidMount(){
         this.timeInterval = setInterval(() => {
-            this.setState({ lastMS:new Date('2019/11/01 14:00').getTime() - new Date().getTime()})
+            this.setState({ lastMS:new Date('2019/11/01 15:00').getTime() - new Date().getTime()})
         },1000)
     }
 

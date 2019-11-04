@@ -7,7 +7,7 @@ import './index.scss'
 
 export default function(props) {
   const { dataSource = {} } = props
-  const { stock, stockSet, couponGoodsInfo = {} } = dataSource
+  const { stock, couponGoodsInfo = {} } = dataSource
   const { effectTime, invalidTime, timeType, invalidDay } = couponGoodsInfo
   let start, end
   if (timeType == 1) {
@@ -32,7 +32,7 @@ export default function(props) {
         ) : (
           <>
             <div>限购</div>
-            <div>{stockSet}份</div>
+            <div>{stock}份</div>
           </>
         )}
       </div>
