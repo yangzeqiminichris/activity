@@ -61,7 +61,7 @@ export default class ActivityModal extends React.Component {
 
           let tabsLength = res.activityGroup.length
           let tabs = document.getElementsByClassName('am-tabs-default-bar-tab')
-          tabs[0 + tabsLength].style.background = res.colorInfo.groupSelectedColor
+          tabs[0 + tabsLength] && (tabs[0 + tabsLength].style.background = res.colorInfo.groupSelectedColor)
         })
       }).catch(() => {
         message.error('暂无该活动信息')
@@ -209,7 +209,12 @@ export default class ActivityModal extends React.Component {
             <span className='sign'>￥</span>
             <span className='money'>{ item.couponGoodsInfo.couponValue }</span>
           </div>
-          <div className='reduction'>满{ item.couponGoodsInfo.thresholdAmount }可用</div>
+          {
+            item.couponGoodsInfo.couponType === 5 ? <div 
+              className='reduction'>运费券</div> : item.couponGoodsInfo.thresholdAmount > 0 ? <div 
+              className='reduction'>满{ item.couponGoodsInfo.thresholdAmount }可用</div> : <div 
+              className='reduction'></div>
+          }
           <div className='limit points'></div>
           {/* item.couponGoodsInfo.intro */}
         </div>
