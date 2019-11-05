@@ -14,7 +14,7 @@ import koiBtn from '@/assets/koi/koi_index_btn.png'
 import koiIndexRule from '@/assets/koi/koi_index_rule.png'
 import { setToken } from '@/cache/token.js'
 import { getKoiIndex } from "../../api/koi";
-import koiActivityAreaBottom from '@/assets/koi/koi_activity_area_head.png'
+import koiActivityAreaBottom from '../../assets/koi/koi_activity_area_head.png'
 import RulePopUp from '@/components/rulePopup/rulePopup'
 import Rule from '@/components/rule/rule'
 import lotteryLeft from "@/assets/koi/koi_lottery_left.png";
@@ -129,6 +129,10 @@ export default class Koi extends React.Component {
         })
       });      //返回定位出错信息
     })
+    var script = document.createElement('script')
+    script.type = 'text/javascript'
+    script.src = 'https://s4.cnzz.com/z_stat.php?id=1278165939&web_id=1278165939'
+    document.head.appendChild(script)
   }
 
   render () {

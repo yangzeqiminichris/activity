@@ -10,9 +10,11 @@
     display: inline-block;
   }
   &-bottom {
-    width: 702px;
+    width: 700px;
     height: 35px;
     transform: rotateX(180deg);
+    display: inline-block;
+    float: left;
   }
   &-area {
     width: 702px;
@@ -84,9 +86,10 @@
   }
 
   &-bottom {
-    width: 702px;
+    width: 700px;
     height: 35px;
     transform: rotateX(180deg);
+    display: inline-block;
   }
   &-body {
     width: 702px;
