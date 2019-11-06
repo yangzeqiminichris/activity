@@ -1,119 +1,25 @@
 import React from 'react'
-import { Toast } from 'antd-mobile'
+import { Toast, Modal } from 'antd-mobile'
 import { message } from 'antd'
 
 import { setToken } from '@/cache/token.js'
-// import { getCouponDetail, postReceiveCoupon } from '@/api/custom-modal'
+import headerImg from '@/assets/draw/header.png'
+import ruleImg from '@/assets/draw/rule.png'
+import drawImg from '@/assets/draw/draw.png'
+import firstImg from '@/assets/draw/first.png'
+import secondImg from '@/assets/draw/second.png'
+import confirmImg from '@/assets/draw/confirm.png'
+import closeImg from '@/assets/draw/close.png'
+import noneImg from '@/assets/draw/none.png'
 import './index.scss'
-import FirstFloor from './view/first-floor'
-// import OtherFloor from './view/other-floor'
-// import CouponItemTop from './component/coupon-item-t'
-// import TabsView from './view/tabs-view'
-import { getActivityDetail } from './api/api'
 
 export default class ActivityModal extends React.Component {
   state = {
-    activityConfig: {},
-    couponList: [],
-    tabs: [],
-    floorCouponList: {}
+    visible: false,
+    level: 3
   }
 
-  async componentDidMount() {
-    Toast.loading('Loading...', 20)
-    this.props.history.listen(async () => {
-      await this.componentDidMount()
-      window.history.back(-1)
-    })
-    let token = this.getUrlToken('token', this.props.location.search)
-    let activityId = this.props.match.params.activityId
-    await setToken(token).then(async () => {
-      // 获取活动详情
-      await getActivityDetail({ id: activityId }).then(res => {
-        if (!res) {
-          message.error('暂无该活动')
-          setTimeout(() => {
-            window.wx.miniProgram.navigateBack({
-              delta: -1
-            })
-          }, 1500)
-          return
-        }
-        if (res.title) {
-          document.title = res.title
-        }
-        Toast.hide()
-        this.setState({ activityConfig: res })
-        // 获取券详情
-        // const { floors = [] } = res;
-        // getCouponDetail(res.limitCoupons).then(coupon => {
-        //   this.setState({
-        //     couponList: coupon ? coupon.records : []
-        //   });
-        // });
-        // floors.map((floor, index) => {
-        //   getCouponDetail(floor.couponList).then(coupon => {
-        //     const floorCouponList = { ...this.state.floorCouponList };
-        //     floorCouponList[index] = coupon ? coupon.records : [];
-        //     this.setState({ floorCouponList });
-        //   });
-        // });
-        // this.setState({ activityConfig: res }, () => {
-        //   let activityModal = document.getElementsByClassName("activity-modal");
-        //   let tabActive =
-        //     document.getElementsByClassName("am-tabs-default-bar-tab-active") ||
-        //     [];
-        //   activityModal[0] &&
-        //     (activityModal[0].style.background = res.colors.bgColor);
-        //   [...tabActive].forEach(item => {
-        //     item.style.background = res.colors.floorSelectedColor;
-        //   });
-        // });
-      })
-    })
-  }
-
-  render() {
-    const { activityConfig } = this.state
-    return (
-      <div className="activity-modal clearfix">
-        <div className="banner">
-          <img
-            className="img"
-            src={activityConfig ? activityConfig.bgImg : ''}
-            alt="暂无图片"
-          />
-        </div>
-        {/* <div className="coupon-list">
-          {couponList &&
-            couponList.map((item, index) => {
-              return (
-                <CouponItemTop
-                  goCouponDetail={this.goCouponDetail}
-                  key={"coupon" + index}
-                  dataSource={item}
-                />
-              );
-            })}
-          <div className="white-space"></div>
-        </div> */}
-        <div id="floor">
-          {/* {activityConfig && <TabsView dataSource={activityConfig} />} */}
-          <div className={`tabs-content`}>
-            <FirstFloor
-              goCouponDetail={this.goCouponDetail}
-              dataSource={activityConfig.firstFloor}
-            />
-            {/* <OtherFloor
-              goCouponDetail={this.goCouponDetail}
-              dataSource={activityConfig.floors}
-              floorCouponList={floorCouponList}
-            /> */}
-          </div>
-        </div>
-      </div>
-    )
-  }
+  async componentDidMount() {}
 
   goCouponDetail = (couponId, stock) => {
     if (stock == 0) {
@@ -124,10 +30,47 @@ export default class ActivityModal extends React.Component {
       })
     }
   }
-  getUrlToken(name, str) {
-    const reg = new RegExp(`(^|&)${name}=([^&]*)(&|$)`)
-    const r = str.substr(1).match(reg)
-    if (r != null) return decodeURIComponent(r[2])
-    return null
+  onDraw = e => {
+    e.preventDefault()
+    this.setState({ visible: true })
+  }
+  onModalClick = e => {
+    const { level } = this.state
+    if (level === 3) {
+    } else {
+    }
+    this.setState({ visible: false })
+  }
+  render() {
+    const { visible, level } = this.state
+    return (
+      <div className='draw'>
+        <div style={{ position: 'relative' }}>
+          <img className='draw-img' src={headerImg} />
+          <img className='draw-btn' src={drawImg} onClick={this.onDraw} />
+        </div>
+        <div className='draw-tip'>
+          <img className='draw-img' src={ruleImg} />
+        </div>
+        <Modal
+          visible={visible}
+          maskClosable={false}
+          transparent
+          className='draw-modal'
+          wrapClassName='draw-modal-wraps'
+        >
+          <div className='draw-modal-content'>
+            <img
+              src={level === 1 ? firstImg : level === 2 ? secondImg : noneImg}
+            />
+            <img
+              onClick={this.onModalClick}
+              className='draw-modal-btn'
+              src={level === 3 ? closeImg : confirmImg}
+            />
+          </div>
+        </Modal>
+      </div>
+    )
   }
 }

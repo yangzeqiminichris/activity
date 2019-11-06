@@ -7,8 +7,13 @@ const KoiLottery = loadable(() => import('./koi/koi-lottery/koi-lottery.js'))
 const ActivityCoupon = loadable(() => import('./activity-coupon'))
 const ActivityCountDown = loadable(() => import('./activity-count-down/count-down'))
 const ActivityHotel = loadable(() => import('./activity-hotel'))
+const ActivityDraw = loadable(() => import('./activity-draw'))
 
 const routes = [
+	{
+		path:'/activity-draw',
+		component: ActivityDraw
+	},
 	{
 		path:'/activity-hotel/:activityId',
 		component: ActivityHotel
