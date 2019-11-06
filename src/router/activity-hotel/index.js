@@ -3,15 +3,13 @@ import { Toast } from 'antd-mobile'
 import { message } from 'antd'
 
 import { setToken } from '@/cache/token.js'
-// import { getCouponDetail, postReceiveCoupon } from '@/api/custom-modal'
+import { getCouponDetail } from '@/api/custom-modal'
 import './index.scss'
 import FirstFloor from './view/first-floor'
-// import OtherFloor from './view/other-floor'
-// import CouponItemTop from './component/coupon-item-t'
-// import TabsView from './view/tabs-view'
 import { getActivityDetail } from './api/api'
+import tipImg from '@/assets/activity_hotel_tip.png'
 
-export default class ActivityModal extends React.Component {
+export default class ActivityHotel extends React.Component {
   state = {
     activityConfig: {},
     couponList: [],
@@ -43,7 +41,7 @@ export default class ActivityModal extends React.Component {
           document.title = res.title
         }
         Toast.hide()
-        this.setState({ activityConfig: res })
+        // this.setState({ activityConfig: res })
         // 获取券详情
         // const { floors = [] } = res;
         // getCouponDetail(res.limitCoupons).then(coupon => {
@@ -58,17 +56,17 @@ export default class ActivityModal extends React.Component {
         //     this.setState({ floorCouponList });
         //   });
         // });
-        // this.setState({ activityConfig: res }, () => {
-        //   let activityModal = document.getElementsByClassName("activity-modal");
-        //   let tabActive =
-        //     document.getElementsByClassName("am-tabs-default-bar-tab-active") ||
-        //     [];
-        //   activityModal[0] &&
-        //     (activityModal[0].style.background = res.colors.bgColor);
-        //   [...tabActive].forEach(item => {
-        //     item.style.background = res.colors.floorSelectedColor;
-        //   });
-        // });
+        this.setState({ activityConfig: res }, () => {
+          let activityModal = document.getElementsByClassName("activity-modal");
+          // let tabActive =
+          //   document.getElementsByClassName("am-tabs-default-bar-tab-active") ||
+          //   [];
+          activityModal[0] &&
+            (activityModal[0].style.background = res.colors.bgColor);
+          // [...tabActive].forEach(item => {
+          //   item.style.background = res.colors.floorSelectedColor;
+          // });
+        });
       })
     })
   }
@@ -76,53 +74,41 @@ export default class ActivityModal extends React.Component {
   render() {
     const { activityConfig } = this.state
     return (
-      <div className="activity-modal clearfix">
-        <div className="banner">
+      <div className='activity-modal clearfix'>
+        <div className='banner'>
           <img
-            className="img"
+            className='img'
             src={activityConfig ? activityConfig.bgImg : ''}
-            alt="暂无图片"
+            alt='暂无图片'
           />
         </div>
-        {/* <div className="coupon-list">
-          {couponList &&
-            couponList.map((item, index) => {
-              return (
-                <CouponItemTop
-                  goCouponDetail={this.goCouponDetail}
-                  key={"coupon" + index}
-                  dataSource={item}
-                />
-              );
-            })}
-          <div className="white-space"></div>
-        </div> */}
-        <div id="floor">
-          {/* {activityConfig && <TabsView dataSource={activityConfig} />} */}
+        <div id='floor'>
           <div className={`tabs-content`}>
             <FirstFloor
               goCouponDetail={this.goCouponDetail}
               dataSource={activityConfig.firstFloor}
             />
-            {/* <OtherFloor
-              goCouponDetail={this.goCouponDetail}
-              dataSource={activityConfig.floors}
-              floorCouponList={floorCouponList}
-            /> */}
           </div>
+        </div>
+        <div style={{ width: '100%' }}>
+          <img style={{ width: '100%' }} src={tipImg} />
         </div>
       </div>
     )
   }
 
   goCouponDetail = (couponId, stock) => {
-    if (stock == 0) {
-      message.warn('该券已被抢光')
-    } else {
-      window.wx.miniProgram.navigateTo({
-        url: '/packageA/pages/integral/reduction/index?id=' + couponId
-      })
-    }
+    getCouponDetail(couponId).then(coupon => {
+      console.log(coupon)
+      const detail = coupon.records
+      if (!detail || detail.length === 0) {
+        message.warn('活动尚未开始，请耐心等待！')
+      } else {
+        window.wx.miniProgram.navigateTo({
+          url: '/packageA/pages/integral/reduction/index?id=' + couponId
+        })
+      }
+    })
   }
   getUrlToken(name, str) {
     const reg = new RegExp(`(^|&)${name}=([^&]*)(&|$)`)
