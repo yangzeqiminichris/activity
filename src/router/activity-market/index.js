@@ -7,7 +7,7 @@ import { getCouponDetail } from '@/api/custom-modal'
 import './index.scss'
 import FirstFloor from './view/first-floor'
 import { getActivityDetail } from './api/api'
-import tipImg from '@/assets/activity_hotel_tip.png'
+import tipImg from '@/assets/market_footer.png'
 
 export default class ActivityHotel extends React.Component {
   state = {
