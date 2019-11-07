@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="de3651a1-55e0-4299-b41d-44740e771871" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.development" beforeDir="false" afterPath="$PROJECT_DIR$/.env.development" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.zip" beforeDir="false" afterPath="$PROJECT_DIR$/build.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/start.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/start.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/activity/activity.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/activity/activity.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/activity/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/activity/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/koi/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/koi/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/koi/koi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/koi/koi.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -404,7 +396,7 @@
       <workItem from="1572919906496" duration="7672000" />
       <workItem from="1573007442990" duration="775000" />
       <workItem from="1573019970447" duration="9535000" />
-      <workItem from="1573105644548" duration="12663000" />
+      <workItem from="1573105644548" duration="12801000" />
     </task>
     <task id="LOCAL-00001" summary="锦鲤活动">
       <created>1572242178169</created>
@@ -413,16 +405,23 @@
       <option name="project" value="LOCAL" />
       <updated>1572242178169</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="新人活动跳转锦鲤活动">
+      <created>1573126611436</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1573126611436</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="250648000" />
+    <option name="totallyTimeSpent" value="250786000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1849315" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1849315" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -436,7 +435,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.41650295" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.3104126" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.3104126" />
       <window_info anchor="bottom" id="TypeScript" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -505,7 +504,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="锦鲤活动" />
-    <option name="LAST_COMMIT_MESSAGE" value="锦鲤活动" />
+    <MESSAGE value="新人活动跳转锦鲤活动" />
+    <option name="LAST_COMMIT_MESSAGE" value="新人活动跳转锦鲤活动" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/api/amap.js" />
