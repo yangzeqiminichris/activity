@@ -131,11 +131,13 @@
     width: 702px;
     display: inline-block;
     height: 35px;
+    margin-bottom: -1px;
   }
   &-bottom {
-    width: 702px;
+    width: 700px;
     height: 35px;
     transform: rotateX(180deg);
+    display: inline-block;
   }
 }
 

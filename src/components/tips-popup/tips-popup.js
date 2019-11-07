@@ -23,7 +23,7 @@ class TipsPopup extends React.Component {
         <img src={ times ? koiTipsTimesBg : koiTipsBg } className='tipspop-bodybg' />
         <p className='tipspop-tips'>{ this.props.tips }</p>
         <img src={ koiPopupCloseBtn } className='tipspop-closebtn' onClick={ this.closePopup } />
-        <img src={ times ? koiTipsLotteryNowBtn : koiTipsKnownBtn } className='tipspop-btn' onClick={ this.closePopup } />
+        <img src={ koiTipsKnownBtn } className='tipspop-btn' onClick={ this.closePopup } />
       </div>
     )
   }
