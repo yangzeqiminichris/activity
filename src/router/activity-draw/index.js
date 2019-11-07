@@ -3,6 +3,7 @@ import { Toast, Modal } from 'antd-mobile'
 import { message } from 'antd'
 
 import { setToken } from '@/cache/token.js'
+import { getDraw } from './api/api'
 import headerImg from '@/assets/draw/header.png'
 import ruleImg from '@/assets/draw/rule.png'
 import drawImg from '@/assets/draw/draw.png'
@@ -16,33 +17,48 @@ import './index.scss'
 export default class ActivityModal extends React.Component {
   state = {
     visible: false,
-    level: 3
+    image: null,
+    targetType: 0,
+    couponId: 0
   }
 
-  async componentDidMount() {}
-
-  goCouponDetail = (couponId, stock) => {
-    if (stock == 0) {
-      message.warn('该券已被抢光')
-    } else {
-      window.wx.miniProgram.navigateTo({
-        url: '/packageA/pages/integral/reduction/index?id=' + couponId
-      })
-    }
+  async componentDidMount() {
+    let token = this.getUrlToken('token', this.props.location.search)
+    setToken(token)
   }
+
+  goCouponDetail = couponId => {
+    window.wx.miniProgram.navigateTo({
+      url: '/packageA/pages/coupon/my-coupon/my-coupon?switchType=online'
+    })
+  }
+  // 点击抽奖
   onDraw = e => {
     e.preventDefault()
-    this.setState({ visible: true })
+    let activityId = this.getUrlToken('activityId', this.props.location.search)
+    let targetId = this.getUrlToken('targetId', this.props.location.search)
+    getDraw({
+      activityId,
+      targetId
+    }).then(res => {
+      console.log(res)
+      this.setState({
+        visible: true,
+        image: res.image,
+        targetType: res.targetType,
+        couponId: res.targetId
+      })
+    })
   }
   onModalClick = e => {
-    const { level } = this.state
-    if (level === 3) {
-    } else {
-    }
+    const { targetType, couponId } = this.state
     this.setState({ visible: false })
+    if (targetType) {
+      this.goCouponDetail(couponId)
+    }
   }
   render() {
-    const { visible, level } = this.state
+    const { visible, targetType, image } = this.state
     return (
       <div className='draw'>
         <div style={{ position: 'relative' }}>
@@ -60,17 +76,21 @@ export default class ActivityModal extends React.Component {
           wrapClassName='draw-modal-wraps'
         >
           <div className='draw-modal-content'>
-            <img
-              src={level === 1 ? firstImg : level === 2 ? secondImg : noneImg}
-            />
+            <img src={image} />
             <img
               onClick={this.onModalClick}
               className='draw-modal-btn'
-              src={level === 3 ? closeImg : confirmImg}
+              src={!targetType ? closeImg : confirmImg}
             />
           </div>
         </Modal>
       </div>
     )
+  }
+  getUrlToken(name, str) {
+    const reg = new RegExp(`(^|&)${name}=([^&]*)(&|$)`)
+    const r = str.substr(1).match(reg)
+    if (r != null) return decodeURIComponent(r[2])
+    return null
   }
 }
