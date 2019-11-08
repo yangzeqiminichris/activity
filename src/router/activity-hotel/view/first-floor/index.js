@@ -19,7 +19,7 @@ export default function FirstFloor(props) {
               className="floor1-item"
               key={"floor1" + item.id}
               src={item.img}
-              onClick={() => props.goCouponDetail(item.id)}
+              onClick={() => props.goCouponDetail(item)}
             />
           );
         })}
