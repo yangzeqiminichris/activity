@@ -7,3 +7,7 @@ export function getActivityDetail(data) {
 export function checkUser() {
   return get(`/zbdx-api/member/isInternalUser`);
 }
+
+export function getCouponDetail(data) {
+  return get(`/jf-api/goods`, data)
+}
