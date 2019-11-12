@@ -60,7 +60,6 @@ export default class App extends React.Component {
         <div className='activity'>
           <div style={{ position: 'relative'}} className='activity-img'>
             <img src={ activityImg } className='activity-img-bg'/>
-            <img onClick={ this.gotoKoi } className='activity-img-icon' src={ newToKoi }/>
           </div>
 
           <div className='choose'>
@@ -123,9 +122,9 @@ export default class App extends React.Component {
     }
   }
 
-  gotoKoi = async () => {
+  /*gotoKoi = async () => {
     let token = await getToken()
     console.log(token)
     window.wx.miniProgram.navigateTo({url: `/packageA/pages/webviewWithToken/webviewWithToken?url=${ process.env.REACT_APP_KOI_URL }&title=全城寻锦鲤`})
-  }
+  }*/
 }
