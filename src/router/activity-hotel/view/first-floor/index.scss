@@ -5,4 +5,16 @@
   .floor1-item {
     margin-bottom: 15px;
   }
+  .floor1-clear {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: 148px;
+    width: 242px;
+    height: 197px;
+    &.disable {
+      display: none;
+    }
+  }
 }
