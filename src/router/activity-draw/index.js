@@ -1,17 +1,14 @@
 import React from 'react'
-import { Toast, Modal } from 'antd-mobile'
-import { message } from 'antd'
+import { Modal } from 'antd-mobile'
+import { debounce } from 'zb-fjs'
 
 import { setToken } from '@/cache/token.js'
 import { getDraw } from './api/api'
 import headerImg from '@/assets/draw/header.png'
 import ruleImg from '@/assets/draw/rule.png'
 import drawImg from '@/assets/draw/draw.png'
-import firstImg from '@/assets/draw/first.png'
-import secondImg from '@/assets/draw/second.png'
 import confirmImg from '@/assets/draw/confirm.png'
 import closeImg from '@/assets/draw/close.png'
-import noneImg from '@/assets/draw/none.png'
 import './index.scss'
 
 export default class ActivityModal extends React.Component {
@@ -22,7 +19,7 @@ export default class ActivityModal extends React.Component {
     couponId: 0
   }
 
-  async componentDidMount() {
+  async componentDidMount () {
     let token = this.getUrlToken('token', this.props.location.search)
     setToken(token)
   }
@@ -33,7 +30,8 @@ export default class ActivityModal extends React.Component {
     })
   }
   // 点击抽奖
-  onDraw = e => {
+  @debounce()
+  onDraw = (e) => {
     e.preventDefault()
     let activityId = this.getUrlToken('activityId', this.props.location.search)
     let targetId = this.getUrlToken('targetId', this.props.location.search)
@@ -57,7 +55,7 @@ export default class ActivityModal extends React.Component {
       this.goCouponDetail(couponId)
     }
   }
-  render() {
+  render () {
     const { visible, targetType, image } = this.state
     return (
       <div className='draw'>
@@ -87,7 +85,7 @@ export default class ActivityModal extends React.Component {
       </div>
     )
   }
-  getUrlToken(name, str) {
+  getUrlToken (name, str) {
     const reg = new RegExp(`(^|&)${name}=([^&]*)(&|$)`)
     const r = str.substr(1).match(reg)
     if (r != null) return decodeURIComponent(r[2])
