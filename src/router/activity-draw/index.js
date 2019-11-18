@@ -1,6 +1,6 @@
 import React from 'react'
 import { Modal } from 'antd-mobile'
-import { debounce } from 'zb-fjs'
+import { debounceAt } from 'zb-fjs'
 
 import { setToken } from '@/cache/token.js'
 import { getDraw } from './api/api'
@@ -30,7 +30,7 @@ export default class ActivityModal extends React.Component {
     })
   }
   // 点击抽奖
-  @debounce()
+  @debounceAt()
   onDraw = (e) => {
     e.preventDefault()
     let activityId = this.getUrlToken('activityId', this.props.location.search)

@@ -1,5 +1,2 @@
 {
-  //使用单引号
-  "prettier.singleQuote": true,
-  "prettier.semi": false
 }
