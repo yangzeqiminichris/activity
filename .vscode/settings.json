@@ -1,7 +1,2 @@
 {
-  //开启 eslint 支持
-  "prettier.eslintIntegration": true,
-  //使用单引号
-  "prettier.singleQuote": true,
-  "prettier.semi": false
 }

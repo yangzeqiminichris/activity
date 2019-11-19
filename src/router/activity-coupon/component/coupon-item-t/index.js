@@ -1,25 +1,25 @@
-import React from "react";
-import { Icon } from "antd";
-import moment from "moment";
+import React from 'react'
+import { Icon } from 'antd'
+import moment from 'moment'
 
-import { couponType } from "../../config";
-import "./index.scss";
+import { couponType } from '../../config'
+import './index.scss'
 
 export default function(props) {
-  const { dataSource = {} } = props;
-  const { stock, couponGoodsInfo = {} } = dataSource;
-  const { effectTime, invalidTime, timeType, invalidDay } = couponGoodsInfo;
-  let start, end;
+  const { dataSource = {} } = props
+  const { stock, stockSet, couponGoodsInfo = {} } = dataSource
+  const { effectTime, invalidTime, timeType, invalidDay } = couponGoodsInfo
+  let start, end
   if (timeType == 1) {
-    start = moment(effectTime).format("MM.DD");
-    end = moment(invalidTime).format("MM.DD");
+    start = moment(effectTime).format('MM.DD')
+    end = moment(invalidTime).format('MM.DD')
   } else {
-    start = moment().format("MM.DD");
+    start = moment().format('MM.DD')
     end = moment()
-      .add(+invalidDay, "days")
-      .format("MM.DD");
+      .add(+invalidDay, 'days')
+      .format('MM.DD')
   }
-  console.log(dataSource);
+  console.log(dataSource)
   return (
     <div
       className={`cit`}
@@ -32,20 +32,28 @@ export default function(props) {
         ) : (
           <>
             <div>限购</div>
-            <div>{stock}份</div>
+            <div>{stockSet}份</div>
           </>
         )}
       </div>
       <div className="cit-coupon">
         <div className="cit-coupon-top">
           <div className="cit-coupon-money">
-            <span className="cit-coupon-icon">￥</span>
-            <span className="cit-coupon-text">
-              {couponGoodsInfo.couponValue}
+            {couponGoodsInfo.couponType != 6 && (
+              <span className="cit-coupon-icon">￥</span>
+            )}
+            <span
+              className={`cit-coupon-text ${
+                couponGoodsInfo.couponType == 6 ? 'min' : ''
+              }`}
+            >
+              {couponGoodsInfo.couponType == 6
+                ? '兑换券'
+                : couponGoodsInfo.couponValue}
             </span>
           </div>
           <div className="cit-coupon-detail">
-            <div>{couponType[couponGoodsInfo.couponType] || "优惠券"}</div>
+            <div>{couponType[couponGoodsInfo.couponType] || '优惠券'}</div>
             <div className="cit-coupon-detail-date">
               {start}-{end}
             </div>
@@ -56,13 +64,22 @@ export default function(props) {
       <div className="cit-dash"></div>
       <div className="cit-bottom">
         <div className="cit-limit-text">
-          满{couponGoodsInfo.thresholdAmount}使用
+          {`${
+            couponGoodsInfo.couponType == 6
+              ? '　'
+              : `满${couponGoodsInfo.thresholdAmount}使用`
+          }`}
         </div>
         <div className="cit-btn">
-          {`${dataSource.credit?`${dataSource.credit}积分`:`${dataSource.price/100}元`}`}兑
+          {`${
+            dataSource.credit
+              ? `${dataSource.credit}积分`
+              : `${dataSource.price / 100}元`
+          }`}
+          兑
           <Icon type="right-circle" theme="filled" />
         </div>
       </div>
     </div>
-  );
+  )
 }

@@ -1,0 +1,49 @@
+.draw {
+  background-color: #F42C86;
+  padding-bottom: 80px;
+  .draw-img {
+    width: 100%;
+  }
+  .draw-tip {
+    padding: 0 20px;
+  }
+  .draw-btn {
+    width: 467px;
+    height: 181px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
+}
+.draw-modal {
+  width: 580px;
+  height: 630px;
+  overflow: hidden;
+  .am-modal-content {
+    background: transparent;
+    .am-modal-body {
+      padding: 0;
+    }
+  }
+}
+.draw-modal-content {
+  background: transparent;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+  .draw-modal-btn {
+    width: 470px;
+    height: 80px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 48px;
+    margin: auto;
+  }
+}

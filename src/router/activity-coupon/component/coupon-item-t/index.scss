@@ -61,6 +61,11 @@
     .cit-coupon-text {
       font-weight: 600;
       font-size: 44px;
+      &.min{
+        font-size: 28px;
+        margin-top:12px;
+        white-space: nowrap;
+      }
     }
     .cit-coupon-detail {
       margin-top: 5px;
@@ -75,7 +80,7 @@
     .cit-coupon-describe {
       font-size: 22px;
       text-align: center;
-      margin-top: 7px;
+      margin-top: 10px;
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;

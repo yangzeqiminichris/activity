@@ -21,9 +21,10 @@ import lotteryLeft from "@/assets/koi/koi_lottery_left.png";
 import lotteryRight from "@/assets/koi/koi_lottery_right.png";
 import lotteryBtnUnable from "@/assets/koi/koi_lottery_btn_unable.png";
 import lotteryBtnAble from "@/assets/koi/koi_lottery_btn_able.png";
-import lotteryBtnShare from "@/assets/koi/koi_lottery_btn_share.png";
+import koiShare from "@/assets/koi/koi_share.png";
 import koiUpload from "@/assets/koi/koi_upload.png";
 import { getToken } from "../../cache/token";
+import Mask from "../../components/mask/mask";
 
 const COUPON_IMG = {
   1: couponDikou,
@@ -46,7 +47,8 @@ export default class Koi extends React.Component {
       longitude: '',
       latitude: '',
       activityStatus: 0, // -1 已结束 0 未开始 1 进行中
-      loading: true
+      loading: true,
+      showShareModal: false
     }
   }
 
@@ -136,7 +138,7 @@ export default class Koi extends React.Component {
   }
 
   render () {
-    const { showRulePopup, showTipsPopup, loading, showTimesPopup } = this.state
+    const { showRulePopup, showTipsPopup, loading, showTimesPopup, showShareModal } = this.state
     return (
       <Spin spinning={loading}>
         <div>
@@ -146,8 +148,13 @@ export default class Koi extends React.Component {
           <div style={{ display: showTipsPopup ? 'block' : 'none'}}>
             <TipsPopup tips='活动尚未开始' closeTipsPopup={ this.closeTipsPopup } />
           </div>
-          <div style={{ display: showTimesPopup ? 'block' : 'none'}}>
+          <div style={{ display: showTimesPopup ? 'block' : 'none' }}>
             <TipsPopup times='1' closeTipsPopup={ this.closeTimesPopup } />
+          </div>
+        </div>
+        <div className='share' style={{ display: showShareModal ? 'block' : 'none' }} onClick={ this.closeShareModal }>
+          <div className='share-body'>
+            <img src={ koiShare } className='share-body-img' />
           </div>
         </div>
       </Spin>
@@ -246,7 +253,27 @@ export default class Koi extends React.Component {
 
   closeTimesPopup = () => {
     this.setState({
-      showTimesPopup: false
+      showTimesPopup: false,
+      showShareModal: true
     })
+  }
+
+  closeShareModal = () => {
+    this.setState({
+      showShareModal: false
+    })
+  }
+
+  stopBodyScroll (isFixed) {
+    var bodyEl = document.body
+    if (isFixed) {
+      this.top1 = window.scrollY
+      bodyEl.style.position = 'fixed'
+      bodyEl.style.top = -this.topDistance + 'px'
+    } else {
+      bodyEl.style.position = ''
+      bodyEl.style.top = ''
+      window.scrollTo(0, this.topDistance) // 回到原先的top
+    }
   }
 }

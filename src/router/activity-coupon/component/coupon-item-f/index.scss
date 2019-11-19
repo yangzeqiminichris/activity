@@ -7,7 +7,7 @@
   margin-right: 8px;
   position: relative;
   // overflow: hidden;
-  display:flex;
+  display: flex;
   flex-direction: column;
   .cif-header {
     // padding-top: 24px;
@@ -54,6 +54,9 @@
     display: flex;
     flex-flow: column;
     align-items: center;
+    &.top{
+      margin-top: 30px;
+    }
   }
   .cif-limit {
     font-size: 20px;
@@ -70,6 +73,7 @@
     border-radius: 22px;
     color: #fff;
     margin: auto;
-    margin-top:10px;
+    position: absolute;
+    bottom: 10px;
   }
 }
