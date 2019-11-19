@@ -20,12 +20,12 @@ const routes = [
 		path: '/activity-modal',
 		component: ActivityModal
 	}, {
-    path: '/koi',
-    component: Koi
-  }, {
-    path: '/koi-lottery',
-    component: KoiLottery
-  }, {
+		path: '/koi',
+		component: Koi
+	}, {
+		path: '/koi-lottery',
+		component: KoiLottery
+	}, {
 		path: '/activity',
 		component: Activity
 	}
