@@ -116,7 +116,7 @@ export default class ActivityModal extends React.Component {
                 })
               }
             </div> : <div className='click-autor' key={ item.id }>
-              <img className='banner-icon' src={ item.icon } alt='暂无图片' />
+              <img className='banner-icon' src={ item.icon } />
               <div className='custom-list'>
                 {
                   item.goodsList.map((goods, index) => {
@@ -231,7 +231,7 @@ export default class ActivityModal extends React.Component {
   renderTabsContentItem (cul, goods) {
     return (
       <div className='tabs-content-item' onClick={ this.goBuyGoods.bind(this, goods.goodsId) } key={ goods.goodsId }>
-        <img src={ goods.goodsCover } className='img' alt='暂无图片' />
+        <img src={ goods.goodsCover } className='img' />
         <div className='info'>
           <div className={`name points ${ cul === LAYOUT_LISt ? 'width310' : 'width380' }`}>{ goods.goodsName }</div>
           <div className='title'>{ goods.goodsIntro }</div>
@@ -270,7 +270,7 @@ export default class ActivityModal extends React.Component {
     return (
       <div className={ `custom-item ${ islast && 'white-space-none'}` } onClick={ this.goBuyGoods.bind(this, goods.goodsId) } key={ goods.goodsId }>
         <div className='img'>
-          <img src={ goods.goodsCover } alt='暂无图片' />
+          <img src={ goods.goodsCover } />
         </div>
         <div className='goods-info'>
           <div className='title points'>{ goods.goodsName }</div>
