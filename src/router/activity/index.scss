@@ -20,8 +20,11 @@
 .choose {
   padding: 0px 24px 24px 24px;
   background: #F02F34;
+  &-headimg {
+    width: 100%;
+  }
 
-  &-title {
+  /*&-title {
     font-size: 56px;
     color: #9D9D9D;
   }
@@ -89,7 +92,7 @@
         align-items: center;
       }
     }
-  }
+  }*/
 }
 
 .price{

@@ -120,7 +120,7 @@ export function updateAuthorization () {
 function replacUrl (url) {
     // http://zbdx.jzjtong.com/jf-api/coupon/list
     if (process.env.REACT_APP_ENV === 'test') {
-        url = url.replace('/jf-api', 'https://zbdx.jzjtong.com/jf-api/')
+        url = url.replace('/jf-api', 'https://zbdx.jzjtong.com/jf-api')
         url = url.replace('/zbdx-api', 'https://zbdx.jzjtong.com/zbdx-api')
         url = url.replace('/o2o-api', 'https://zbdx.jzjtong.com/o2o-api')
         url = url.replace('/koiActivity', 'https://zbdx.jzjtong.com/zbdx-api/koiActivity')
@@ -132,7 +132,7 @@ function replacUrl (url) {
         url = url.replace('/koiActivity', 'https://zbdx-api.zbszkj.com/koiActivity')
         url = url.replace('/couponActivity', 'https://zbdx-api.zbszkj.com')
     } else if (process.env.NODE_ENV === 'development') {
-        url = url.replace('/jf-api', 'https://zbdx.jzjtong.com/jf-api/')
+        url = url.replace('/jf-api', 'https://zbdx.jzjtong.com/jf-api')
         url = url.replace('/zbdx-api', 'https://zbdx.jzjtong.com/zbdx-api')
         url = url.replace('/o2o-api', 'https://zbdx.jzjtong.com/o2o-api')
         url = url.replace('/koiActivity', 'https://zbdx.jzjtong.com/zbdx-api/koiActivity')

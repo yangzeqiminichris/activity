@@ -12,6 +12,7 @@ const ActivityCountDown = loadable(() =>
 const ActivityHotel = loadable(() => import('./activity-hotel'))
 const ActivityMarket = loadable(() => import('./activity-market'))
 const ActivityDraw = loadable(() => import('./activity-draw'))
+const ActivityLimitPurchase = loadable(() => import('./activity-limit-purchase'))
 
 const routes = [
   {
@@ -29,6 +30,10 @@ const routes = [
   {
     path: '/activity-hotel/:activityId',
     component: ActivityHotel
+  },
+  {
+    path: '/activity-limit-purchase/:activityId',
+    component: ActivityLimitPurchase
   },
   {
     path: '/activity-count-down',

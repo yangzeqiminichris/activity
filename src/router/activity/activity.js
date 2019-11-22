@@ -7,9 +7,14 @@ import couponDikou from '@/assets/manjian_img_normal.png'
 import couponZhekou from '@/assets/zhukuo_img_normal.png'
 import couponShip from '@/assets/yunfei_img_normal.png'
 import newToKoi from '@/assets/new_to_koi.gif'
+import anjiBanner from '@/assets/anji_banner.png'
+import zhebeidaojiaBanner from '@/assets/zhebeidaojia_banner.png'
+import huzhouBanner from '@/assets/huzhou_banner.png'
 import { setToken } from '@/cache/token.js'
 import { getCouponDetail, postReceiveCoupon, getActivityInfo } from "../../api/coupon";
 import { getToken } from "../../cache/token";
+import CouponInfo from '@/components/coupon-item/coupon-item'
+
 
 const COUPON_IMG = {
     1: couponDikou,
@@ -25,37 +30,27 @@ export default class App extends React.Component {
       this.state = {
         settlementInfo: {
           couponVos: []
-        }
+        },
+        daojiaCouponVos: []
       }
+      this.receiveCoupon = this.receiveCoupon.bind(this)
+      this.getCouponInfo = this.getCouponInfo.bind(this)
     }
 
-    componentWillMount () {
+    async componentWillMount() {
       document.title = '新人专区'
-    }
-
-    componentDidMount() {
       let t = this.props.location.search.split('&')
-      let token = t[0].replace('?token=', '')
+      let token = this.getUrlToken('token', this.props.location.search)
       this.props.history.listen(() => {
         window.location.reload()
       })
-      setToken(token).then(() => {
-        getActivityInfo().then((res) => {
-          console.log(res)
-          activityImg = res.bgImg
-          getCouponDetail(res.couponList).then((res) => {
-            this.setState({
-              settlementInfo: {
-                couponVos: res.records
-              }
-            })
-          })
-        })
+      await setToken(token).then(() => {
+        this.getCouponInfo()
       })
     }
 
     render () {
-      const { settlementInfo } = this.state
+      const { settlementInfo, daojiaCouponVos } = this.state
       return (
         <div className='activity'>
           <div style={{ position: 'relative'}} className='activity-img'>
@@ -63,7 +58,7 @@ export default class App extends React.Component {
           </div>
 
           <div className='choose'>
-            {
+            {/*{
               (settlementInfo.couponVos || []).map((item) => {
                 return (
                   <div className='choose-coupon' key={ item.id }>
@@ -93,6 +88,25 @@ export default class App extends React.Component {
                   </div>
                 )
               })
+            }*/}
+            <img src={ huzhouBanner } className='choose-headimg' />
+            {
+              settlementInfo && settlementInfo.couponVos && settlementInfo.couponVos[0] && <CouponInfo couponInfo={ settlementInfo.couponVos[0] } onReceiveCoupon={ this.receiveCoupon } />
+            }
+            <img src={ anjiBanner } className='choose-headimg' />
+            {
+              settlementInfo && settlementInfo.couponVos && settlementInfo.couponVos[1] && <CouponInfo couponInfo={ settlementInfo.couponVos[1] } onReceiveCoupon={ this.receiveCoupon } />
+            }
+            <img src={ zhebeidaojiaBanner } className='choose-headimg' />
+            {
+              daojiaCouponVos && daojiaCouponVos.map((item) => {
+                return (
+                  <div key={ item.id }>
+                    <CouponInfo couponInfo={ item } onReceiveCoupon={ this.receiveCoupon } />
+                  </div>
+
+                )
+              })
             }
           </div>
         </div>
@@ -105,21 +119,35 @@ export default class App extends React.Component {
       if (!item.reachPurchaseLimit) {
         postReceiveCoupon(item.id).then(() => {
           message.success('领取成功')
-          getActivityInfo().then((res) => {
-            activityImg = res.bgImg
-            getCouponDetail(res.couponList).then((res) => {
-              this.setState({
-                settlementInfo: {
-                  couponVos: res.records
-                }
-              })
-            })
-          })
+          this.getCouponInfo()
         })
       }
     } else {
         window.wx.miniProgram.navigateTo({url: '/pages/user/login/login'})
     }
+  }
+
+  getCouponInfo = () => {
+    getActivityInfo().then((res) => {
+      activityImg = res.bgImg
+      getCouponDetail(res.couponList).then((res) => {
+        let daojiaCouponVos = [...res.records]
+        daojiaCouponVos.splice(0, 2)
+        this.setState({
+          settlementInfo: {
+            couponVos: res.records
+          },
+          daojiaCouponVos
+        }, () => { console.log(this.state.settlementInfo)})
+      })
+    })
+  }
+
+  getUrlToken(name, str) {
+    const reg = new RegExp(`(^|&)${name}=([^&]*)(&|$)`)
+    const r = str.substr(1).match(reg)
+    if (r != null) return decodeURIComponent(r[2])
+    return null
   }
 
   /*gotoKoi = async () => {
