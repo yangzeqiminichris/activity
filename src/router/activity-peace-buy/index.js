@@ -7,7 +7,7 @@ import { setToken, getToken } from '@/cache/token.js'
 import './index.scss'
 import FirstFloor from './view/first-floor'
 import { getActivityDetail, checkUser, getCouponDetail } from './api/api'
-import moreCoupon from '@/assets/limit-purchase/limit_purchase_more_coupon.png'
+import peaceBuyBottom from '@/assets/peace_buy_bottom.png'
 
 export default class ActivityLimitPurchase extends React.Component {
   state = {
@@ -16,11 +16,6 @@ export default class ActivityLimitPurchase extends React.Component {
     tabs: [],
     floorCouponList: {}
   }
-  componentWillMount() {
-    this.props.history.listen(() => {
-      window.location.reload()
-    })
-  }
 
   async componentDidMount() {
     Toast.loading('Loading...', 20)
@@ -28,7 +23,7 @@ export default class ActivityLimitPurchase extends React.Component {
     let activityId = this.props.match.params.activityId
     await setToken(token).then(async () => {
       // 获取活动详情
-      await getActivityDetail({ id: activityId }).then(async (res) => {
+      await getActivityDetail({ id: activityId }).then(res => {
         if (!res) {
           message.error('暂无该活动')
           setTimeout(() => {
@@ -43,22 +38,15 @@ export default class ActivityLimitPurchase extends React.Component {
         }
         Toast.hide()
         const floorCouponList = {}
-        /*res.firstFloor.coupons
+        res.firstFloor.coupons
           .map(item => item.id)
           .map(id => {
-
-          })*/
-        var delete_flag = true
-        for (let i=0; i < res.firstFloor.coupons.length; i++) {
-          if (!delete_flag) return
-          await getCouponDetail({ id: res.firstFloor.coupons[i].id }).then(couponDetail => {
-            floorCouponList[res.firstFloor.coupons[i].id] = couponDetail
-            console.log('floorCouponList', floorCouponList)
-            this.setState({ floorCouponList })
-          }).catch(() => {
-            delete_flag = false
+            getCouponDetail({ id }).then(couponDetail => {
+              floorCouponList[id] = couponDetail
+              console.log('floorCouponList', floorCouponList)
+              this.setState({ floorCouponList })
+            })
           })
-        }
         this.setState({ activityConfig: res }, () => {
           let activityModal = document.getElementsByClassName('activity-modal')
           activityModal[0] &&
@@ -91,9 +79,9 @@ export default class ActivityLimitPurchase extends React.Component {
             )}
           </div>
         </div>
-        {/*<div style={{ width: '100%' }} onClick={ this.gotoMorderCoupon }>
-          <img style={{ width: '100%' }} src={ moreCoupon } />
-        </div>*/}
+        <div style={{ width: '100%' }}>
+          <img style={{ width: '100%' }} src={ peaceBuyBottom } />
+        </div>
       </div>
     )
   }
@@ -121,27 +109,17 @@ export default class ActivityLimitPurchase extends React.Component {
             if (couponDetail.stock == 0) {
               message.warn('已抢光！')
             } else {
-              let sameCouponList = activityConfig.firstFloor.coupons.filter((item) => {
-                if (item.id !== couponId) {
-                  return item
-                }
-              })
-              let alredyUse = false
-              Promise.all(sameCouponList.map( (item) => {
-                return getCouponDetail({ id: item.id }).then((res) => {
-                  if (res.reachPurchaseLimit && res.reachPurchaseLimit === 1) {
-                    alredyUse = true
-                  }
-                })
-              })).then(() => {
-                if ((couponDetail.reachPurchaseLimit && couponDetail.reachPurchaseLimit === 1) || alredyUse) {
-                  message.warn('每人一次抢购资格，您的抢购资格已经用完咯~')
+              if ((couponDetail.reachPurchaseLimit && couponDetail.reachPurchaseLimit === 1)) {
+                if (couponDetail.noPayGoodsCount && couponDetail.noPayGoodsCount > 0) {
+                  message.warn('您有未支付的订单，请去“我的-我的订单-其他订单”继续支付')
                 } else {
-                  window.wx.miniProgram.navigateTo({
-                    url: '/packageA/pages/integral/reduction/index?id=' + couponId
-                  })
+                  message.warn('每人一次抢购资格，您的抢购资格已经用完咯~')
                 }
-              })
+              } else {
+                window.wx.miniProgram.navigateTo({
+                  url: '/packageA/pages/integral/reduction/index?id=' + couponId
+                })
+              }
             }
           })
         })

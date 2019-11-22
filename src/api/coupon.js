@@ -10,7 +10,7 @@ export async function postReceiveCoupon (goodsId) {
     return post(url, { goodsId })
 }
 
-export async function getActivityInfo () {
-    const url = `/zbdx-api/h5/newUserArea`
+export async function getActivityInfo (activityId) {
+    const url = `/zbdx-api/h5/newUserArea/${ activityId }`
     return get(url)
 }

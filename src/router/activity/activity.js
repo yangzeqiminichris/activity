@@ -31,7 +31,8 @@ export default class App extends React.Component {
         settlementInfo: {
           couponVos: []
         },
-        daojiaCouponVos: []
+        daojiaCouponVos: [],
+        activityId: null
       }
       this.receiveCoupon = this.receiveCoupon.bind(this)
       this.getCouponInfo = this.getCouponInfo.bind(this)
@@ -40,6 +41,8 @@ export default class App extends React.Component {
     async componentWillMount() {
       document.title = '新人专区'
       let t = this.props.location.search.split('&')
+      let activityId = this.props.match.params.activityId
+      this.setState({activityId})
       let token = this.getUrlToken('token', this.props.location.search)
       this.props.history.listen(() => {
         window.location.reload()
@@ -89,7 +92,17 @@ export default class App extends React.Component {
                 )
               })
             }*/}
-            <img src={ huzhouBanner } className='choose-headimg' />
+            {
+              settlementInfo && settlementInfo.couponVos && settlementInfo.couponVos.map((item) => {
+                return (
+                  <div key={ item.id }>
+                    <CouponInfo couponInfo={ item } onReceiveCoupon={ this.receiveCoupon } />
+                  </div>
+
+                )
+              })
+            }
+            {/*<img src={ huzhouBanner } className='choose-headimg' />
             {
               settlementInfo && settlementInfo.couponVos && settlementInfo.couponVos[0] && <CouponInfo couponInfo={ settlementInfo.couponVos[0] } onReceiveCoupon={ this.receiveCoupon } />
             }
@@ -107,7 +120,7 @@ export default class App extends React.Component {
 
                 )
               })
-            }
+            }*/}
           </div>
         </div>
       )
@@ -128,7 +141,7 @@ export default class App extends React.Component {
   }
 
   getCouponInfo = () => {
-    getActivityInfo().then((res) => {
+    getActivityInfo(this.state.activityId).then((res) => {
       activityImg = res.bgImg
       getCouponDetail(res.couponList).then((res) => {
         let daojiaCouponVos = [...res.records]

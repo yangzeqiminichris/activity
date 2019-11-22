@@ -12,6 +12,7 @@ const ActivityHotel = loadable(() => import('./activity-hotel'))
 const ActivityMarket = loadable(() => import('./activity-market'))
 const ActivityDraw = loadable(() => import('./activity-draw'))
 const ActivityLimitPurchase = loadable(() => import('./activity-limit-purchase'))
+const ActivityPeaceBuy = loadable(() => import('./activity-peace-buy'))
 
 const routes = [
   {
@@ -29,6 +30,10 @@ const routes = [
   {
     path: '/activity-limit-purchase/:activityId',
     component: ActivityLimitPurchase
+  },
+  {
+    path: '/activity-peace-buy/:activityId',
+    component: ActivityPeaceBuy
   },
   {
     path: '/activity-count-down',
@@ -51,7 +56,7 @@ const routes = [
     component: KoiLottery
   },
   {
-    path: '/activity',
+    path: '/activity/:activityId',
     component: Activity
   }
 ]
