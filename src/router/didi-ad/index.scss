@@ -1,0 +1,112 @@
+.login{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: #f6a7b6;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  overflow: hidden;
+  .bac-img{
+    position: absolute;
+    left: 0;
+    width: 100%;
+  }
+  .info-box{
+    position: absolute;
+    bottom: 114px;
+    .login-phone input{
+      padding-left: 86px;
+      margin-left: 65px;
+      width:620px;
+      height:88px;
+      background:rgba(255,255,255,1);
+      border-radius:44px;
+      font-size:28px;
+      font-weight:400;
+      color:rgba(191,191,191,1);
+      line-height:40px;
+      float: left;
+    }
+    .login-vcode{
+      display: flex;
+      margin-top: 20px;
+      input{
+        float: left;
+        margin-left: 65px;
+        width: 388px;
+        height: 88px;
+        flex-shrink: 0;
+        background:rgba(255,255,255,1);
+        border-radius:44px;
+        padding-left: 86px;
+        font-size:28px;
+        font-weight:400;
+        color:rgba(191,191,191,1);
+        line-height:40px;
+      }
+      button{
+        margin-left: 20px;
+        width:212px;
+        height:88px;
+        background:rgba(249,32,81,1);
+        border-radius:44px;
+        color:rgba(255,255,255,1);
+        flex-shrink: 0;
+        font-size:28px;
+        font-weight:400;
+        border:2px solid rgba(249,32,81,1);
+        line-height:40px;
+      }
+      .login-vcode-btn-disable{
+        background:rgba(221,221,221,1);
+        border:2px solid rgba(221,221,221,1);
+        color:rgba(140,140,140,1);
+      }
+    }
+    .submit{
+      margin-left: 65px;
+      border: none;
+      width:620px;
+      height:88px;
+      background:rgba(249,32,81,1);
+      border-radius:44px;
+      font-size:32px;
+      font-weight:400;
+      color:rgba(255,255,255,1);
+      line-height:44px;
+      float: left;
+      margin-top: 20px;
+    }
+    .btn-disabled{
+      background:rgba(221,221,221,1);
+      border:2px solid rgba(221,221,221,1);
+      color:rgba(140,140,140,1);
+    }
+  }
+  .input-wrapper{
+    position: relative;
+    &-img{
+      width: 48px;
+      height: 48px;
+      position: absolute;
+      top: 20px;
+      left: 90px;
+    }
+  }
+}
+.am-modal-button-group-h .am-modal-button:first-child{
+  color: #8c8c8c;
+  background: #f5f5f5;
+}
+.am-modal-button-group-h .am-modal-button{
+  background: #f92051;
+  color: #FFF;
+  &::before{
+    width: 0!important;
+  }
+}
+.am-modal-button-group-h.am-modal-button-group-normal{
+  &::before{
+    width: 0!important;
+  }
+}

@@ -1,7 +1,8 @@
 import loadable from '@loadable/component'
 
 const Activity = loadable(() => import('./activity/activity.js'))
-const ActivityModal = loadable(() => import('./ActivityModal/ActivityModal.js'))
+const ActivityModal = loadable(() => import('./activity-modal/activity-modal.js'))
+const DidiAd = loadable(() => import('./didi-ad/didi-ad.js'))
 const Koi = loadable(() => import('./koi/koi.js'))
 const KoiLottery = loadable(() => import('./koi/koi-lottery/koi-lottery.js'))
 const ActivityCoupon = loadable(() => import('./activity-coupon'))
@@ -15,6 +16,10 @@ const ActivityLimitPurchase = loadable(() => import('./activity-limit-purchase')
 const ActivityPeaceBuy = loadable(() => import('./activity-peace-buy'))
 
 const routes = [
+  {
+    path: '/dd-ad/:activityId', // 滴滴首屏模块
+    component: DidiAd
+  },
   {
     path: '/activity-draw',
     component: ActivityDraw
@@ -44,7 +49,7 @@ const routes = [
     component: ActivityCoupon
   },
   {
-    path: '/activity-modal',
+    path: '/activity-modal', // 自定义活动模块
     component: ActivityModal
   },
   {
