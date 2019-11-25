@@ -13,8 +13,13 @@ const ActivityHotel = loadable(() => import('./activity-hotel'))
 const ActivityMarket = loadable(() => import('./activity-market'))
 const ActivityDraw = loadable(() => import('./activity-draw'))
 const ActivityLimitPurchase = loadable(() => import('./activity-limit-purchase'))
+const Intruduction = loadable(() => import('./introduction'))
 
 const routes = [
+  {
+    path: '/intruduction', // 一张说明图
+    component: Intruduction
+  },
   {
     path: '/dd-ad/:activityId', // 滴滴首屏模块
     component: DidiAd

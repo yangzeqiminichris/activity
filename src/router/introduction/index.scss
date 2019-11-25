@@ -1,0 +1,39 @@
+.introduction {
+  width: 100%;
+  position: relative;
+  .introduction-img {
+    width: 100%;
+  }
+  .introduction-btns {
+    position: absolute;
+    width: calc(100% - 80px);
+    display: flex;
+    top: 530px;
+    padding: 0 40px;
+    div {
+      width: 25%;
+      height: 170px;
+      background: #000;
+      opacity: 0;
+    }
+  }
+  .introduction-href {
+    opacity: 0;
+  }
+  &-1 {
+    position: absolute;
+    top: 725px;
+  }
+  &-2 {
+    position: absolute;
+    top: 2330px;
+  }
+  &-3 {
+    position: absolute;
+    top: 3750px;
+  }
+  &-4 {
+    position: absolute;
+    top: 5000px;
+  }
+}
