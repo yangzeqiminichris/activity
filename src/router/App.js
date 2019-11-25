@@ -17,7 +17,6 @@ function RouteWithSubRoutes (route) {
 export default () => (
     <Router>
             <Switch>
-                <Redirect from='/' to='/activity' exact />
                 {
                     routes.map((route, i) => (
                         <Route key={ i } { ...route } />
