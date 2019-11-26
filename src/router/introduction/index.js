@@ -1,10 +1,13 @@
 import React from 'react'
 import { animateScroll as scroll } from 'react-scroll'
 import headerImg from '@/assets/放心消费页面长兴.jpg'
+import headerImg2 from '@/assets/安吉、南浔、湖州 放心消费.jpg'
 import './index.scss'
 
 export default class ActivityA extends React.Component {
-  state = {}
+  state = {
+    id: this.props.match.params.id
+  }
 
   // 点击tabs
   onScroll = index => {
@@ -19,7 +22,7 @@ export default class ActivityA extends React.Component {
   render() {
     return (
       <div className='introduction'>
-        <img className='introduction-img' src={headerImg} />
+        <img className='introduction-img' src={this.state.id == 1 ? headerImg : headerImg2} />
         <div className='introduction-btns'>
           <div onClick={() => this.onScroll(0)}>1</div>
           <div onClick={() => this.onScroll(1)}>2</div>

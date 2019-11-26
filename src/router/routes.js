@@ -18,7 +18,7 @@ const Intruduction = loadable(() => import('./introduction'))
 
 const routes = [
   {
-    path: '/intruduction', // 一张说明图
+    path: '/intruduction/:id', // 一张说明图
     component: Intruduction
   },
   {
