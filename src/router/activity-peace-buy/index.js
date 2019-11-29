@@ -7,7 +7,7 @@ import { setToken, getToken } from '@/cache/token.js'
 import './index.scss'
 import FirstFloor from './view/first-floor'
 import { getActivityDetail, checkUser, getCouponDetail } from './api/api'
-import peaceBuyBottom from '@/assets/peace_buy_bottom.png'
+const peaceBuyBottom = 'https://static.zbszkj.com/images/peace_buy_bottom.png'
 
 export default class ActivityLimitPurchase extends React.Component {
   state = {
