@@ -118,11 +118,19 @@
             display: flex;
             justify-content: space-between;
             border-radius: 6px;
+            position: relative;
             .img{
                 width: 300px;
                 height: 300px;
                 border-radius: 6px;
                 flex-shrink: 0;
+            }
+            .img-mask{
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 300px;
+                height: 300px;
             }
             .info{
                 flex: 1;
@@ -178,6 +186,9 @@
                     padding: 0 16px;
                     height: 36px;
                 }
+                .btn-disabled{
+                    background:rgba(249,32,81,0.2);
+                }
             }
         }
     }
@@ -186,7 +197,11 @@
             width: 340px;
             flex-direction: row;
             flex-wrap: wrap;
+            overflow: hidden;
             .img{
+                width: 340px;
+            }
+            .img-mask{
                 width: 340px;
             }
             .info{
@@ -257,6 +272,9 @@
                         .btn{
                             margin-left: 22px;
                         }
+                        .btn-disabled{
+                            background:rgba(249,32,81,0.2);
+                        }
                     }
                 }
             }
@@ -283,10 +301,18 @@
             .img{
                 width: 230px;
                 height: 230px;
-                img{
+                position: relative;
+                .img-cover{
                     width: 230px;
                     height: 230px;
                     border-radius: 6px;
+                }
+                .img-mask{
+                    position: absolute;
+                    width: 230px;
+                    height: 230px;
+                    left: 0;
+                    top: 0;
                 }
             }
             .goods-info{
@@ -332,6 +358,9 @@
                     border-radius: 6px;
                     margin-top: 15px;
                     justify-content: center;
+                }
+                .btn-disabled{
+                    background:rgba(249,32,81,0.2);
                 }
             }
         }

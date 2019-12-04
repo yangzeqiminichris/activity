@@ -5,6 +5,7 @@ import { message } from 'antd'
 import { animateScroll as scroll } from 'react-scroll'
 import { setToken } from '@/cache/token.js'
 import { getActivityDetail, getCouponDetail, postReceiveCoupon } from '@/api/custom-modal'
+import iconSellOut from '@/assets/yiqiangguang_img_zhutu.png'
 import './index.scss'
 
 const LAYOUT_LISt = 2
@@ -229,9 +230,13 @@ export default class ActivityModal extends React.Component {
   }
   // 楼层 1楼 单列双列
   renderTabsContentItem (cul, goods) {
+    let showMask = goods.activityType === 2 && goods.promotionTotalRemain === 0
     return (
-      <div className='tabs-content-item' onClick={ this.goBuyGoods.bind(this, goods.goodsId) } key={ goods.goodsId }>
+      <div className='tabs-content-item' onClick={ this.goBuyGoods.bind(this, goods.goodsId, showMask) } key={ goods.goodsId }>
         <img src={ goods.goodsCover } className='img' />
+        {
+          showMask && <img src={ iconSellOut } className='img-mask' />
+        }
         <div className='info'>
           <div className={`name points ${ cul === LAYOUT_LISt ? 'width310' : 'width380' }`}>{ goods.goodsName }</div>
           <div className='title'>{ goods.goodsIntro }</div>
@@ -249,7 +254,7 @@ export default class ActivityModal extends React.Component {
                   goods.activityType === 2 && <span className='origin-price'>原价{ goods.goodsOriginalPrice }</span>
                 }
                 
-                <span className='btn'>立即抢购</span>
+                <span className={ `btn ${ showMask ? 'btn-disabled' : '' }` }>立即抢购</span>
               </div>
             </div> : <div>
               <div className='activity'>
@@ -258,7 +263,7 @@ export default class ActivityModal extends React.Component {
                   goods.activityType === 2 && <span className='origin-price'>{ goods.goodsOriginalPrice }</span>
                 }
               </div>
-              <div className='btn'>立即抢购</div>
+              <div className={ `btn ${ showMask ? 'btn-disabled' : '' }` }>立即抢购</div>
             </div>
           }
         </div>
@@ -267,10 +272,14 @@ export default class ActivityModal extends React.Component {
   }
   // 底部多个楼层
   renderCustomItem (goods, islast) {
+    let showMask = goods.activityType === 2 && goods.promotionTotalRemain === 0
     return (
-      <div className={ `custom-item ${ islast && 'white-space-none'}` } onClick={ this.goBuyGoods.bind(this, goods.goodsId) } key={ goods.goodsId }>
+      <div className={ `custom-item ${ islast && 'white-space-none'}` } onClick={ this.goBuyGoods.bind(this, goods.goodsId, showMask) } key={ goods.goodsId }>
         <div className='img'>
-          <img src={ goods.goodsCover } />
+          <img className='img-cover' src={ goods.goodsCover } />
+          {
+            showMask && <img className='img-mask' src={ iconSellOut } />
+          }
         </div>
         <div className='goods-info'>
           <div className='title points'>{ goods.goodsName }</div>
@@ -280,7 +289,7 @@ export default class ActivityModal extends React.Component {
               goods.activityType === 2 && <span className='origin-price'>{ goods.goodsOriginalPrice }</span>
             }
           </div>
-          <div className='btn'>
+          <div className={ `btn ${ showMask ? 'btn-disabled' : '' }` }>
             立即抢购 >
           </div>
         </div>
@@ -339,7 +348,10 @@ export default class ActivityModal extends React.Component {
       this.getCouponList (this.state.couponListIds)
     })
   }
-  goBuyGoods (goodsId) {
+  goBuyGoods (goodsId, showMask) {
+    if (!showMask) {
+      return
+    }
     window.wx.miniProgram.navigateTo({
       url: '/o2o/pages/goods/detail/detail?goodsId=' + goodsId
     })
