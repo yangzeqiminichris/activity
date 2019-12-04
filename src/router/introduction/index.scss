@@ -1,0 +1,64 @@
+.introduction {
+  width: 100%;
+  position: relative;
+  .introduction-img {
+    width: 100%;
+  }
+  .scroll-box {
+    padding-top: 10px;
+    width: 100%;
+    height: 170px;
+    background: #fff;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    .scroll-btns {
+      position: absolute;
+      top: 0;
+      display: flex;
+      width: calc(100% - 80px);
+      padding: 0 40px;
+      div {
+        width: 25%;
+        height: 170px;
+        background: #000;
+        opacity: 0;
+      }
+    }
+  }
+  .scroll-btn {
+    width: 100%;
+  }
+  .introduction-btns {
+    position: absolute;
+    width: calc(100% - 80px);
+    display: flex;
+    top: 530px;
+    padding: 0 40px;
+    div {
+      width: 25%;
+      height: 170px;
+      background: #000;
+      opacity: 0;
+    }
+  }
+  .introduction-href {
+    opacity: 0;
+  }
+  &-1 {
+    position: absolute;
+    top: 725px;
+  }
+  &-2 {
+    position: absolute;
+    top: 2330px;
+  }
+  &-3 {
+    position: absolute;
+    top: 3750px;
+  }
+  &-4 {
+    position: absolute;
+    top: 5000px;
+  }
+}

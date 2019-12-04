@@ -16,7 +16,6 @@ export default class CouponInfo extends React.Component {
   render(){
     const { couponInfo } = this.props
     return ((<div className='coupon-box'>
-        <button className='mask-button'></button>
         <div className='coupon-list-box'>
           {
             (couponInfo.couponGoodsInfo.verificationPlace === 1 || couponInfo.couponGoodsInfo.verificationPlace === 2) ? <img src={ couponInfo.couponGoodsInfo.verificationPlace === 1 ? iconInline : iconInShop } className='shop-line-icon' /> : ''
@@ -47,7 +46,7 @@ export default class CouponInfo extends React.Component {
                 </div>
               </div>
             </div>
-            <div className='coupon-list--handle'>
+            <div className='coupon-list--handle' onClick={ this.exchangeGoods.bind(this, couponInfo.id) }>
               {/*<div className='circle'>
                 <div className='circle-pro-box'>
                   <div className='handle'>
@@ -56,7 +55,7 @@ export default class CouponInfo extends React.Component {
                   </div>
                 </div>
               </div>*/}
-              <div className='handle-btn-box' onClick={ this.exchangeGoods.bind(this, couponInfo.id) }>
+              <div className='handle-btn-box'>
                 {
                   this.renderGetCouponBtn(couponInfo)
                 }
@@ -115,7 +114,6 @@ export default class CouponInfo extends React.Component {
   }
 
   exchangeGoods = (id) => {
-    console.log('ww')
     this.props.onReceiveCoupon( this.props.couponInfo)
   }
 }

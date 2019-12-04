@@ -7,7 +7,7 @@ import { getCouponDetail } from '@/api/custom-modal'
 import './index.scss'
 import FirstFloor from './view/first-floor'
 import { getActivityDetail } from './api/api'
-import tipImg from '@/assets/market_footer.png'
+// import tipImg from '@/assets/market_footer.png'
 
 export default class ActivityHotel extends React.Component {
   state = {
@@ -91,7 +91,7 @@ export default class ActivityHotel extends React.Component {
           </div>
         </div>
         <div style={{ width: '100%' }}>
-          <img style={{ width: '100%' }} src={tipImg} />
+          <img style={{ width: '100%' }} src={activityConfig.bottomImage} />
         </div>
       </div>
     )

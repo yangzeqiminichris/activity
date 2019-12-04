@@ -13,8 +13,14 @@ const ActivityHotel = loadable(() => import('./activity-hotel'))
 const ActivityMarket = loadable(() => import('./activity-market'))
 const ActivityDraw = loadable(() => import('./activity-draw'))
 const ActivityLimitPurchase = loadable(() => import('./activity-limit-purchase'))
+const ActivityPeaceBuy = loadable(() => import('./activity-peace-buy'))
+const Intruduction = loadable(() => import('./introduction'))
 
 const routes = [
+  {
+    path: '/intruduction/:id', // 一张说明图
+    component: Intruduction
+  },
   {
     path: '/dd-ad/:activityId', // 滴滴首屏模块
     component: DidiAd
@@ -34,6 +40,10 @@ const routes = [
   {
     path: '/activity-limit-purchase/:activityId',
     component: ActivityLimitPurchase
+  },
+  {
+    path: '/activity-peace-buy/:activityId',
+    component: ActivityPeaceBuy
   },
   {
     path: '/activity-count-down',
@@ -56,7 +66,7 @@ const routes = [
     component: KoiLottery
   },
   {
-    path: '/activity',
+    path: '/activity/:activityId',
     component: Activity
   }
 ]
