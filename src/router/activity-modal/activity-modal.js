@@ -349,7 +349,7 @@ export default class ActivityModal extends React.Component {
     })
   }
   goBuyGoods (goodsId, showMask) {
-    if (!showMask) {
+    if (showMask) {
       return
     }
     window.wx.miniProgram.navigateTo({
