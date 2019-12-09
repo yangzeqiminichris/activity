@@ -3,6 +3,7 @@ import moment from 'moment'
 
 import { couponType } from '../../config'
 import './index.scss'
+import iconSellOut from '@/assets/yiqiangguang_img_zhutu.png'
 
 export default function(props) {
   const { dataSource = {}, color } = props
@@ -18,14 +19,17 @@ export default function(props) {
       .add(+invalidDay, 'days')
       .format('MM.DD')
   }
-  console.log('dataSource', dataSource)
   let number = `${dataSource.goodsPrice}`.split('.')
   let integer = number[0]
   let decimal = number[1] ? (number[1].length >= 1 ? number[1] : number[1] + '0') : '00'
+  let showMask = dataSource.activityType === 2 && dataSource.promotionTotalRemain === 0
   return (
     <div className="cif" onClick={() => props.goCouponDetail(dataSource)}>
       <div className="cif-header" style={{ backgroundColor: color }}>
         <img src={dataSource.goodsCover} className='cif-logo-img'/>
+        {
+          showMask && <img src={ iconSellOut } className='img-mask' />
+        }
       </div>
       <div
         className={`cif-footer ${couponGoodsInfo.couponType == 6 ? 'top' : ''}`}
@@ -40,7 +44,7 @@ export default function(props) {
           </div>
           <div className='cif-money-origin' style={{ display: dataSource.goodsOriginalPrice === dataSource.goodsPrice ? 'none' : 'block' }}>￥{dataSource.goodsOriginalPrice}</div>
         </div>
-        <div className="cif-btn">
+        <div className={`cif-btn ${showMask ? 'cif-btn-disable' : ''}`}>
           立即抢购 >
         </div>
       </div>

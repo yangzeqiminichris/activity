@@ -49,6 +49,7 @@ axios.interceptors.response.use((response) => {
 function then (response) {
     try {
         let res = response.data
+      console.log('response',response)
         if (typeof res === 'string') {
             res = JSON.parse(res)
         }

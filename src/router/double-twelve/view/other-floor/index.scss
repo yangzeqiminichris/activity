@@ -1,7 +1,6 @@
 .other-floor {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 10px;
   .other-img {
     width: calc(100% + 46px);
     margin-left: -23px;
@@ -26,5 +25,6 @@
   text-align: center;
   margin-left: 50%;
   margin-top: 52px;
+  margin-bottom: 10px;
   transform: translateX(-50%);
 }

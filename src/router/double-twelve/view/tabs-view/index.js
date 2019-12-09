@@ -12,7 +12,6 @@ export default function TabsViews(props) {
     title: item.name
   }));
   let tabs = [...otherFloor];
-  console.log('tttttt2', tabs)
   // userState
   const [tabTopShow, setTabTopShow] = useState(true);
   const [currentPage, setCurrentPage] = useState(0);
@@ -79,7 +78,7 @@ export default function TabsViews(props) {
                 border: "2px #BA1D3A solid",
                 bottom: "6px",
                 width: "18px",
-                marginLeft: tabs.length >= 5 ? "10%" : 100 / 2 / tabs.length + "%",
+                marginLeft: tabs.length >= 4 ? "12.5%" : 100 / 2 / tabs.length + "%",
                 transform: "translateX(-9px)",
                 height: "2px",
                 borderRadius: "2px"
@@ -92,7 +91,7 @@ export default function TabsViews(props) {
                 fontWeight: "600"
               }}
               onTabClick={tabsClick}
-              renderTabBar={props => <Tabs.DefaultTabBar {...props} page={7} />}
+              renderTabBar={props => <Tabs.DefaultTabBar {...props} page={4} />}
             ></Tabs>
           }
           {
@@ -113,7 +112,7 @@ export default function TabsViews(props) {
                   bottom: "6px",
                   width: "18px",
                   marginLeft:
-                    tabs.length >= 5 ? "10%" : 100 / 2 / tabs.length + "%",
+                    tabs.length >= 4 ? "12.5%" : 100 / 2 / tabs.length + "%",
                   transform: "translateX(-9px)",
                   height: "2px",
                   borderRadius: "2px"
@@ -126,7 +125,7 @@ export default function TabsViews(props) {
                   fontWeight: "600"
                 }}
                 onTabClick={tabsClick}
-                renderTabBar={props => <Tabs.DefaultTabBar {...props} page={7} />}
+                renderTabBar={props => <Tabs.DefaultTabBar {...props} page={4} />}
               ></Tabs>
             </div>
           }

@@ -6,7 +6,6 @@ import "./index.scss";
 
 export default function OtherFloor(props) {
   const { dataSource = [], floorCouponList } = props;
-  console.log('prop2s', props);
   return (
     <div>
       {dataSource.map((floor, index) => (

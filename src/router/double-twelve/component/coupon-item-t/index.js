@@ -19,7 +19,6 @@ export default function(props) {
       .add(+invalidDay, 'days')
       .format('MM.DD')
   }
-  console.log(dataSource)
   return (
     <div
       className={`cit`}

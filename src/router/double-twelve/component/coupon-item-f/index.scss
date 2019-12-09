@@ -93,6 +93,10 @@
     margin: auto;
     position: absolute;
     bottom: 10px;
+    &-disable {
+      color: #bfbfbf;
+      background: #fcfcfc;
+    }
   }
   .cif-name {
     margin-top: 16px;
@@ -110,3 +114,14 @@
     text-align: left;
   }
 }
+.img-mask{
+  position: absolute;
+  width: 226px;
+  height: 226px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  left: 0;
+  top: 0;
+}
+

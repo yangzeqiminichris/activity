@@ -55,7 +55,7 @@ const routes = [
     component: ActivityCoupon
   },
   {
-    path: '/activity-double-twelve/:activityId',
+    path: '/activity-modal-double-twelve/:activityId',
     component: DoubleTwelve
   },
   {

@@ -26,7 +26,6 @@ class TipsPopup extends React.Component {
   }
 
   closePopup = () => {
-    this.props.closePopup()
     this.props.closeTipsPopup()
   }
 }

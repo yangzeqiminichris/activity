@@ -15,6 +15,12 @@ import TwelvePopup from './component/popup/popup'
 import HasNotStart from "@/assets/double-twelve/has_not_start.png";
 import RunOut from "@/assets/double-twelve/run_out.png";
 import HasReceived from "@/assets/double-twelve/has_received.png";
+import FullReductionReceived from "@/assets/double-twelve/full_reduction_received.png";
+import FullReductionRunOut from "@/assets/double-twelve/full_reduction_run_out.png";
+import ShippingFeeReceived from "@/assets/double-twelve/shipping_fee_received.png";
+import ShippingFeeRunOut from "@/assets/double-twelve/shipping_fee_run_out.png";
+import ShippingFeePopup from "@/assets/double-twelve/shipping_fee_popup.png";
+import FullReductionPopup from "@/assets/double-twelve/full_reduction_popup.png";
 import {getToken} from "../../cache/token";
 
 
@@ -23,6 +29,7 @@ export default class ActivityModal extends React.Component {
   state = {
     activityConfig: {},
     couponList: [],
+    couponIds: [],
     tabs: [],
     floorCouponList: {},
     twelvePopupBg: HasNotStart,
@@ -52,13 +59,13 @@ export default class ActivityModal extends React.Component {
           }, 1500);
           return;
         }
-        if (res.title) {
-          document.title = res.title;
+        if (res.name) {
+          document.title = res.name;
         }
         Toast.hide();
         const { floors = [] } = res;
-        res.couponList[2] && (res.couponList[2].runOutImg = '') && (res.couponList[2].hasReceivedImg = '')
-        res.couponList[3] && (res.couponList[3].runOutImg = '') && (res.couponList[3].hasReceivedImg = '')
+        res.couponList[2] && (res.couponList[2].runOutImg = ShippingFeeRunOut) && (res.couponList[2].hasReceivedImg = ShippingFeeReceived)
+        res.couponList[3] && (res.couponList[3].runOutImg = FullReductionRunOut) && (res.couponList[3].hasReceivedImg = FullReductionReceived)
         res.activityGroup && (
           res.activityGroup.map((item, index) => {
             item.goodsList.length > 9 && (res.activityGroup[index].showMore = true)
@@ -78,6 +85,9 @@ export default class ActivityModal extends React.Component {
           let couponIds = []
           res.couponList.map((item, index) => {
             couponIds.push(item.id)
+          })
+          this.setState({
+            couponIds
           })
           // 获取券详情
           getCouponDetail(couponIds).then((detail) => {
@@ -106,7 +116,6 @@ export default class ActivityModal extends React.Component {
           <img
             className="img"
             src={activityConfig ? activityConfig.bgImg : ""}
-            alt="暂无图片"
           />
         </div>
         <div className="coupon-list">
@@ -114,7 +123,7 @@ export default class ActivityModal extends React.Component {
             activityConfig.couponList && activityConfig.couponList.map((item, index) => {
               return (
                 <div key={'coupon' + index} className='coupon-list-img' onClick={ this.receiveCoupon.bind(this, item, index) }>
-                  <img src={(index < 2) ? item.img : item.reachPurchaseLimit ? item.hasReceivedImg : item.stock ? item.img : item.runOutImg } className='coupon-list-img'/>
+                  <img src={(index < 2) ? item.img : (item.info && item.info.reachPurchaseLimit) ? item.hasReceivedImg : (item.info && item.info.stock) ? item.img : item.runOutImg } className='coupon-list-img'/>
                 </div>
               )
             })
@@ -155,11 +164,11 @@ export default class ActivityModal extends React.Component {
   topDistance = 0
 
   goCouponDetail = (goods) => {
-    if (goods.goodsStock === 0) {
+    if (goods.activityType ===2 && goods.promotionTotalRemain === 0) {
       return
     } else {
       window.wx.miniProgram.navigateTo({
-        url: "/o2o/pages/goods/detail/detail?goodsId=" + goods.shopGoodsId
+        url: "/o2o/pages/goods/detail/detail?goodsId=" + goods.goodsId
       })
     }
   }
@@ -167,12 +176,18 @@ export default class ActivityModal extends React.Component {
   receiveCoupon = (coupon, index) => {
     const { id: couponId, beginAt, endAt } = coupon
     console.log('coupon', coupon)
-    if (coupon.reachPurchaseLimit || !coupon.info.stock) {
+
+    if (coupon.info.reachPurchaseLimit || !coupon.info.stock) {
+      if (index < 2 && coupon.info.reachPurchaseLimit) {
+        message.warn("您已经领取过啦~");
+      } else if (index < 2 && !coupon.info.stock) {
+        message.warn("库存不足");
+      }
       return
     } else {
       if (beginAt && endAt) {
         const now = new Date().getTime()
-        const start = new Date(moment(beginAt).format('YY.MM.DD')).getTime()
+        const start = new Date(moment(beginAt).format()).getTime()
         const end = new Date(moment(endAt).format()).getTime()
         if (now < start) {
           if (index < 2) {
@@ -180,10 +195,10 @@ export default class ActivityModal extends React.Component {
           } else {
             this.setState({
               showPopup: true,
+              twelvePopupBg: HasNotStart,
               twelvePopupTips: '活动尚未开始~',
               twelvePopupSmallTips: `活动时间：${beginAt}至${endAt}`
             })
-            this.stopBodyScroll(true)
           }
         } else if (now > end) {
           if (index < 2) {
@@ -191,17 +206,32 @@ export default class ActivityModal extends React.Component {
           } else {
             this.setState({
               showPopup: true,
+              twelvePopupBg: HasNotStart,
               twelvePopupTips: '活动已结束~',
               twelvePopupSmallTips: `活动时间：${beginAt}至${endAt}`
             })
-            this.stopBodyScroll(true)
           }
         } else {
           let token = getToken()
           if (token) {
             postReceiveCoupon(coupon.id).then(() => {
-              message.success('领取成功')
-              this.getCouponInfo()
+              if (index === 2) {
+                this.setState({
+                  showPopup: true,
+                  twelvePopupTips: '',
+                  twelvePopupSmallTips: '',
+                  twelvePopupBg: ShippingFeePopup
+                })
+              } else if (index === 3) {
+                this.setState({
+                  showPopup: true,
+                  twelvePopupTips: '',
+                  twelvePopupSmallTips: '',
+                  twelvePopupBg: FullReductionPopup
+                })
+              } else {
+                message.success('领取成功')
+              }
             }).catch((error) => {
               if (/^库存不足/.test(error.msg)) {
                 if (index < 2) {
@@ -209,9 +239,10 @@ export default class ActivityModal extends React.Component {
                 } else {
                   this.setState({
                     showPopup: true,
-                    twelvePopupBg: RunOut
+                    twelvePopupBg: RunOut,
+                    twelvePopupTips: '',
+                    twelvePopupSmallTips: ''
                   })
-                  this.stopBodyScroll(true)
                 }
               } else if (/^超过限购数量/.test(error.msg)) {
                 if (index < 2) {
@@ -219,9 +250,10 @@ export default class ActivityModal extends React.Component {
                 } else {
                   this.setState({
                     showPopup: true,
-                    twelvePopupBg: HasReceived
+                    twelvePopupBg: HasReceived,
+                    twelvePopupTips: '',
+                    twelvePopupSmallTips: ''
                   })
-                  this.stopBodyScroll(true)
                 }
               }
             })
@@ -235,8 +267,9 @@ export default class ActivityModal extends React.Component {
 
   gotoAdUrl = (ad) => {
     if (/^game?:\/\//.test(ad.adUrl)) {
+      let gameUrl = ad.adUrl.replace('game://', '')
       window.wx.miniProgram.navigateTo({
-        url: `/packageA/pages/webviewGame/webviewGame?url=${ ad.adUrl }&title=${ ad.adTitle }`
+        url: `/packageA/pages/webviewGame/webviewGame?url=${ gameUrl }&title=${ ad.adTitle }`
       })
     } else {
       window.wx.miniProgram.navigateTo({
@@ -252,18 +285,6 @@ export default class ActivityModal extends React.Component {
     return null;
   }
 
-  stopBodyScroll = (isFixed) => {
-    var bodyEl = document.body
-    if (isFixed) {
-      bodyEl.style.position = 'fixed'
-      bodyEl.style.top = -this.topDistance + 'px'
-    } else {
-      bodyEl.style.position = ''
-      bodyEl.style.top = ''
-      window.scrollTo(0, this.topDistance) // 回到原先的top
-    }
-  }
-
   closeLotteryPopup = () => {
     this.setState((prevState) => ({
       showPopup: false
@@ -276,6 +297,22 @@ export default class ActivityModal extends React.Component {
     t.activityGroup[index].showMore = false
     this.setState({
       activityConfig: t
+    })
+  }
+
+  getCouponDetailByIds = (couponIds) => {
+    getCouponDetail(couponIds).then((detail) => {
+      let activityConfig = this.state.activityConfig
+      detail.records.map((record) => {
+        activityConfig.couponList.map((item) => {
+          if (item.id === record.id) {
+            item['info'] = record
+          }
+        })
+      })
+      this.setState({
+        activityConfig
+      })
     })
   }
 }
