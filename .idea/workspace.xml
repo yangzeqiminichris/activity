@@ -2,17 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="de3651a1-55e0-4299-b41d-44740e771871" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/router/activity-modal-four/activity-modal-four.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/router/activity-modal-four/api/api.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/router/activity-modal-four/component/popup/index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/router/activity-modal-four/component/popup/popup.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/router/activity-modal-four/index.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/base.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/base.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/double-twelve/component/coupon-item-f/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/double-twelve/component/coupon-item-f/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/double-twelve/component/coupon-item-f/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/double-twelve/component/coupon-item-f/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/double-twelve/component/coupon-item-t/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/double-twelve/component/coupon-item-t/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/double-twelve/component/popup/popup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/double-twelve/component/popup/popup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/coupon.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/coupon.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/coupon-item/coupon-item.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/coupon-item/coupon-item.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/coupon-item/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/coupon-item/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router/activity/activity.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/activity/activity.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router/activity/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/activity/index.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/router/double-twelve/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/double-twelve/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/router/double-twelve/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/double-twelve/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/double-twelve/view/other-floor/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/double-twelve/view/other-floor/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/double-twelve/view/other-floor/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/double-twelve/view/other-floor/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/double-twelve/view/tabs-view/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/double-twelve/view/tabs-view/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/router/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/routes.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -27,22 +29,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/router/double-twelve/view/tabs-view/index.js">
+        <entry file="file://$PROJECT_DIR$/src/router/activity/activity.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="531">
-              <caret line="124" column="35" selection-start-line="124" selection-start-column="35" selection-end-line="124" selection-end-column="35" />
-              <folding>
-                <element signature="e#0#51#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/router/double-twelve/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="614">
-              <caret line="128" column="14" lean-forward="true" selection-start-line="128" selection-start-column="14" selection-end-line="128" selection-end-column="14" />
+            <state relative-caret-position="2147">
+              <caret line="128" column="43" selection-start-line="128" selection-start-column="43" selection-end-line="128" selection-end-column="43" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -51,28 +41,67 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/router/double-twelve/api/api.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="95">
+              <caret line="5" selection-start-line="5" selection-end-line="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/router/activity-modal-four/index.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="475">
+              <caret line="25" column="23" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/router/activity/index.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="522">
+              <caret line="136" selection-start-line="136" selection-end-line="136" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/router/double-twelve/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="418">
+              <caret line="22" column="81" selection-start-line="22" selection-start-column="81" selection-end-line="22" selection-end-column="81" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/router/double-twelve/index.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
+            <state relative-caret-position="551">
+              <caret line="29" column="18" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/router/double-twelve/component/coupon-item-t/index.scss">
+        <entry file="file://$PROJECT_DIR$/src/router/activity-modal-four/activity-modal-four.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="802">
-              <caret line="118" selection-start-line="118" selection-end-line="118" />
+            <state relative-caret-position="760">
+              <caret line="52" column="12" selection-start-line="52" selection-start-column="12" selection-end-line="52" selection-end-column="12" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/router/double-twelve/component/popup/popup.js">
+        <entry file="file://$PROJECT_DIR$/src/router/activity-modal/activity-modal.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="532">
-              <caret line="28" selection-start-line="28" selection-end-line="28" />
+            <state relative-caret-position="760">
+              <caret line="48" column="8" selection-start-line="48" selection-start-column="8" selection-end-line="50" selection-end-column="9" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -81,10 +110,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/router/double-twelve/view/tabs-view/index.scss">
+        <entry file="file://$PROJECT_DIR$/src/router/double-twelve/component/popup/index.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="570">
+              <caret line="30" column="18" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/router/activity-modal-four/api/api.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="133">
-              <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
+              <caret line="7" column="57" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="57" />
             </state>
           </provider>
         </entry>
@@ -93,17 +131,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>SKIP_PREFLIGHT_CHECK</find>
-      <find>showShareModal</find>
-      <find>gotoKoi</find>
-      <find>koiShare</find>
-      <find>zb-fjs</find>
-      <find>FirstFloor</find>
-      <find>decodeURIComponent</find>
-      <find>item</find>
-      <find>Image</find>
-      <find>goCouponDetail</find>
-      <find>closePopup</find>
       <find>daojiaCouponVos</find>
       <find>reachPurchaseLimit</find>
       <find>activityId</find>
@@ -123,6 +150,17 @@
       <find>couponList</find>
       <find>closeLotteryPopup</find>
       <find>stopBodyScroll</find>
+      <find>title</find>
+      <find>shop</find>
+      <find>onReceiveCoupon</find>
+      <find>couponCash</find>
+      <find>titles</find>
+      <find>COUPON_IMG</find>
+      <find>exchangeGoods</find>
+      <find>closePopup</find>
+      <find>aler</find>
+      <find>base</find>
+      <find>getCouponDetail</find>
     </findStrings>
     <replaceStrings>
       <replace>popup-rule</replace>
@@ -140,11 +178,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/cache/token.js" />
-        <option value="$PROJECT_DIR$/src/router/koi/koi-lottery/index.scss" />
-        <option value="$PROJECT_DIR$/src/router/koi/koi-lottery/koi-lottery.js" />
-        <option value="$PROJECT_DIR$/src/components/rule/rule.js" />
-        <option value="$PROJECT_DIR$/src/components/rulePopup/index.scss" />
         <option value="$PROJECT_DIR$/src/router/ActivityModal/ActivityModal.js" />
         <option value="$PROJECT_DIR$/src/router/koi/koi-activity/koi-activity.js" />
         <option value="$PROJECT_DIR$/.env.test" />
@@ -164,15 +197,10 @@
         <option value="$PROJECT_DIR$/src/router/activity-limit-purcash/index.js" />
         <option value="$PROJECT_DIR$/src/router/activity-limit-purchase/view/first-floor/index.scss" />
         <option value="$PROJECT_DIR$/src/router/activity-limit-purchase/view/first-floor/index.js" />
-        <option value="$PROJECT_DIR$/src/router/activity/index.scss" />
         <option value="$PROJECT_DIR$/src/router/activity-peace-buy/index.scss" />
-        <option value="$PROJECT_DIR$/src/components/coupon-item/coupon-item.js" />
         <option value="$PROJECT_DIR$/src/router/activity-limit-purchase/index.js" />
         <option value="$PROJECT_DIR$/src/router/App.js" />
-        <option value="$PROJECT_DIR$/src/router/activity/activity.js" />
-        <option value="$PROJECT_DIR$/src/components/coupon-item/index.scss" />
         <option value="$PROJECT_DIR$/src/router/activity-peace-buy/index.js" />
-        <option value="$PROJECT_DIR$/src/api/coupon.js" />
         <option value="$PROJECT_DIR$/src/router/double-twelve/component/coupon-item-t/index.scss" />
         <option value="$PROJECT_DIR$/src/router/double-twelve/view/tabs-view/index.scss" />
         <option value="$PROJECT_DIR$/src/router/double-twelve/config.js" />
@@ -181,8 +209,6 @@
         <option value="$PROJECT_DIR$/src/router/double-twelve/component/popup/index.scss" />
         <option value="$PROJECT_DIR$/src/router/double-twelve/component/coupon-item-t/index.js" />
         <option value="$PROJECT_DIR$/src/router/double-twelve/view/other-floor/index.js" />
-        <option value="$PROJECT_DIR$/src/router/routes.js" />
-        <option value="$PROJECT_DIR$/src/router/double-twelve/index.scss" />
         <option value="$PROJECT_DIR$/src/router/double-twelve/component/coupon-item-f/index.js" />
         <option value="$PROJECT_DIR$/src/router/double-twelve/component/coupon-item-f/index.scss" />
         <option value="$PROJECT_DIR$/src/router/double-twelve/view/other-floor/index.scss" />
@@ -190,14 +216,27 @@
         <option value="$PROJECT_DIR$/src/router/double-twelve/component/popup/popup.js" />
         <option value="$PROJECT_DIR$/src/router/activity-coupon/view/tabs-view/index.js" />
         <option value="$PROJECT_DIR$/src/router/double-twelve/view/tabs-view/index.js" />
+        <option value="$PROJECT_DIR$/src/router/routes.js" />
+        <option value="$PROJECT_DIR$/src/api/coupon.js" />
+        <option value="$PROJECT_DIR$/src/components/coupon-item/index.scss" />
+        <option value="$PROJECT_DIR$/src/router/activity-modal-four/api/api.js" />
+        <option value="$PROJECT_DIR$/src/components/coupon-item/coupon-item.js" />
+        <option value="$PROJECT_DIR$/src/router/activity-modal-four/component/popup/index.scss" />
+        <option value="$PROJECT_DIR$/src/router/activity-modal-four/component/popup/popup.js" />
+        <option value="$PROJECT_DIR$/src/router/activity-modal-four/index.scss" />
+        <option value="$PROJECT_DIR$/src/router/double-twelve/index.scss" />
         <option value="$PROJECT_DIR$/src/router/double-twelve/index.js" />
+        <option value="$PROJECT_DIR$/src/router/activity-modal-four/activity-modal-four.js" />
+        <option value="$PROJECT_DIR$/src/router/activity/activity.js" />
+        <option value="$PROJECT_DIR$/src/router/activity/index.scss" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="23" />
-    <option name="width" value="1680" />
-    <option name="height" value="1027" />
+    <option name="x" value="952" />
+    <option name="y" value="-8" />
+    <option name="width" value="976" />
+    <option name="height" value="1176" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -226,13 +265,14 @@
               <item name="newcustomeractivity" type="b2602c69:ProjectViewProjectNode" />
               <item name="newcustomeractivity" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="router" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="newcustomeractivity" type="b2602c69:ProjectViewProjectNode" />
               <item name="newcustomeractivity" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="router" type="462c0819:PsiDirectoryNode" />
+              <item name="activity" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="newcustomeractivity" type="b2602c69:ProjectViewProjectNode" />
@@ -246,14 +286,22 @@
               <item name="newcustomeractivity" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="router" type="462c0819:PsiDirectoryNode" />
-              <item name="double-twelve" type="462c0819:PsiDirectoryNode" />
+              <item name="activity-modal-four" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="newcustomeractivity" type="b2602c69:ProjectViewProjectNode" />
               <item name="newcustomeractivity" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="router" type="462c0819:PsiDirectoryNode" />
-              <item name="double-twelve" type="462c0819:PsiDirectoryNode" />
+              <item name="activity-modal-four" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="newcustomeractivity" type="b2602c69:ProjectViewProjectNode" />
+              <item name="newcustomeractivity" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="router" type="462c0819:PsiDirectoryNode" />
+              <item name="activity-modal-four" type="462c0819:PsiDirectoryNode" />
               <item name="component" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -262,8 +310,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="router" type="462c0819:PsiDirectoryNode" />
               <item name="double-twelve" type="462c0819:PsiDirectoryNode" />
-              <item name="component" type="462c0819:PsiDirectoryNode" />
-              <item name="coupon-item-f" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="newcustomeractivity" type="b2602c69:ProjectViewProjectNode" />
@@ -271,17 +317,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="router" type="462c0819:PsiDirectoryNode" />
               <item name="double-twelve" type="462c0819:PsiDirectoryNode" />
-              <item name="component" type="462c0819:PsiDirectoryNode" />
-              <item name="coupon-item-t" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="newcustomeractivity" type="b2602c69:ProjectViewProjectNode" />
-              <item name="newcustomeractivity" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="router" type="462c0819:PsiDirectoryNode" />
-              <item name="double-twelve" type="462c0819:PsiDirectoryNode" />
-              <item name="component" type="462c0819:PsiDirectoryNode" />
-              <item name="popup" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="newcustomeractivity" type="b2602c69:ProjectViewProjectNode" />
@@ -290,39 +326,6 @@
               <item name="router" type="462c0819:PsiDirectoryNode" />
               <item name="double-twelve" type="462c0819:PsiDirectoryNode" />
               <item name="view" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="newcustomeractivity" type="b2602c69:ProjectViewProjectNode" />
-              <item name="newcustomeractivity" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="router" type="462c0819:PsiDirectoryNode" />
-              <item name="double-twelve" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="other-floor" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="newcustomeractivity" type="b2602c69:ProjectViewProjectNode" />
-              <item name="newcustomeractivity" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="router" type="462c0819:PsiDirectoryNode" />
-              <item name="double-twelve" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="tabs-view" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="newcustomeractivity" type="b2602c69:ProjectViewProjectNode" />
-              <item name="newcustomeractivity" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="router" type="462c0819:PsiDirectoryNode" />
-              <item name="koi" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="newcustomeractivity" type="b2602c69:ProjectViewProjectNode" />
-              <item name="newcustomeractivity" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="router" type="462c0819:PsiDirectoryNode" />
-              <item name="koi" type="462c0819:PsiDirectoryNode" />
-              <item name="koi-lottery" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -333,7 +336,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="D:/taro/zhebei/wechat" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -432,7 +435,15 @@
       <workItem from="1575510154635" duration="22554000" />
       <workItem from="1575596742923" duration="18676000" />
       <workItem from="1575773713858" duration="1431000" />
-      <workItem from="1575856061309" duration="1589000" />
+      <workItem from="1575856061309" duration="5652000" />
+      <workItem from="1575944539821" duration="2408000" />
+      <workItem from="1575948043683" duration="12222000" />
+      <workItem from="1575970216746" duration="627000" />
+      <workItem from="1575976833938" duration="621000" />
+      <workItem from="1575977683838" duration="22000" />
+      <workItem from="1576114669477" duration="19688000" />
+      <workItem from="1576201249100" duration="15341000" />
+      <workItem from="1576292250189" duration="608000" />
     </task>
     <task id="LOCAL-00001" summary="锦鲤活动">
       <created>1572242178169</created>
@@ -473,12 +484,12 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="413624000" />
+    <option name="totallyTimeSpent" value="469224000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15858799" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11801897" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -492,7 +503,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.4410609" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.21905698" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.18565816" />
       <window_info anchor="bottom" id="TypeScript" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -560,110 +571,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="分享图片" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/router/introduction/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-99">
-          <caret line="27" column="3" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/router/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="24" column="21" lean-forward="true" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/router/activity-coupon/index.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="18" column="24" lean-forward="true" selection-end-line="111" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/coupon-item/coupon-item.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="643">
-          <caret line="45" column="22" lean-forward="true" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/router/activity-coupon/component/coupon-item-f/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="19" column="3" lean-forward="true" selection-end-line="63" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/router/activity-coupon/component/coupon-item-t/index.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="26" lean-forward="true" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/router/activity-coupon/component/coupon-item-t/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="10" lean-forward="true" selection-end-line="85" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/router/activity-coupon/component/floor-title/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/router/activity-coupon/component/coupon-item-f/index.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
           <caret line="11" column="15" lean-forward="true" selection-end-line="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/router/activity-coupon/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/router/double-twelve/api/api.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
@@ -700,20 +611,6 @@
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/lottery-popup/index.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="13" column="18" lean-forward="true" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/tips-popup/index.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="18" lean-forward="true" selection-end-line="40" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -767,33 +664,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/lottery-popup/lottery-popup.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="21" column="51" selection-start-line="21" selection-start-column="51" selection-end-line="21" selection-end-column="51" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/tips-popup/tips-popup.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="19" column="32" lean-forward="true" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/router/double-twelve/component/popup/index.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="499">
-          <caret line="40" column="22" lean-forward="true" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/api/custom-modal.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
@@ -801,51 +671,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/coupon.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/router/activity/activity.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="142" column="2" selection-start-line="142" selection-start-column="2" selection-end-line="142" selection-end-column="2" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/router/activity-coupon/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="676">
-          <caret line="118" column="6" selection-start-line="118" selection-start-column="6" selection-end-line="118" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/router/routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="53" column="39" selection-start-line="53" selection-start-column="29" selection-end-line="53" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/router/double-twelve/component/coupon-item-f/index.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="506">
           <caret line="97" column="25" selection-start-line="97" selection-start-column="25" selection-end-line="97" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/base.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="51" column="27" selection-start-line="51" selection-start-column="27" selection-end-line="51" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-            <element signature="e#161#192#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -883,16 +712,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/router/activity-modal/activity-modal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="150" column="63" selection-start-line="150" selection-start-column="63" selection-end-line="150" selection-end-column="63" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/router/double-twelve/component/coupon-item-t/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
@@ -900,13 +719,6 @@
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/router/activity-modal/index.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="309" column="16" selection-start-line="309" selection-start-column="16" selection-end-line="315" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -927,20 +739,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/router/double-twelve/component/coupon-item-t/index.scss">
+    <entry file="file://$PROJECT_DIR$/src/router/double-twelve/view/tabs-view/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="802">
-          <caret line="118" selection-start-line="118" selection-end-line="118" />
+        <state relative-caret-position="2280">
+          <caret line="124" column="35" selection-start-line="124" selection-start-column="35" selection-end-line="124" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/router/double-twelve/component/popup/popup.js">
+    <entry file="file://$PROJECT_DIR$/src/router/double-twelve/component/coupon-item-t/index.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="2242">
+          <caret line="118" selection-start-line="118" selection-end-line="118" />
         </state>
       </provider>
     </entry>
@@ -951,30 +763,212 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/router/double-twelve/view/tabs-view/index.js">
+    <entry file="file://$PROJECT_DIR$/src/router/activity/test.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router/activity-modal/index.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="531">
-          <caret line="124" column="35" selection-start-line="124" selection-start-column="35" selection-end-line="124" selection-end-column="35" />
+        <state relative-caret-position="271">
+          <caret line="309" column="16" selection-start-line="309" selection-start-column="16" selection-end-line="315" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/base.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="30" column="21" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
           <folding>
-            <element signature="e#0#51#0" expanded="true" />
+            <element signature="e#0#25#0" expanded="true" />
+            <element signature="e#161#192#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/router/double-twelve/index.scss">
+    <entry file="file://$PROJECT_DIR$/src/api/coupon.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
+        <state relative-caret-position="361">
+          <caret line="19" column="19" lean-forward="true" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/coupon-item/index.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1545">
+          <caret line="68" column="22" selection-start-line="68" selection-start-column="22" selection-end-line="68" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/lottery-popup/index.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="28" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/lottery-popup/lottery-popup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" column="11" lean-forward="true" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/tips-popup/index.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="23" column="18" lean-forward="true" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/tips-popup/tips-popup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="30" lean-forward="true" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="423">
+          <caret line="65" column="3" lean-forward="true" selection-start-line="65" selection-start-column="3" selection-end-line="65" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/coupon-item/coupon-item.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="608">
+          <caret line="95" column="31" selection-start-line="95" selection-start-column="13" selection-end-line="95" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router/activity-modal-four/component/popup/popup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="589">
+          <caret line="34" column="19" selection-start-line="34" selection-start-column="19" selection-end-line="34" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router/activity-modal-four/component/popup/index.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="817">
+          <caret line="43" column="5" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router/activity-coupon/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router/activity-coupon/index.scss">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router/activity-coupon/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="41" column="8" selection-start-line="41" selection-start-column="8" selection-end-line="43" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router/double-twelve/component/popup/popup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router/activity/activity.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2147">
+          <caret line="128" column="43" selection-start-line="128" selection-start-column="43" selection-end-line="128" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router/double-twelve/api/api.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router/activity-modal-four/index.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="25" column="23" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/router/double-twelve/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="614">
-          <caret line="128" column="14" lean-forward="true" selection-start-line="128" selection-start-column="14" selection-end-line="128" selection-end-column="14" />
+        <state relative-caret-position="418">
+          <caret line="22" column="81" selection-start-line="22" selection-start-column="81" selection-end-line="22" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router/double-twelve/index.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="29" column="18" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router/activity-modal-four/activity-modal-four.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="760">
+          <caret line="52" column="12" selection-start-line="52" selection-start-column="12" selection-end-line="52" selection-end-column="12" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router/activity-modal/activity-modal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="760">
+          <caret line="48" column="8" selection-start-line="48" selection-start-column="8" selection-end-line="50" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router/double-twelve/component/popup/index.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="30" column="18" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router/activity-modal-four/api/api.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="57" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router/activity/index.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="522">
+          <caret line="136" selection-start-line="136" selection-end-line="136" />
         </state>
       </provider>
     </entry>

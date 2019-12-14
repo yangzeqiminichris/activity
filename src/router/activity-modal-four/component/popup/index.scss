@@ -1,0 +1,70 @@
+.tipspopfour {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  &-bodybg {
+    width: 600px;
+    z-index: 1100;
+  }
+  &-body {
+    width: 750px;
+    height: 720px;
+    z-index: 1200;
+  }
+  &-closebtn {
+    position: absolute;
+    top: 0;
+    width: 58px;
+    height: 58px;
+    right: 100px;
+    z-index: 1300;
+  }
+  &-btn {
+    width: 464px;
+    height: 86px;
+    position: absolute;
+    bottom: 92px;
+    z-index: 1300;
+    &-gouse {
+      width: 600px;
+      height: 88px;
+      background: rgba(249,32,81,1);
+      border-radius: 0px 0px 24px 24px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      font-size: 32px;
+      line-height: 88px;
+      text-align: center;
+      color: #FFFFFF;
+    }
+  }
+  &-tips {
+    color: #FFFFFF;
+    position: absolute;
+    bottom: 158px;
+    z-index: 1200;
+    font-size: 36px;
+    text-align: center;
+    &-small {
+      font-size: 26px;
+      font-weight: 400;
+      color: #FFFFFF;
+      line-height: 36px;
+      width: 400px;
+    }
+  }
+  &-close {
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -82px;
+    z-index: 1300;
+  }
+}

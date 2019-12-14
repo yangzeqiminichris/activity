@@ -7,7 +7,6 @@ import iconInline from '@/assets/only-in-line.png'
 export default class CouponInfo extends React.Component {
   constructor (props) {
     super(props)
-    this.exchangeGoods = this.exchangeGoods.bind(this)
   }
 
   componentDidMount() {
@@ -46,7 +45,7 @@ export default class CouponInfo extends React.Component {
                 </div>
               </div>
             </div>
-            <div className='coupon-list--handle' onClick={ this.exchangeGoods.bind(this, couponInfo.id) }>
+            <div className='coupon-list--handle'>
               {/*<div className='circle'>
                 <div className='circle-pro-box'>
                   <div className='handle'>
@@ -94,15 +93,8 @@ export default class CouponInfo extends React.Component {
   }
 
   renderGetCouponBtn (item) {
-    // {
-    //   item.reachPurchaseLimit === 1 ? <Button disabled className='handle-btn-disabled'>已领取</Button>
-    //    :
-    //    <Button className='handle-btn' hoverClass='handle-btn--active' onClick={ this.exchangeGoods.bind(this, item.id) }>兑换</Button>
-    // }
     if (item.reachPurchaseLimit === 1) {
       return <div disabled className='handle-btn-disabled'>已领取</div>
-    } else if (item.stock > 0) {
-      return <div className='handle-btn'>{item.credit > 0 ? '兑换' : item.price > 0 ? '购买' : '领取' }</div>
     } else if (item.stock === 0) {
       return <div disabled className='handle-btn-disabled'>已抢光</div>
     }
@@ -111,9 +103,5 @@ export default class CouponInfo extends React.Component {
   closePopup = () => {
     this.props.onClosePopup()
     this.stopBodyScroll(false)
-  }
-
-  exchangeGoods = (id) => {
-    this.props.onReceiveCoupon( this.props.couponInfo)
   }
 }

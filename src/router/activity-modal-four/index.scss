@@ -1,0 +1,72 @@
+.activity {
+  min-height: 100vh;
+  background: #058860;
+  &-img {
+    width: 100%;
+    &-bg {
+      width: 100%;
+      display: flex;
+    }
+    &-icon {
+      position: absolute;
+      right: 24px;
+      top: 300px;
+      width: 156px;
+      height: 156px;
+    }
+  }
+}
+
+.choose {
+  padding: 0px 24px 180px 24px;
+  background: #058860;
+  &-headimg {
+    width: 100%;
+    z-index: 100;
+    position: relative;
+  }
+}
+
+.base-btn {
+  width: 702px;
+  height: 88px;
+  line-height: 88px;
+  text-align: center;
+  background: rgba(249,32,81,1);
+  border-radius: 44px;
+  font-size: 32px;
+  color: #ffffff;
+  align-items: center;
+
+}
+
+.four-coupon {
+  margin-top: 10px;
+  position: relative;
+  &-icon {
+    position: absolute;
+    right: 0;
+    width: 218px;
+    height: 218px;
+    z-index: 101;
+  }
+}
+
+.four-btn-area {
+  background: #036A4A;
+  width: 100%;
+  height: 140px;
+  display: flex;
+  position: fixed;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+p {
+  margin-bottom: 0 !important;
+}
