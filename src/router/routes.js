@@ -35,7 +35,7 @@ const routes = [
     component: ActivityMarket
   },
   {
-    path: '/activity-hotel/:activityId',
+    path: '/activity-hotel/:activityId/:limit?',
     component: ActivityHotel
   },
   {
@@ -51,7 +51,7 @@ const routes = [
     component: ActivityCountDown
   },
   {
-    path: '/activity-coupon/:activityId',
+    path: '/activity-coupon/:activityId/:limit?',
     component: ActivityCoupon
   },
   {
