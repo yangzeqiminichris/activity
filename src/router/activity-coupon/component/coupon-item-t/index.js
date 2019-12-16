@@ -23,7 +23,7 @@ export default function(props) {
   return (
     <div
       className={`cit`}
-      onClick={() => props.goCouponDetail(dataSource.id, stock)}
+      onClick={() => props.goCouponDetail(dataSource)}
     >
       {stock === 0 && <div className="disable"></div>}
       <div className="cit-limit">

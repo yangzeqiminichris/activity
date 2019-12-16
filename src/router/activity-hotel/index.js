@@ -111,7 +111,7 @@ export default class ActivityHotel extends React.Component {
           if (couponDetail.stock == 0) {
             message.warn('已抢光！')
           } else {
-            if (this.limit) {
+            if (!this.limit) {
               checkUser().then(res => {
                 if (!res) {
                   this.toCoupon(couponId)
