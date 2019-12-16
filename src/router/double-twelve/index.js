@@ -38,12 +38,11 @@ export default class ActivityModal extends React.Component {
     twelvePopupSmallTips: ''
   };
 
-  async componentDidMount() {
+  async componentWillMount() {
     Toast.loading("Loading...", 20);
-    this.props.history.listen(async () => {
+    /* this.props.history.listen(async () => {
       await this.componentDidMount();
-      window.history.back(-1);
-    });
+    }); */
     let token = this.getUrlToken('token', this.props.location.search)
     let shopCode = this.getUrlToken('shopCode', this.props.location.search)
     let activityId = this.props.match.params.activityId;
@@ -66,6 +65,7 @@ export default class ActivityModal extends React.Component {
         const { floors = [] } = res;
         res.couponList[2] && (res.couponList[2].runOutImg = ShippingFeeRunOut) && (res.couponList[2].hasReceivedImg = ShippingFeeReceived)
         res.couponList[3] && (res.couponList[3].runOutImg = FullReductionRunOut) && (res.couponList[3].hasReceivedImg = FullReductionReceived)
+        // 商品超过9件，显示加载更多
         res.activityGroup && (
           res.activityGroup.map((item, index) => {
             item.goodsList.length > 9 && (res.activityGroup[index].showMore = true)
@@ -90,7 +90,8 @@ export default class ActivityModal extends React.Component {
             couponIds
           })
           // 获取券详情
-          getCouponDetail(couponIds).then((detail) => {
+          this.getCouponDetailByIds(couponIds)
+          /* getCouponDetail(couponIds).then((detail) => {
             let activityConfig = this.state.activityConfig
             detail.records.map((record) => {
               activityConfig.couponList.map((item) => {
@@ -102,7 +103,7 @@ export default class ActivityModal extends React.Component {
             this.setState({
               activityConfig
             })
-          })
+          }) */
         })
       })
     })
@@ -121,9 +122,16 @@ export default class ActivityModal extends React.Component {
         <div className="coupon-list">
           {
             activityConfig.couponList && activityConfig.couponList.map((item, index) => {
+              if (activityConfig.couponList.length % 2 === 1 && (index === (activityConfig.couponList.length - 1 * 1))) {
+                return (
+                  <div key={'coupon' + index} className='coupon-list-singleimg' onClick={ this.receiveCoupon.bind(this, item, index) }>
+                    <img src={(index < 2) ? item.img : (item.info && item.info.reachPurchaseLimit) ? item.gotImg : (item.info && item.info.stock) ? item.img : item.soleOutImg } className='coupon-list-singleimg'/>
+                  </div>
+                )
+              }
               return (
                 <div key={'coupon' + index} className='coupon-list-img' onClick={ this.receiveCoupon.bind(this, item, index) }>
-                  <img src={(index < 2) ? item.img : (item.info && item.info.reachPurchaseLimit) ? item.hasReceivedImg : (item.info && item.info.stock) ? item.img : item.runOutImg } className='coupon-list-img'/>
+                  <img src={(index < 2) ? item.img : (item.info && item.info.reachPurchaseLimit) ? item.gotImg : (item.info && item.info.stock) ? item.img : item.soleOutImg } className='coupon-list-img'/>
                 </div>
               )
             })
@@ -190,32 +198,24 @@ export default class ActivityModal extends React.Component {
         const start = new Date(moment(beginAt).format()).getTime()
         const end = new Date(moment(endAt).format()).getTime()
         if (now < start) {
-          if (index < 2) {
-            message.warn("活动尚未开始~");
-          } else {
-            this.setState({
-              showPopup: true,
-              twelvePopupBg: HasNotStart,
-              twelvePopupTips: '活动尚未开始~',
-              twelvePopupSmallTips: `活动时间：${beginAt}至${endAt}`
-            })
-          }
+          this.setState({
+            showPopup: true,
+            twelvePopupBg: HasNotStart,
+            twelvePopupTips: '活动尚未开始~',
+            twelvePopupSmallTips: `活动时间：${beginAt}至${endAt}`
+          })
         } else if (now > end) {
-          if (index < 2) {
-            message.warn("活动已结束~");
-          } else {
-            this.setState({
-              showPopup: true,
-              twelvePopupBg: HasNotStart,
-              twelvePopupTips: '活动已结束~',
-              twelvePopupSmallTips: `活动时间：${beginAt}至${endAt}`
-            })
-          }
+          this.setState({
+            showPopup: true,
+            twelvePopupBg: HasNotStart,
+            twelvePopupTips: '活动已结束~',
+            twelvePopupSmallTips: `活动时间：${beginAt}至${endAt}`
+          })
         } else {
           let token = getToken()
           if (token) {
             postReceiveCoupon(coupon.id).then(() => {
-              if (index === 2) {
+              /*if (index === 2) {
                 this.setState({
                   showPopup: true,
                   twelvePopupTips: '',
@@ -228,6 +228,14 @@ export default class ActivityModal extends React.Component {
                   twelvePopupTips: '',
                   twelvePopupSmallTips: '',
                   twelvePopupBg: FullReductionPopup
+                })
+              }*/
+              if (coupon.gettingImg) {
+                this.setState({
+                  showPopup: true,
+                  twelvePopupTips: '',
+                  twelvePopupSmallTips: '',
+                  twelvePopupBg: coupon.gettingImg
                 })
               } else {
                 message.success('领取成功')
