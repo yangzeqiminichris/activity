@@ -121,6 +121,8 @@ export default class ActivityModal extends React.Component {
           console.log(couponDetail)
           if (couponDetail.stock == 0) {
             message.warn('已抢光！')
+          } else if (couponDetail.reachPurchaseLimit) {
+            message.warn('已领取该优惠券！')
           } else {
             if (!this.limit) {
               checkUser().then(res => {
