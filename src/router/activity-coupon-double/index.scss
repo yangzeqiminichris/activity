@@ -2,6 +2,10 @@
   background: #b70117;
   overflow: hidden;
   overflow-y: scroll;
+  font-size: 0;
+  img {
+    display: block;
+  }
   .banner {
     width: 100%;
     overflow: hidden;
@@ -34,7 +38,7 @@
       height: 241px;
       flex-shrink: 0;
       margin-right: 12px;
-      background: url("../../assets/coupon-bac-item.png");
+      background: url('../../assets/coupon-bac-item.png');
       // background-image: ;
       background-size: 100% 100%;
 
@@ -103,6 +107,7 @@
   }
   .tabs-content {
     // padding: 22px 23px;
+    font-size: 0;
   }
   .white-space {
     width: 24px;

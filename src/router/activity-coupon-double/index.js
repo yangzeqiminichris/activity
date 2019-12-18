@@ -104,7 +104,7 @@ export default class ActivityModal extends React.Component {
     }
   }
 
-  goCouponDetailFirst = (item) => {
+  goCouponDetailFirst = item => {
     const { id: couponId, beginAt, endAt } = item
     console.log(item)
     if (beginAt && endAt) {
@@ -168,7 +168,7 @@ export default class ActivityModal extends React.Component {
             })}
           <div className='white-space'></div>
         </div>
-        <div id='floor'>
+        <div id='floor' style={{ fontSize: 0 }}>
           {activityConfig && <TabsView dataSource={activityConfig} />}
           <div className={`tabs-content`}>
             <FirstFloor
