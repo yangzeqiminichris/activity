@@ -17,23 +17,23 @@ export default class ActivityModal extends React.Component {
     activityConfig: {},
     couponList: [],
     tabs: [],
-    floorCouponList: {},
-    firstFloorCoupons: []
+    firstFloorCoupons: [],
+    subFloorCoupons: []
   }
 
   limit = this.props.match.params.limit
 
-  async componentDidMount() {
+  componentDidMount() {
     Toast.loading('Loading...', 20)
-    this.props.history.listen(async () => {
-      await this.componentDidMount()
-      window.history.back(-1)
-    })
+    // this.props.history.listen(async () => {
+    //   await this.componentDidMount()
+    //   window.history.back(-1)
+    // })
     let token = this.getUrlToken('token', this.props.location.search)
     let activityId = this.props.match.params.activityId
-    await setToken(token).then(async () => {
+    setToken(token).then(() => {
       // 获取活动详情
-      await getActivityDetail({ id: activityId }).then(res => {
+      getActivityDetail({ id: activityId }).then(res => {
         if (!res) {
           message.error('暂无该活动')
           setTimeout(() => {
@@ -48,7 +48,8 @@ export default class ActivityModal extends React.Component {
         }
         Toast.hide()
         // 获取券详情
-        const { floors = [], firstFloor = {} } = res
+        const { subFloor = {}, firstFloor = {} } = res
+        // 获取首图优惠券详情
         if ((res.limitCoupons || []).length > 0) {
           getCouponDetail(res.limitCoupons).then(coupon => {
             this.setState({
@@ -56,20 +57,20 @@ export default class ActivityModal extends React.Component {
             })
           })
         }
+        // 获取主楼层优惠券详情
         const firstFloorIds = (firstFloor.coupons || []).map(coupon => coupon.id)
         if (firstFloorIds.length) {
           getCouponDetail(firstFloorIds).then(coupon => {
-            console.log(coupon)
             this.setState({ firstFloorCoupons: coupon.records })
           })
         }
-        floors.map((floor, index) => {
-          getCouponDetail(floor.couponList).then(coupon => {
-            const floorCouponList = { ...this.state.floorCouponList }
-            floorCouponList[index] = coupon ? coupon.records : []
-            this.setState({ floorCouponList })
+        // 获取双列楼层优惠券详情
+        const subFloorIds = (subFloor.coupons || []).map(coupon => coupon.id)
+        if (subFloorIds.length) {
+          getCouponDetail(subFloorIds).then(coupon => {
+            this.setState({ subFloorCoupons: coupon.records })
           })
-        })
+        }
         this.setState({ activityConfig: res }, () => {
           let activityModal = document.getElementsByClassName('activity-modal')
           let tabActive = document.getElementsByClassName('am-tabs-default-bar-tab-active') || []
@@ -103,7 +104,7 @@ export default class ActivityModal extends React.Component {
     }
   }
 
-  goCouponDetailFirst = item => {
+  goCouponDetailFirst = (item) => {
     const { id: couponId, beginAt, endAt } = item
     console.log(item)
     if (beginAt && endAt) {
@@ -118,16 +119,6 @@ export default class ActivityModal extends React.Component {
         getCouponDetail(couponId).then(res => {
           const couponDetail = res.records[0]
           console.log(couponDetail)
-          const list = { ...this.state.floorCouponList }
-          list[couponId] = couponDetail
-          this.setState(
-            {
-              floorCouponList: list
-            },
-            () => {
-              console.log(this.state.floorCouponList)
-            }
-          )
           if (couponDetail.stock == 0) {
             message.warn('已抢光！')
           } else {
@@ -164,7 +155,7 @@ export default class ActivityModal extends React.Component {
   }
 
   render() {
-    const { activityConfig, couponList, floorCouponList, firstFloorCoupons } = this.state
+    const { activityConfig, couponList, subFloorCoupons, firstFloorCoupons } = this.state
     return (
       <div className='activity-modal'>
         <div className='banner'>
@@ -183,12 +174,12 @@ export default class ActivityModal extends React.Component {
             <FirstFloor
               goCouponDetail={this.goCouponDetailFirst}
               dataSource={activityConfig.firstFloor}
-              firstFloorCoupons={firstFloorCoupons}
+              floorCoupons={firstFloorCoupons}
             />
             <OtherFloor
-              goCouponDetail={this.goCouponDetail}
-              dataSource={activityConfig.floors}
-              floorCouponList={floorCouponList}
+              goCouponDetail={this.goCouponDetailFirst}
+              dataSource={activityConfig.subFloor}
+              floorCoupons={subFloorCoupons}
             />
           </div>
         </div>

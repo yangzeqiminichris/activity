@@ -7,6 +7,7 @@ const DidiAd = loadable(() => import('./didi-ad/didi-ad.js'))
 const Koi = loadable(() => import('./koi/koi.js'))
 const KoiLottery = loadable(() => import('./koi/koi-lottery/koi-lottery.js'))
 const ActivityCoupon = loadable(() => import('./activity-coupon'))
+const ActivityCouponDouble = loadable(() => import('./activity-coupon-double'))
 const ActivityCountDown = loadable(() =>
   import('./activity-count-down/count-down')
 )
@@ -58,6 +59,10 @@ const routes = [
   {
     path: '/activity-coupon/:activityId/:limit?',
     component: ActivityCoupon
+  },
+  {
+    path: '/activity-coupon-double/:activityId/:limit?',
+    component: ActivityCouponDouble
   },
   {
     path: '/activity-modal-double-twelve/:activityId',

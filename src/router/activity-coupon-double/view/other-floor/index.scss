@@ -1,0 +1,29 @@
+.floor-double {
+  .floor-double-banner {
+    width: 100%;
+  }
+  .floor-double-img-box {
+    width: 50%;
+    display: inline-block;
+    position: relative;
+    font-size: 0;
+  }
+  .floor-double-item {
+    width: 100%;
+  }
+  .floor-double-clear-box {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .floor-double-clear {
+    margin: auto;
+    &.disable {
+      display: none;
+    }
+  }
+}

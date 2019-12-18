@@ -1,0 +1,23 @@
+.floor1 {
+  .floor1-banner {
+    width: 100%;
+  }
+  .floor1-item {
+  }
+  .floor1-clear-box {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .floor1-clear {
+    margin: auto;
+    width: 442px;
+    &.disable {
+      display: none;
+    }
+  }
+}
