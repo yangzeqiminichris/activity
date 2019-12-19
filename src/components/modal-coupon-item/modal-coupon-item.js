@@ -1,10 +1,13 @@
 import React from 'react'
 import './index.scss'
+import { Progress } from 'antd'
 import koiActivityAreaBottom from "@/assets/koi/koi_activity_area_head.png";
 import iconInShop from '@/assets/only-in-shop.png'
 import iconInline from '@/assets/only-in-line.png'
+import runOut from '@/assets/modal-four/run_out.png'
+import hasReceived from '@/assets/modal-four/has_received.png'
 
-export default class CouponInfo extends React.Component {
+export default class ModalCouponInfo extends React.Component {
   constructor (props) {
     super(props)
   }
@@ -46,12 +49,18 @@ export default class CouponInfo extends React.Component {
               </div>
             </div>
             <div className='coupon-list--handle'>
+
               <div className='handle-btn-box'>
-                {
-                  this.renderGetCouponBtn(couponInfo)
-                }
+                <Progress type="dashboard" percent={couponInfo.stock * 100 / couponInfo.stockSet } width={58} strokeColor={{
+                  '0%': '#f92051',
+                  '100%': '#ff4b4f',
+                }} format={(percent)=>{ return `${percent}%`}}
+                />
               </div>
             </div>
+            {
+              this.renderGetCouponBtn(couponInfo)
+            }
           </div>
           {/* <div className='coupon-describe'>
                   <img src={ iconMoney } className='coupon-describe-img' />
@@ -83,12 +92,11 @@ export default class CouponInfo extends React.Component {
       }
     </div>
   }
-
   renderGetCouponBtn (item) {
     if (item.reachPurchaseLimit === 1) {
-      return <div disabled className='handle-btn-disabled'>已领取</div>
+      return <img src={ hasReceived } className='four-coupon-icon' style={{ display: item && item.reachPurchaseLimit ? 'block' : 'none' }} />
     } else if (item.stock === 0) {
-      return <div disabled className='handle-btn-disabled'>已抢光</div>
+      return <img src={ runOut } className='four-coupon-icon' style={{ display: item && item.stock ? 'none' : 'block' }} />
     }
   }
 

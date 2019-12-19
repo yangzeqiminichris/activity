@@ -6,9 +6,7 @@ import { setToken } from '@/cache/token.js'
 import { getCouponDetail } from "../../api/coupon";
 import { getO2OActivityDetail, postO2OBatchExchange } from './api/api'
 import { getToken } from "../../cache/token";
-import CouponInfo from '@/components/coupon-item/coupon-item'
-import runOut from '@/assets/modal-four/run_out.png'
-import hasReceived from '@/assets/modal-four/has_received.png'
+import ModalCouponInfo from '@/components/modal-coupon-item/modal-coupon-item'
 import popBg from '@/assets/modal-four/pop_bg.png'
 import ModalFourPopup from "./component/popup/popup";
 
@@ -16,7 +14,7 @@ var activityImg = ''
 const UNRECEIVE = 'UNRECEIVE'
 const RUN_OUT = 'RUN_OUT'
 const HAS_RECEIVED = 'HAS_RECEIVED'
-const tabBarPages = ['/pages/o2o/index', '/pages/o2o/index', '/pages/person/index', '/pages/tabBar/coupon/index']
+const tabBarPages = ['/pages/mall/index', '/pages/o2o/index', '/pages/person/index', '/pages/tabBar/coupon/index']
 
 export default class App extends React.Component {
   constructor(props) {
@@ -66,7 +64,18 @@ export default class App extends React.Component {
               )
             })
           }*/}
+
           {
+            settlementInfo && settlementInfo.couponVos && settlementInfo.couponVos.map((item) => {
+              return (
+                <div key={ item.id }>
+                  <ModalCouponInfo couponInfo={ item } onReceiveCoupon={ this.receiveCoupon } />
+                </div>
+
+              )
+            })
+          }
+          {/*{
             settlementInfo && settlementInfo.couponList && settlementInfo.couponList.map((item) => {
               return (
                 <div key={item.id + 'img'} className='four-coupon'>
@@ -76,7 +85,7 @@ export default class App extends React.Component {
                 </div>
               )
             })
-          }
+          }*/}
         </div>
         <div className='four-btn-area' style={{ background: settlementInfo.colorInfo && settlementInfo.colorInfo.btnBgColor }}>
           <div className='base-btn onclick' onClick={ this.receiveCoupon }>{couponStatus === UNRECEIVE ? '一键领取' : couponStatus === HAS_RECEIVED ? '去使用' : '已抢光'}</div>
