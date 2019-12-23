@@ -64,7 +64,6 @@ export default class App extends React.Component {
               )
             })
           }*/}
-
           {
             settlementInfo && settlementInfo.couponVos && settlementInfo.couponVos.map((item) => {
               return (
@@ -145,6 +144,8 @@ export default class App extends React.Component {
       }, () => {
         getCouponDetail(couponIds).then((res) => {
           let couponStatus = UNRECEIVE
+          let hasStock = false
+          let receivedAll = true
           let settlementInfo = this.state.settlementInfo
           settlementInfo.couponList.map((setItem, setIndex) => {
             res.records.map((recordItem) => {
@@ -155,12 +156,18 @@ export default class App extends React.Component {
           })
           res.records.map((recordItem) => {
             console.log('recordItem', recordItem)
-            if (recordItem.reachPurchaseLimit === 1) { // 达到领取上限
-              couponStatus = HAS_RECEIVED
-            } else if (recordItem.stock !== 0 && couponStatus !== HAS_RECEIVED ) {
-              couponStatus = UNRECEIVE
+            if (recordItem.reachPurchaseLimit !== 1) { // 未达到领取上限
+              receivedAll = false
+            }
+            if (recordItem.stock !== 0) {
+              hasStock = true
             }
           })
+          if (receivedAll) {
+            couponStatus = HAS_RECEIVED
+          } else if (!hasStock) {
+            couponStatus = RUN_OUT
+          }
           settlementInfo.couponVos = res.records
           this.setState({
             settlementInfo,
