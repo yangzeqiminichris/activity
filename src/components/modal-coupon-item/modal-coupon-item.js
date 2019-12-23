@@ -54,7 +54,7 @@ export default class ModalCouponInfo extends React.Component {
                 <Progress type="dashboard" percent={couponInfo.stock * 100 / couponInfo.stockSet } width={58} strokeColor={{
                   '0%': '#f92051',
                   '100%': '#ff4b4f',
-                }} format={(percent)=>{ return `${percent}%`}}
+                }} format={(percent) => {return this.pecentFormate(percent)}}
                 />
               </div>
             </div>
@@ -98,6 +98,15 @@ export default class ModalCouponInfo extends React.Component {
     } else if (item.stock === 0) {
       return <img src={ runOut } className='four-coupon-icon' style={{ display: item && item.stock ? 'none' : 'block' }} />
     }
+  }
+
+  pecentFormate = (percent) => {
+    let p = percent + ''
+    p = p.split('.')
+    if (p[1]) {
+      return `${percent.toFixed(2)}%`
+    }
+    return `${percent}%`
   }
 
   closePopup = () => {

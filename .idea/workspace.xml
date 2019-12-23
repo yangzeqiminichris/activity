@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/src/components/modal-coupon-item/modal-coupon-item.js" line="105" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="de3651a1-55e0-4299-b41d-44740e771871" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/modal-coupon-item/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/modal-coupon-item/modal-coupon-item.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/modal-four/has_received.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/modal-four/has_received.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/modal-four/run_out.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/modal-four/run_out.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/coupon-item/coupon-item.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/coupon-item/coupon-item.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/modal-coupon-item/modal-coupon-item.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal-coupon-item/modal-coupon-item.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/router/activity-modal-four/activity-modal-four.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/activity-modal-four/activity-modal-four.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -22,19 +21,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/router/activity-modal-four/index.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="652">
-              <caret line="60" column="14" selection-start-line="60" selection-start-column="14" selection-end-line="60" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/router/activity-modal-four/activity-modal-four.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="474">
-              <caret line="71" column="32" selection-start-line="71" selection-start-column="32" selection-end-line="71" selection-end-column="32" />
+            <state relative-caret-position="285">
+              <caret line="70" column="19" selection-start-line="70" selection-start-column="19" selection-end-line="70" selection-end-column="19" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -45,8 +35,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/router/activity/activity.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="616">
-              <caret line="162" column="10" selection-start-line="162" selection-start-column="10" selection-end-line="164" selection-end-column="12" />
+            <state relative-caret-position="458">
+              <caret line="161" column="23" selection-start-line="161" selection-start-column="23" selection-end-line="161" selection-end-column="23" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -57,7 +47,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/coupon-item/coupon-item.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
+            <state relative-caret-position="228">
               <caret line="16" column="41" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
@@ -69,8 +59,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/modal-coupon-item/modal-coupon-item.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="710">
-              <caret line="61" column="49" selection-start-line="61" selection-start-column="49" selection-end-line="61" selection-end-column="49" />
+            <state relative-caret-position="501">
+              <caret line="104" selection-start-line="104" selection-end-line="104" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -79,9 +69,14 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node_modules/zb-fjs/package.json">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/modal-coupon-item/index.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
+            <state relative-caret-position="1064">
               <caret line="56" column="19" selection-start-line="56" selection-start-column="19" selection-end-line="56" selection-end-column="19" />
             </state>
           </provider>
@@ -90,7 +85,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/coupon-item/index.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
+            <state relative-caret-position="1349">
               <caret line="71" column="35" selection-start-line="71" selection-start-column="35" selection-end-line="71" selection-end-column="35" />
             </state>
           </provider>
@@ -108,7 +103,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/router/activity-modal/index.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
+            <state relative-caret-position="5871">
               <caret line="309" column="16" selection-start-line="309" selection-start-column="16" selection-end-line="315" selection-end-column="17" />
             </state>
           </provider>
@@ -222,8 +217,8 @@
         <option value="$PROJECT_DIR$/src/router/activity/activity.js" />
         <option value="$PROJECT_DIR$/src/router/activity/index.scss" />
         <option value="$PROJECT_DIR$/src/components/coupon-item/coupon-item.js" />
-        <option value="$PROJECT_DIR$/src/router/activity-modal-four/activity-modal-four.js" />
         <option value="$PROJECT_DIR$/src/components/modal-coupon-item/index.scss" />
+        <option value="$PROJECT_DIR$/src/router/activity-modal-four/activity-modal-four.js" />
         <option value="$PROJECT_DIR$/src/components/modal-coupon-item/modal-coupon-item.js" />
       </list>
     </option>
@@ -266,21 +261,7 @@
               <item name="newcustomeractivity" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="coupon-item" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="newcustomeractivity" type="b2602c69:ProjectViewProjectNode" />
-              <item name="newcustomeractivity" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="mask" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="newcustomeractivity" type="b2602c69:ProjectViewProjectNode" />
-              <item name="newcustomeractivity" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="rule" type="462c0819:PsiDirectoryNode" />
+              <item name="modal-coupon-item" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="newcustomeractivity" type="b2602c69:ProjectViewProjectNode" />
@@ -358,7 +339,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="D:/taro/zhebei/wechat" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -469,7 +450,10 @@
       <workItem from="1576461962000" duration="1201000" />
       <workItem from="1576548721041" duration="651000" />
       <workItem from="1576633529472" duration="2467000" />
-      <workItem from="1576724009449" duration="15373000" />
+      <workItem from="1576724009449" duration="15971000" />
+      <workItem from="1576758402830" duration="447000" />
+      <workItem from="1576820463313" duration="64000" />
+      <workItem from="1577065681262" duration="1867000" />
     </task>
     <task id="LOCAL-00001" summary="锦鲤活动">
       <created>1572242178169</created>
@@ -510,7 +494,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="492547000" />
+    <option name="totallyTimeSpent" value="495523000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
@@ -529,7 +513,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.4410609" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.106090374" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.24656188" />
       <window_info anchor="bottom" id="TypeScript" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -618,13 +602,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="分享图片" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/router/activity-coupon/view/other-floor/index.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/router/activity-hotel/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57">
@@ -934,27 +911,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/router/activity-modal-four/api/api.js">
+    <entry file="file://$PROJECT_DIR$/src/router/activity-modal-four/index.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="57" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="57" />
+        <state relative-caret-position="1140">
+          <caret line="60" column="14" selection-start-line="60" selection-start-column="14" selection-end-line="60" selection-end-column="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/router/activity/activity.js">
+    <entry file="file://$PROJECT_DIR$/src/components/coupon-item/coupon-item.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="616">
-          <caret line="162" column="10" selection-start-line="162" selection-start-column="10" selection-end-line="164" selection-end-column="12" />
+        <state relative-caret-position="228">
+          <caret line="16" column="41" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#25#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/router/activity-modal/index.scss">
+    <entry file="file://$PROJECT_DIR$/src/components/modal-coupon-item/index.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="309" column="16" selection-start-line="309" selection-start-column="16" selection-end-line="315" selection-end-column="17" />
+        <state relative-caret-position="1064">
+          <caret line="56" column="19" selection-start-line="56" selection-start-column="19" selection-end-line="56" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/coupon-item/index.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1349">
+          <caret line="71" column="35" selection-start-line="71" selection-start-column="35" selection-end-line="71" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -965,51 +949,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/coupon-item/index.scss">
+    <entry file="file://$PROJECT_DIR$/src/router/activity-modal/index.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="71" column="35" selection-start-line="71" selection-start-column="35" selection-end-line="71" selection-end-column="35" />
+        <state relative-caret-position="5871">
+          <caret line="309" column="16" selection-start-line="309" selection-start-column="16" selection-end-line="315" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/router/activity-modal-four/index.scss">
+    <entry file="file://$PROJECT_DIR$/src/router/activity-modal-four/api/api.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="652">
-          <caret line="60" column="14" selection-start-line="60" selection-start-column="14" selection-end-line="60" selection-end-column="14" />
+        <state relative-caret-position="133">
+          <caret line="7" column="57" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="57" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/router/activity-modal-four/activity-modal-four.js">
+    <entry file="file://$PROJECT_DIR$/node_modules/zb-fjs/package.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router/activity/activity.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="474">
-          <caret line="71" column="32" selection-start-line="71" selection-start-column="32" selection-end-line="71" selection-end-column="32" />
+        <state relative-caret-position="458">
+          <caret line="161" column="23" selection-start-line="161" selection-start-column="23" selection-end-line="161" selection-end-column="23" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/coupon-item/coupon-item.js">
+    <entry file="file://$PROJECT_DIR$/src/router/activity-modal-four/activity-modal-four.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="16" column="41" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
+        <state relative-caret-position="285">
+          <caret line="70" column="19" selection-start-line="70" selection-start-column="19" selection-end-line="70" selection-end-column="19" />
           <folding>
-            <element signature="e#0#25#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/modal-coupon-item/index.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="56" column="19" selection-start-line="56" selection-start-column="19" selection-end-line="56" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/modal-coupon-item/modal-coupon-item.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="710">
-          <caret line="61" column="49" selection-start-line="61" selection-start-column="49" selection-end-line="61" selection-end-column="49" />
+        <state relative-caret-position="501">
+          <caret line="104" selection-start-line="104" selection-end-line="104" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>
