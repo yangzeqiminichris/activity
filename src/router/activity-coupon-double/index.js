@@ -105,7 +105,8 @@ export default class ActivityModal extends React.Component {
   }
 
   goCouponDetailFirst = item => {
-    const { id: couponId, beginAt, endAt } = item
+    // type 1 优惠券 2 h5链接  3 小程序链接
+    const { id: couponId, beginAt, endAt, type, link } = item
     console.log(item)
     if (beginAt && endAt) {
       const now = new Date().getTime()
@@ -116,27 +117,40 @@ export default class ActivityModal extends React.Component {
       } else if (now > end) {
         message.warn('活动已结束，下次早点来哟~')
       } else {
-        getCouponDetail(couponId).then(res => {
-          const couponDetail = res.records[0]
-          console.log(couponDetail)
-          if (couponDetail.stock == 0) {
-            message.warn('已抢光！')
-          } else if (couponDetail.reachPurchaseLimit) {
-            message.warn('已领取该优惠券！')
-          } else {
-            if (!this.limit) {
-              checkUser().then(res => {
-                if (!res) {
-                  this.toCoupon(couponId)
-                } else {
-                  message.warn('已抢光！')
-                }
-              })
+        if (type === 1) {
+          // 优惠券
+          getCouponDetail(couponId).then(res => {
+            const couponDetail = res.records[0]
+            console.log(couponDetail)
+            if (couponDetail.stock == 0) {
+              message.warn('已抢光！')
+            } else if (couponDetail.reachPurchaseLimit) {
+              message.warn('已领取该优惠券！')
             } else {
-              this.toCoupon(couponId)
+              if (!this.limit) {
+                checkUser().then(res => {
+                  if (!res) {
+                    this.toCoupon(couponId)
+                  } else {
+                    message.warn('已抢光！')
+                  }
+                })
+              } else {
+                this.toCoupon(couponId)
+              }
             }
-          }
-        })
+          })
+        } else if (type === 2) {
+          // \(^o^)/~h5链接
+          window.wx.miniProgram.navigateTo({
+            url: `/packageA/pages/webviewWithToken/webviewWithToken?url=${link}`
+          })
+        } else if (type === 3) {
+          // 小程序链接
+          window.wx.miniProgram.navigateTo({
+            url: link
+          })
+        }
       }
     } else {
       message.warn('活动尚未开始，请耐心等待！')

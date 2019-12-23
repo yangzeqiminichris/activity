@@ -18,7 +18,7 @@ export default function FirstFloor(props) {
         return (
           <div
             className='floor-double-img-box'
-            key={'floor-double' + item.id}
+            key={'floor-double-other' + item.id}
             onClick={() => goCouponDetail(item, floorCoupons.filter(couponDetail => item.id === couponDetail.id)[0])}
           >
             <img className='floor-double-item' src={item.img} />
