@@ -104,7 +104,7 @@ export default class ModalCouponInfo extends React.Component {
     let p = percent + ''
     p = p.split('.')
     if (p[1]) {
-      return `${percent.toFixed(2)}%`
+      return `${percent.toFixed(1)}%`
     }
     return `${percent}%`
   }
