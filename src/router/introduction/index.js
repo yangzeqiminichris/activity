@@ -1,12 +1,12 @@
 import React from 'react'
 import { animateScroll as scroll } from 'react-scroll'
 import btnImg from '@/assets/introduction_btn.png'
-import homeImg from '@/assets/home.png'
 import './index.scss'
 
 
 const headerImg = 'http://static.zbszkj.com/images/%E6%94%BE%E5%BF%83%E6%B6%88%E8%B4%B9%E9%A1%B5%E9%9D%A2%E9%95%BF%E5%85%B4.jpg'
 const headerImg2 = 'http://static.zbszkj.com/images/%E6%94%BE%E5%BF%83%E6%B6%88%E8%B4%B9%E9%A1%B5%E9%9D%A2%E6%B5%99%E5%8C%97.jpg'
+const homeImg = 'http://static.zbszkj.com/images/home.png'
 
 export default class ActivityA extends React.Component {
   state = {
