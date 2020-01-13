@@ -10,7 +10,7 @@ import FirstFloor from './view/first-floor'
 import OtherFloor from './view/other-floor'
 import CouponItemTop from './component/coupon-item-t'
 import TabsView from './view/tabs-view'
-import { getActivityDetail, checkUser } from './api/api'
+import { getActivityDetail, checkUser, subscribeGoods } from './api/api'
 
 export default class ActivityModal extends React.Component {
   state = {
@@ -18,7 +18,9 @@ export default class ActivityModal extends React.Component {
     couponList: [],
     tabs: [],
     firstFloorCoupons: [],
-    subFloorCoupons: []
+    subFloorCoupons: [],
+    subscribe: false,
+    templateId: ''
   }
 
   limit = this.props.match.params.limit
@@ -47,6 +49,7 @@ export default class ActivityModal extends React.Component {
           document.title = res.title
         }
         Toast.hide()
+
         // 获取券详情
         const { subFloor = {}, firstFloor = {} } = res
         // 获取首图优惠券详情
@@ -71,7 +74,10 @@ export default class ActivityModal extends React.Component {
             this.setState({ subFloorCoupons: coupon.records })
           })
         }
-        this.setState({ activityConfig: res }, () => {
+        const activitySubscribe = res.activitySubscribe || {}
+        const templateId = activitySubscribe.templateId
+        const subscribe = activitySubscribe.subscribe
+        this.setState({ activityConfig: res, templateId, subscribe }, () => {
           let activityModal = document.getElementsByClassName('activity-modal')
           let tabActive = document.getElementsByClassName('am-tabs-default-bar-tab-active') || []
           activityModal[0] && (activityModal[0].style.background = res.colors.bgColor)
@@ -103,6 +109,35 @@ export default class ActivityModal extends React.Component {
       }
     }
   }
+  // 订阅点击事件
+  onSubscribe = (item, e) => {
+    e.stopPropagation()
+    const { id: couponId, beginAt, endAt } = item
+    const { templateId } = this.state
+    const activityId = this.props.match.params.activityId
+    console.log(item)
+    if (beginAt && endAt) {
+      subscribeGoods({
+        activityId,
+        goodsId: couponId
+      })
+      const now = new Date().getTime()
+      const start = new Date(moment(beginAt).format()).getTime()
+      const end = new Date(moment(endAt).format()).getTime()
+      if (now < start) {
+        window.wx.miniProgram.navigateTo({
+          url: `/packageA/pages/subscribe/subscribe?ids=${templateId}&activityId=${activityId}`
+        })
+      } else if (now > end) {
+        message.warn('活动已结束，下次早点来哟~')
+      } else {
+        message.warn('活动已开始，赶快抢券吧！')
+        // 优惠券
+      }
+    } else {
+      message.warn('活动尚未开始，请耐心等待！')
+    }
+  }
 
   goCouponDetailFirst = item => {
     // type 1 优惠券 2 h5链接  3 小程序链接
@@ -120,7 +155,7 @@ export default class ActivityModal extends React.Component {
         if (type === 1) {
           // 优惠券
           getCouponDetail(couponId).then(res => {
-            const couponDetail = res.records[0]
+            const couponDetail = res.records[0] || {}
             console.log(couponDetail)
             if (couponDetail.stock == 0) {
               message.warn('已抢光！')
@@ -171,7 +206,7 @@ export default class ActivityModal extends React.Component {
   }
 
   render() {
-    const { activityConfig, couponList, subFloorCoupons, firstFloorCoupons } = this.state
+    const { activityConfig, couponList, subFloorCoupons, firstFloorCoupons, subscribe } = this.state
     return (
       <div className='activity-modal'>
         <div className='banner'>
@@ -191,11 +226,15 @@ export default class ActivityModal extends React.Component {
               goCouponDetail={this.goCouponDetailFirst}
               dataSource={activityConfig.firstFloor}
               floorCoupons={firstFloorCoupons}
+              subscribe={subscribe}
+              onSubscribe={this.onSubscribe}
             />
             <OtherFloor
               goCouponDetail={this.goCouponDetailFirst}
               dataSource={activityConfig.subFloor}
               floorCoupons={subFloorCoupons}
+              subscribe={subscribe}
+              onSubscribe={this.onSubscribe}
             />
           </div>
         </div>

@@ -1,10 +1,11 @@
 import React from 'react'
 import CouponClearImg from '@/assets/coupon_clear.png'
+import SubscribeBtn from '@/components/subscribe-btn'
 
 import './index.scss'
 
 export default function FirstFloor(props) {
-  const { floorCoupons, goCouponDetail } = props
+  const { floorCoupons, goCouponDetail, onSubscribe, subscribe } = props
   const { floorBanner, coupons = [] } = props.dataSource || {}
   return (
     <div className='floor1'>
@@ -21,8 +22,10 @@ export default function FirstFloor(props) {
             key={'floor1' + item.id}
             onClick={() => goCouponDetail(item, floorCoupons.filter(couponDetail => item.id === couponDetail.id)[0])}
           >
-            <img style={{ width: '100%' }} className='floor1-item' src={item.img} />
-            <div className='floor1-clear-box'>
+            <SubscribeBtn show={subscribe} type='big' onClick={e => onSubscribe(item, e)}>
+              <img style={{ width: '100%' }} className='floor1-item' src={item.img} />
+            </SubscribeBtn>
+            {/* <div className='floor1-clear-box'>
               <img
                 className={`floor1-clear ${
                   (floorCoupons.filter(coupon => coupon.id == item.id)[0] || {}).stock ? 'disable' : ''
@@ -30,7 +33,7 @@ export default function FirstFloor(props) {
                 style={{ width: clearImgWidth }}
                 src={CouponClearImg}
               />
-            </div>
+            </div> */}
           </div>
         )
       })}
