@@ -1,4 +1,5 @@
 .floor-double {
+  font-size: 0;
   .floor-double-banner {
     width: 100%;
     vertical-align: top;
@@ -12,6 +13,8 @@
   }
   .floor-double-item {
     width: 100%;
+    font-size: 0;
+    margin-left: -1px;
   }
   .floor-double-clear-box {
     display: flex;
