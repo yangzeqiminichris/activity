@@ -1,19 +1,32 @@
 .floor1 {
   .floor1-banner {
-    width: calc(100% + 46px);
-    margin-left: -23px;
+    width: 100%;
+    margin-bottom: -1px;
+  }
+  .floor1-img-box {
+    display: inline-block;
+    position: relative;
+    font-size: 0;
+    vertical-align: top;
   }
   .floor1-item {
-    margin-bottom: 15px;
+    vertical-align: top;
+    font-size: 0;
+    margin-top: -1px;
+    margin-bottom: -1px;
   }
-  .floor1-clear {
+  .floor1-clear-box {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
     position: absolute;
     left: 0;
-    right: 0;
+    top: 0;
+  }
+  .floor1-clear {
     margin: auto;
-    bottom: 148px;
     width: 242px;
-    height: 197px;
     &.disable {
       display: none;
     }
