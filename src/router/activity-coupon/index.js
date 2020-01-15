@@ -170,13 +170,16 @@ export default class ActivityModal extends React.Component {
         <div className='banner'>
           <img className='img' src={activityConfig ? activityConfig.bgImg : ''} alt='暂无图片' />
         </div>
-        <div className='coupon-list'>
-          {couponList &&
-            couponList.map((item, index) => {
-              return <CouponItemTop goCouponDetail={this.goCouponDetail} key={'coupon' + index} dataSource={item} />
-            })}
-          <div className='white-space'></div>
-        </div>
+        {
+          couponList && (couponList.length > 0) && <div className='coupon-list'>
+            {
+              couponList.map((item, index) => {
+                return <CouponItemTop goCouponDetail={this.goCouponDetail} key={'coupon' + index} dataSource={item} />
+              })
+            }
+            <div className='white-space'></div>
+          </div>
+        }
         <div id='floor'>
           {activityConfig && <TabsView dataSource={activityConfig} />}
           <div className={`tabs-content`}>

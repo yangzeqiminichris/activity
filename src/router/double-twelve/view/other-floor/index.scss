@@ -1,15 +1,16 @@
 .other-floor {
-  display: flex;
-  flex-wrap: wrap;
-  .other-img {
-    width: calc(100% + 46px);
-    margin-left: -23px;
-    margin-right: -23px;
-    max-height: 200px;
+  .other-imgdouble {
+    width: 750px;
   }
 }
 .other {
   position: relative;;
+}
+.goods {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 23px;
 }
 .watch-more {
   width: 274px;
