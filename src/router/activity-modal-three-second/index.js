@@ -135,7 +135,7 @@ export default class ActivityModal extends React.Component {
                 </div>
               )*/
               return (
-                <img key={'coupon' + index} onClick={ this.receiveCoupon.bind(this, item, index) } src={(index < 2) ? item.img : (item.info && item.info.reachPurchaseLimit) ? item.gotImg : (item.info && item.info.stock) ? item.img : item.soleOutImg } className='coupon-list-img'/>
+                <img key={'coupon' + index} onClick={ this.receiveCoupon.bind(this, item, index) } src={item.img} className='coupon-list-img'/>
               )
             })
           }
