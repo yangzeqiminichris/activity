@@ -1,0 +1,30 @@
+.other-floor {
+  .other-imgdouble {
+    width: 750px;
+  }
+}
+.other {
+  position: relative;;
+}
+.goods {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 23px;
+}
+.watch-more {
+  width: 274px;
+  height: 65px;
+  line-height: 65px;
+  background: rgba(255,255,255,1);
+  border-radius: 39px;
+  border: 1px solid rgba(235,30,77,1);
+  font-size: 28px;
+  font-weight: 600;
+  color: rgba(114,59,53,1);
+  text-align: center;
+  margin-left: 50%;
+  margin-top: 52px;
+  margin-bottom: 10px;
+  transform: translateX(-50%);
+}

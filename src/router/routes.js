@@ -18,6 +18,7 @@ const ActivityLimitPurchase = loadable(() => import('./activity-limit-purchase')
 const ActivityPeaceBuy = loadable(() => import('./activity-peace-buy'))
 const Intruduction = loadable(() => import('./introduction'))
 const DoubleTwelve = loadable(() => import('./double-twelve'))
+const ActivityModalThreeSecond = loadable(() => import('./activity-modal-three-second'))
 
 const routes = [
   {
@@ -67,6 +68,10 @@ const routes = [
   {
     path: '/activity-modal-double-twelve/:activityId',
     component: DoubleTwelve
+  },
+  {
+    path: '/activity-modal-three-second/:activityId',
+    component: ActivityModalThreeSecond
   },
   {
     path: '/activity-modal', // 自定义活动模块
