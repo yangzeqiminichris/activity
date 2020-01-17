@@ -7,6 +7,8 @@
         width: 100%;
         background: #111;
         overflow: hidden;
+        padding-top: 2px;
+        margin-top: -2px;
     }
     .coupon-id{
         color: #FFF;
@@ -16,15 +18,17 @@
         align-items: center;
         width: 100%;
         padding-top: 20px;
+        font-size: 50px;
         .num{
             border: 1px solid #FFF;
-            width: 80px;
-            height: 80px;
+            width: 62px;
+            height: 62px;
             display: inline-block;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
+            margin-right: 12px;
         }
     }
     .lot-btn{
@@ -99,5 +103,8 @@
                 }
             }
         }
+    }
+    .img-box{
+        overflow: hidden;
     }
 }

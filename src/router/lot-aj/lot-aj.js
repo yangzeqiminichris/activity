@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { setToken } from '@/cache/token.js'
 import { getLotAjActivityInfo, getPowerOfAj, getGetMyCouponDetail, getOtherOrderDetail } from '@/api/lot-aj'
 import { configUrl } from '@/api/base'
 import pic1 from '@/assets/lot-aj/1.jpg'
@@ -21,30 +21,37 @@ export default class ActivityModal extends React.Component {
     }
   }
   componentWillMount () {
+    this.props.history.listen(() => {
+      window.location.reload()
+    })
   }
 
   componentDidMount () {
-    this.getLotCoupun()
+    let token = this.getUrlToken('token', this.props.location.search)
+    setToken(token).then(() => {
+      this.getLotCoupun()
+    })
   }
 
   render () {
     const { activityInfo, couponNum, showModal, startAt, endAt } = this.state
     return (
       <div className='lot-aj'>
-        <img className='img' src={ pic1 } />
+        <div className='img-box'>
+          <img className='img pic1' src={ pic1 } />
+        </div>
         <div className='lot-info'>
           <div className='lot-btn'>
             {
-              activityInfo && ((activityInfo.remain > 0 && !activityInfo.userActivityLog)
+               ((activityInfo && activityInfo.remain > 0 && !activityInfo.userActivityLog) || !activityInfo)
                 ?
                   <div className='btn' onClick={ this.lotPowerOfAj.bind(this) }>立抢线下抽奖名额></div>
                 :
-                  // <img className='img' src={ pic2 } />
                   activityInfo.userActivityLog
                     ?
                       <div className='btn'>恭喜！抢购成功！</div>
                     :
-                     <div className='btn'>活动名额已抢光！</div>)
+                     <div className='btn'>活动名额已抢光！</div>
             }
             
           </div>
@@ -79,6 +86,11 @@ export default class ActivityModal extends React.Component {
     )
   }
 
+  getUrlToken(name, str) {
+    const reg = new RegExp(`(^|&)${ name}=([^&]*)(&|$)`);
+    const r = str.substr(1).match(reg);
+    if (r != null) return  decodeURIComponent(r[2]); return null;
+  }
 
   getLotCoupun () {
     getLotAjActivityInfo().then(res => {
@@ -121,7 +133,7 @@ export default class ActivityModal extends React.Component {
   }
 
   lotPowerOfAj () {
-    getPowerOfAj().then(res => {
+    getPowerOfAj(true).then(res => {
       this.getLotCoupun()
     }).catch(err => {
       if (err.msg === '活动尚未开始,敬请期待') {
