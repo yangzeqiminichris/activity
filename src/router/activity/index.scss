@@ -18,7 +18,7 @@
 }
 
 .choose {
-  padding: 0px 24px 24px 24px;
+  padding: 0px 24px 140px 24px;
   background: #F02F34;
   &-headimg {
     width: 100%;
@@ -122,6 +122,30 @@
     color: #8C8C8C;
     background: #F0F0F0;
   }
+}
+
+.base-btn {
+  width: 702px;
+  height: 88px;
+  line-height: 88px;
+  text-align: center;
+  background: rgba(249,32,81,1);
+  border-radius: 44px;
+  font-size: 32px;
+  color: #ffffff;
+}
+
+.base-btn-disable {
+  background: #F8F8F8;
+  color: #000000;
+  border: 2px solid rgba(5,5,5,0.1);
+}
+
+.onclick {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 p {

@@ -1,5 +1,6 @@
 .activity-modal {
   background: #b70117;
+  overflow: hidden;
   overflow-y: scroll;
   padding-bottom: 48px;
   .banner {
@@ -102,10 +103,14 @@
     }
   }
   .tabs-content {
-    padding: 22px 23px;
+    // padding: 22px 23px;
   }
   .white-space {
     width: 24px;
     flex-shrink: 0;
   }
+}
+.floor1 {
+  display: flex;
+  flex-direction: column;
 }

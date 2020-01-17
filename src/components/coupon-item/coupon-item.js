@@ -7,7 +7,6 @@ import iconInline from '@/assets/only-in-line.png'
 export default class CouponInfo extends React.Component {
   constructor (props) {
     super(props)
-    this.exchangeGoods = this.exchangeGoods.bind(this)
   }
 
   componentDidMount() {
@@ -18,7 +17,7 @@ export default class CouponInfo extends React.Component {
     return ((<div className='coupon-box'>
         <div className='coupon-list-box'>
           {
-            (couponInfo.couponGoodsInfo.verificationPlace === 1 || couponInfo.couponGoodsInfo.verificationPlace === 2) ? <img src={ couponInfo.couponGoodsInfo.verificationPlace === 1 ? iconInline : iconInShop } className='shop-line-icon' /> : ''
+            (couponInfo.couponGoodsInfo && (couponInfo.couponGoodsInfo.verificationPlace === 1 || couponInfo.couponGoodsInfo.verificationPlace === 2)) ? <img src={ couponInfo.couponGoodsInfo.verificationPlace === 1 ? iconInline : iconInShop } className='shop-line-icon' /> : ''
           }
           <div className='coupon-list'>
             <div className='coupon-list--info'>
@@ -33,7 +32,7 @@ export default class CouponInfo extends React.Component {
                 <div className='price'>
                   {/* 兑换条件：{ couponInfo.credit }积分+{ couponInfo.price / 100 }元 */}
                   {
-                    couponInfo.couponGoodsInfo.timeType === 1 ? `${couponInfo.couponGoodsInfo.invalidTime}前有效` : couponInfo.couponGoodsInfo.timeType === 2 ? `领取成功后, ${ couponInfo.couponGoodsInfo.invalidDay }天有效` : ''
+                    couponInfo.couponGoodsInfo && couponInfo.couponGoodsInfo.timeType === 1 ? `${couponInfo.couponGoodsInfo.invalidTime}前有效` : couponInfo.couponGoodsInfo.timeType === 2 ? `领取成功后, ${ couponInfo.couponGoodsInfo.invalidDay }天有效` : ''
                   }
                   {/*{
                     couponInfo.credit > 0 ? '兑换条件：' : couponInfo.price > 0 ? '购买条件：' : '免费领取'
@@ -46,15 +45,7 @@ export default class CouponInfo extends React.Component {
                 </div>
               </div>
             </div>
-            <div className='coupon-list--handle' onClick={ this.exchangeGoods.bind(this, couponInfo.id) }>
-              {/*<div className='circle'>
-                <div className='circle-pro-box'>
-                  <div className='handle'>
-                    <span className='surplus'>剩余</span>
-                    <span className='proportion'>{ couponInfo.stockSet ? (parseInt(((couponInfo.stock / couponInfo.stockSet) * 100).toString())) : '0' }%</span>
-                  </div>
-                </div>
-              </div>*/}
+            <div className='coupon-list--handle'>
               <div className='handle-btn-box'>
                 {
                   this.renderGetCouponBtn(couponInfo)
@@ -94,15 +85,8 @@ export default class CouponInfo extends React.Component {
   }
 
   renderGetCouponBtn (item) {
-    // {
-    //   item.reachPurchaseLimit === 1 ? <Button disabled className='handle-btn-disabled'>已领取</Button>
-    //    :
-    //    <Button className='handle-btn' hoverClass='handle-btn--active' onClick={ this.exchangeGoods.bind(this, item.id) }>兑换</Button>
-    // }
     if (item.reachPurchaseLimit === 1) {
       return <div disabled className='handle-btn-disabled'>已领取</div>
-    } else if (item.stock > 0) {
-      return <div className='handle-btn'>{item.credit > 0 ? '兑换' : item.price > 0 ? '购买' : '领取' }</div>
     } else if (item.stock === 0) {
       return <div disabled className='handle-btn-disabled'>已抢光</div>
     }
@@ -111,9 +95,5 @@ export default class CouponInfo extends React.Component {
   closePopup = () => {
     this.props.onClosePopup()
     this.stopBodyScroll(false)
-  }
-
-  exchangeGoods = (id) => {
-    this.props.onReceiveCoupon( this.props.couponInfo)
   }
 }

@@ -11,7 +11,7 @@ import anjiBanner from '@/assets/anji_banner.png'
 import zhebeidaojiaBanner from '@/assets/zhebeidaojia_banner.png'
 import huzhouBanner from '@/assets/huzhou_banner.png'
 import { setToken } from '@/cache/token.js'
-import { getCouponDetail, postReceiveCoupon, getActivityInfo } from "../../api/coupon";
+import { getCouponDetail, postReceiveCoupon, getActivityInfo, postBatchExchange } from "../../api/coupon";
 import { getToken } from "../../cache/token";
 import CouponInfo from '@/components/coupon-item/coupon-item'
 
@@ -32,7 +32,9 @@ export default class App extends React.Component {
           couponVos: []
         },
         daojiaCouponVos: [],
-        activityId: null
+        activityId: null,
+        receivedAll: true,
+        runOut: true
       }
       this.receiveCoupon = this.receiveCoupon.bind(this)
       this.getCouponInfo = this.getCouponInfo.bind(this)
@@ -53,7 +55,7 @@ export default class App extends React.Component {
     }
 
     render () {
-      const { settlementInfo, daojiaCouponVos } = this.state
+      const { settlementInfo, daojiaCouponVos, receivedAll, runOut } = this.state
       return (
         <div className='activity'>
           <div style={{ position: 'relative'}} className='activity-img'>
@@ -122,6 +124,9 @@ export default class App extends React.Component {
               })
             }*/}
           </div>
+          <div className='base-btn onclick' onClick={ this.receiveCoupon } style={{ display: !receivedAll && !runOut ? 'block' : 'none'}}>一键领取</div>
+          <div className='base-btn onclick base-btn-disable' style={{ display: receivedAll ? 'block' : 'none'}}>已领取</div>
+          <div className='base-btn onclick base-btn-disable' style={{ display: !receivedAll && runOut ? 'block' : 'none'}}>已抢光</div>
         </div>
       )
     }
@@ -129,12 +134,10 @@ export default class App extends React.Component {
   receiveCoupon = (item) => {
     let token = getToken()
     if (token) {
-      if (!item.reachPurchaseLimit) {
-        postReceiveCoupon(item.id).then(() => {
-          message.success('领取成功')
-          this.getCouponInfo()
-        })
-      }
+      postBatchExchange(this.state.activityId).then(() => {
+        message.success('领取成功')
+        this.getCouponInfo()
+      })
     } else {
         window.wx.miniProgram.navigateTo({url: '/pages/user/login/login'})
     }
@@ -146,11 +149,23 @@ export default class App extends React.Component {
       getCouponDetail(res.couponList).then((res) => {
         let daojiaCouponVos = [...res.records]
         daojiaCouponVos.splice(0, 2)
+        let receivedAll = true
+        let runOut = true
+        res.records.map((item) => {
+          if (item.reachPurchaseLimit !== 1) {
+            receivedAll = false
+          }
+          if (item.stock !== 0) {
+            runOut = false
+          }
+        })
         this.setState({
           settlementInfo: {
             couponVos: res.records
           },
-          daojiaCouponVos
+          daojiaCouponVos,
+          receivedAll,
+          runOut
         }, () => { console.log(this.state.settlementInfo)})
       })
     })

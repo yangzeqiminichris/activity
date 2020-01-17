@@ -12,6 +12,9 @@
     position: fixed;
     top: 0;
     z-index: 100;
+    &.disabled {
+      display: none;
+    }
     .scroll-btns {
       position: absolute;
       top: 0;
@@ -60,5 +63,14 @@
   &-4 {
     position: absolute;
     top: 5000px;
+  }
+  &-back{
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    img{
+      width: 100px;
+      height: 100px;
+    }
   }
 }

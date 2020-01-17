@@ -1,0 +1,34 @@
+.floor-double {
+  font-size: 0;
+  .floor-double-banner {
+    width: 100%;
+    vertical-align: top;
+  }
+  .floor-double-img-box {
+    width: 50%;
+    display: inline-block;
+    position: relative;
+    font-size: 0;
+    vertical-align: top;
+  }
+  .floor-double-item {
+    width: 100%;
+    font-size: 0;
+    margin-left: -1px;
+  }
+  .floor-double-clear-box {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .floor-double-clear {
+    margin: auto;
+    &.disable {
+      display: none;
+    }
+  }
+}

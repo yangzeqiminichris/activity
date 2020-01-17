@@ -14,3 +14,8 @@ export async function getActivityInfo (activityId) {
     const url = `/zbdx-api/h5/newUserArea/${ activityId }`
     return get(url)
 }
+
+export async function postBatchExchange (activityId) {
+  const url = `/zbdx-api/h5/newUserArea/batchExchangeCoupon/${ activityId }`
+  return post(url, { activityId })
+}

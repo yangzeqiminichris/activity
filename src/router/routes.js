@@ -2,10 +2,12 @@ import loadable from '@loadable/component'
 
 const Activity = loadable(() => import('./activity/activity.js'))
 const ActivityModal = loadable(() => import('./activity-modal/activity-modal.js'))
+const ActivityModalFour = loadable(() => import('./activity-modal-four/activity-modal-four.js'))
 const DidiAd = loadable(() => import('./didi-ad/didi-ad.js'))
 const Koi = loadable(() => import('./koi/koi.js'))
 const KoiLottery = loadable(() => import('./koi/koi-lottery/koi-lottery.js'))
 const ActivityCoupon = loadable(() => import('./activity-coupon'))
+const ActivityCouponDouble = loadable(() => import('./activity-coupon-double'))
 const ActivityCountDown = loadable(() =>
   import('./activity-count-down/count-down')
 )
@@ -16,6 +18,8 @@ const ActivityLimitPurchase = loadable(() => import('./activity-limit-purchase')
 const ActivityPeaceBuy = loadable(() => import('./activity-peace-buy'))
 const Intruduction = loadable(() => import('./introduction'))
 const LotAj = loadable(() => import('./lot-aj/lot-aj'))
+const DoubleTwelve = loadable(() => import('./double-twelve'))
+const ActivityModalThreeSecond = loadable(() => import('./activity-modal-three-second'))
 
 const routes = [
   {
@@ -31,11 +35,15 @@ const routes = [
     component: ActivityDraw
   },
   {
+    path: '/activity-modal-four/:activityId', // 自定义活动模块4
+    component: ActivityModalFour
+  },
+  {
     path: '/activity-market/:activityId',
     component: ActivityMarket
   },
   {
-    path: '/activity-hotel/:activityId',
+    path: '/activity-hotel/:activityId/:limit?',
     component: ActivityHotel
   },
   {
@@ -51,8 +59,20 @@ const routes = [
     component: ActivityCountDown
   },
   {
-    path: '/activity-coupon/:activityId',
+    path: '/activity-coupon/:activityId/:limit?',
     component: ActivityCoupon
+  },
+  {
+    path: '/activity-coupon-double/:activityId/:limit?',
+    component: ActivityCouponDouble
+  },
+  {
+    path: '/activity-modal-double-twelve/:activityId',
+    component: DoubleTwelve
+  },
+  {
+    path: '/activity-modal-three-second/:activityId',
+    component: ActivityModalThreeSecond
   },
   {
     path: '/activity-modal', // 自定义活动模块

@@ -7,7 +7,6 @@ import { setToken } from '@/cache/token.js'
 import './index.scss'
 import FirstFloor from './view/first-floor'
 import { getActivityDetail, checkUser, getCouponDetail } from './api/api'
-import tipImg from '@/assets/activity_hotel_tip.png'
 
 export default class ActivityHotel extends React.Component {
   state = {
@@ -16,6 +15,8 @@ export default class ActivityHotel extends React.Component {
     tabs: [],
     floorCouponList: {}
   }
+
+  limit = this.props.match.params.limit
 
   async componentDidMount() {
     Toast.loading('Loading...', 20)
@@ -49,8 +50,7 @@ export default class ActivityHotel extends React.Component {
           })
         this.setState({ activityConfig: res }, () => {
           let activityModal = document.getElementsByClassName('activity-modal')
-          activityModal[0] &&
-            (activityModal[0].style.background = res.colors.bgColor)
+          activityModal[0] && (activityModal[0].style.background = res.colors.bgColor)
         })
       })
     })
@@ -62,11 +62,7 @@ export default class ActivityHotel extends React.Component {
     return (
       <div className='activity-modal clearfix'>
         <div className='banner'>
-          <img
-            className='img'
-            src={activityConfig ? activityConfig.bgImg : ''}
-            alt='暂无图片'
-          />
+          <img className='img' src={activityConfig ? activityConfig.bgImg : ''} alt='暂无图片' />
         </div>
         <div id='floor'>
           <div className={`tabs-content`}>
@@ -79,9 +75,11 @@ export default class ActivityHotel extends React.Component {
             )}
           </div>
         </div>
-        <div style={{ width: '100%' }}>
-          <img style={{ width: '100%' }} src={tipImg} />
-        </div>
+        {activityConfig.bottomImage && (
+          <div style={{ width: '100%' }}>
+            <img style={{ width: '100%' }} src={activityConfig.bottomImage} />
+          </div>
+        )}
       </div>
     )
   }
@@ -113,15 +111,17 @@ export default class ActivityHotel extends React.Component {
           if (couponDetail.stock == 0) {
             message.warn('已抢光！')
           } else {
-            checkUser().then(res => {
-              if (!res) {
-                window.wx.miniProgram.navigateTo({
-                  url: '/packageA/pages/integral/reduction/index?id=' + couponId
-                })
-              } else {
-                message.warn('已抢光！')
-              }
-            })
+            if (!this.limit) {
+              checkUser().then(res => {
+                if (!res) {
+                  this.toCoupon(couponId)
+                } else {
+                  message.warn('已抢光！')
+                }
+              })
+            } else {
+              this.toCoupon(couponId)
+            }
           }
         })
       }
@@ -129,6 +129,13 @@ export default class ActivityHotel extends React.Component {
       message.warn('活动尚未开始，请耐心等待！')
     }
   }
+
+  toCoupon = couponId => {
+    window.wx.miniProgram.navigateTo({
+      url: '/packageA/pages/integral/reduction/index?id=' + couponId
+    })
+  }
+
   getUrlToken(name, str) {
     const reg = new RegExp(`(^|&)${name}=([^&]*)(&|$)`)
     const r = str.substr(1).match(reg)
