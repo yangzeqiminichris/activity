@@ -15,6 +15,7 @@ const ActivityDraw = loadable(() => import('./activity-draw'))
 const ActivityLimitPurchase = loadable(() => import('./activity-limit-purchase'))
 const ActivityPeaceBuy = loadable(() => import('./activity-peace-buy'))
 const Intruduction = loadable(() => import('./introduction'))
+const LotAj = loadable(() => import('./lot-aj/lot-aj'))
 
 const routes = [
   {
@@ -68,6 +69,10 @@ const routes = [
   {
     path: '/activity/:activityId',
     component: Activity
+  },
+  {
+    path: '/lot-aj',
+    component: LotAj
   }
 ]
 

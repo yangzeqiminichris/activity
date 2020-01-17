@@ -142,3 +142,16 @@ function replacUrl (url) {
     url = url.replace('/zbdx-api', 'https://zbdx.jzjtong.com/zbdx-api')*/
     return url
 }
+
+let configUrl = ''
+if (process.env.REACT_APP_ENV === 'test') {
+    configUrl = 'https://zbdx.jzjtong.com'
+} else if (process.env.NODE_ENV === 'production') {
+    configUrl = 'https://jf-api.zbszkj.com'
+} else if (process.env.NODE_ENV === 'development') {
+    configUrl = 'https://zbdx.jzjtong.com'
+}
+
+export {
+    configUrl
+}
