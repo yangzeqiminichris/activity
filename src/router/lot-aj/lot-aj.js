@@ -2,12 +2,15 @@ import React from 'react'
 import { setToken } from '@/cache/token.js'
 import { getLotAjActivityInfo, getPowerOfAj, getGetMyCouponDetail, getOtherOrderDetail } from '@/api/lot-aj'
 import { configUrl } from '@/api/base'
-import pic1 from '@/assets/lot-aj/1.jpg'
+// import pic1 from '@/assets/lot-aj/1.jpg'
 import picBtn from '@/assets/lot-aj/2.png'
-import pic3 from '@/assets/lot-aj/3.jpg'
+// import pic3 from '@/assets/lot-aj/3.jpg'
 import picModal from '@/assets/lot-aj/1.png'
 
 import './index.scss'
+
+const pic1 = 'https://static.zbszkj.com/images/nike/1.jpg'
+const pic3 = 'https://static.zbszkj.com/images/nike/3.jpg'
 
 export default class ActivityModal extends React.Component {
   constructor (props) {
@@ -27,6 +30,7 @@ export default class ActivityModal extends React.Component {
   }
 
   componentDidMount () {
+    document.title='Nike预售名额开抢'
     let token = this.getUrlToken('token', this.props.location.search)
     setToken(token).then(() => {
       this.getLotCoupun()
