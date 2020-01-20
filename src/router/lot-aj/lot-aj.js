@@ -63,7 +63,7 @@ export default class ActivityModal extends React.Component {
             {
               activityInfo && activityInfo.userActivityLog && activityInfo.userActivityLog.number && <div className='coupon-box'>
                 <div className='coupon-id'><div className='num'>{ activityInfo.userActivityLog.number }</div>号进场</div>
-                <img src={`${ configUrl }/zbdx-api/barcode?code=${ couponNum }&height=208&width=702`} className='base-code-body-barcode' />
+                <img src={`${ configUrl }/barcode?code=${ couponNum }&height=208&width=702`} className='base-code-body-barcode' />
               </div>
             }
             <div></div>
