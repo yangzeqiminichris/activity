@@ -1,0 +1,26 @@
+.sub-btn{
+        margin: 0 auto;
+    }
+    .success-text{
+        text-align: center;
+        color: #1890ff;
+        padding: 20px 0;
+        font-size: 30px;
+    }
+    .mask-list{
+        background-color: #FFF;
+        .info-item{
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 24px;
+            width: 100%;
+            .title{
+                flex-shrink: 0;
+                width: 30%;
+            }
+            .content{
+                flex-shrink: 1;
+            }
+        }
+    }
+    
