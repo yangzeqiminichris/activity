@@ -8,9 +8,7 @@ const Koi = loadable(() => import('./koi/koi.js'))
 const KoiLottery = loadable(() => import('./koi/koi-lottery/koi-lottery.js'))
 const ActivityCoupon = loadable(() => import('./activity-coupon'))
 const ActivityCouponDouble = loadable(() => import('./activity-coupon-double'))
-const ActivityCountDown = loadable(() =>
-  import('./activity-count-down/count-down')
-)
+const ActivityCountDown = loadable(() => import('./activity-count-down/count-down'))
 const ActivityHotel = loadable(() => import('./activity-hotel'))
 const ActivityMarket = loadable(() => import('./activity-market'))
 const ActivityDraw = loadable(() => import('./activity-draw'))
@@ -20,8 +18,18 @@ const Intruduction = loadable(() => import('./introduction'))
 const LotAj = loadable(() => import('./lot-aj/lot-aj'))
 const DoubleTwelve = loadable(() => import('./double-twelve'))
 const ActivityModalThreeSecond = loadable(() => import('./activity-modal-three-second'))
+const MaskSubscribe = loadable(() => import('./maskSubscribe/mask-subscribe'))
+const QuerySubscribe = loadable(() => import('./maskSubscribe/query-subscribe'))
 
 const routes = [
+  {
+    path: '/mask-subscribe', // 口罩预约
+    component: MaskSubscribe
+  },
+  {
+    path: '/query-subscribe', // 预约查询
+    component: QuerySubscribe
+  },
   {
     path: '/intruduction/:id', // 一张说明图
     component: Intruduction
