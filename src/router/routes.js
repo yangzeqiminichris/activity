@@ -27,7 +27,7 @@ const routes = [
     component: MaskSubscribe
   },
   {
-    path: '/query-subscribe', // 预约查询
+    path: '/query-subscribe/:id?', // 预约查询
     component: QuerySubscribe
   },
   {
