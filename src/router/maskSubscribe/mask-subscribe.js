@@ -1,21 +1,21 @@
 import React from 'react'
 import { setToken } from '@/cache/token.js'
-import { getDate, getLastTime } from '@/utils/time'
+import { getDate2, getLastTime } from '@/utils/time'
 import { Icon } from 'antd'
 import { Picker } from 'antd-mobile'
 import api from '@/api/mask-subscribe'
 import Popup from './component/popup'
 import SubscribePopup from './component/subscribe-popup/subscribe-popup'
 import Toast from './component/toast'
+import moment from 'moment'
 
 import './index.scss'
 
-import BgImg from './img/bg@2x.png'
 import TitleImg from './img/title.png'
 
 export default class MaskSubscribe extends React.Component {
   state = {
-    type: 2, // 1-预约 2-开始预约
+    type: 1, // 1-预约 2-开始预约
     date: {},
     shopId: '',
     shopName: '请选择',
@@ -28,11 +28,13 @@ export default class MaskSubscribe extends React.Component {
     codeImg: '',
     planId: '', // 预约id
     errorMsg: '', // 错误msg
-    showToast: false
+    showToast: false,
+    limitTimeStr: ''
   }
 
+  limitTime = 0
+
   dateTimeout = null
-  time19 = new Date(getDate() + ' 19:00:00').getTime()
 
   componentWillMount() {
     this.props.history.listen(() => {
@@ -41,20 +43,8 @@ export default class MaskSubscribe extends React.Component {
   }
 
   componentDidMount() {
-    // if (this.getType()) {
-    //   this.setState({ type: 2,showRule:true,isFirst:false })
-    // } else {
-    //   this.setState({ type: 1 })
-    //   this.dateTimeout = setInterval(() => {
-    //     if (this.getType()) {
-    //       clearInterval(this.dateTimeout)
-    //       this.setState({ type: 2 })
-    //     } else {
-    //       this.getLastTime()
-    //     }
-    //   }, 1000)
-    // }
     this.getInit()
+    document.title = '预约'
   }
 
   componentWillUnmount() {
@@ -62,12 +52,36 @@ export default class MaskSubscribe extends React.Component {
   }
 
   getInit = () => {
+    api.getLimitTime().then(res => {
+      this.limitTime = res
+      this.setState({ limitTimeStr: moment(new Date(+res)).format('MM月DD号 HH:mm') }, () => {
+        if (this.getType()) {
+          this.setState({ type: 2, showRule: true, isFirst: false })
+          this.getShopList()
+        } else {
+          this.setState({ type: 1 })
+          this.dateTimeout = setInterval(() => {
+            if (this.getType()) {
+              clearInterval(this.dateTimeout)
+              this.setState({ type: 2 })
+              this.getShopList()
+            } else {
+              this.getLastTime()
+            }
+          }, 1000)
+        }
+      })
+    })
+  }
+
+  getShopList = () => {
     api.getShopList().then(res => {
       const data = res.map(v => ({
         value: v.id,
         label: v.name
       }))
-      this.setState({ shopList: data })
+      this.setState({ shopList: data, shopId: data[0].value, shopName: data[0].label })
+      this.getPlan(data[0].value)
     })
   }
 
@@ -78,11 +92,11 @@ export default class MaskSubscribe extends React.Component {
   }
 
   getType = () => {
-    return this.time19 < new Date().getTime()
+    return this.limitTime < new Date().getTime()
   }
 
   getLastTime = () => {
-    const date = getLastTime(this.time19)
+    const date = getLastTime(this.limitTime)
     this.setState({ date })
   }
 
@@ -169,7 +183,8 @@ export default class MaskSubscribe extends React.Component {
       modalKey,
       codeImg,
       showToast,
-      errorMsg
+      errorMsg,
+      limitTimeStr
     } = this.state
     return (
       <div className='mask-subscribe'>
@@ -187,7 +202,7 @@ export default class MaskSubscribe extends React.Component {
                   <span className='font'>秒</span>
                 </div>
                 <div className='footer'>
-                  下次开放预约时间：<span>19:00</span>
+                  开放预约时间：<span>{limitTimeStr}</span>
                 </div>
               </div>
               <div className='bef-rule-box'>
@@ -197,11 +212,12 @@ export default class MaskSubscribe extends React.Component {
                   <img className='img2' src={TitleImg} />
                 </div>
                 <div className='content'>
-                  <div>1. 每天19：00开始预约次日口罩；</div>
-                  <div>2. 每人每次限购5只口罩，五天内仅限购一次，数量有限，预约完为止；</div>
-                  <div>3. 预约成功后仅限第二天至指定预约门店领取，逾期未领取自动失效；</div>
-                  <div>4. 领取时间：预约后第二天9：00-20：00内到店购买；</div>
-                  <div>5. 领取地点：预约门店服务台，凭个人身份证购买。</div>
+                  <div>1. 2月6号9：00开始预约口罩；</div>
+                  <div>2. 每人每次限购5只口罩，数量有限，预约完为止；</div>
+                  <div>3. 预约成功后请于2月6号13：00-17：00至指定预约门店领取，逾期未领取自动失效；</div>
+                  <div>
+                    4. 指定领取地点：浙北超市红旗路店/碧浪湖店/米兰店/织里店，按照预约门店至服务台，凭个人身份证购买。
+                  </div>
                 </div>
               </div>
             </div>
@@ -224,7 +240,7 @@ export default class MaskSubscribe extends React.Component {
                 <div className='subscribe-box'>
                   <div className='title'>
                     <span className='icon'></span>
-                    <span>预约时间</span>
+                    <span>领取时间</span>
                   </div>
                   <div className='content'>
                     {subList.map(v => (
@@ -232,7 +248,7 @@ export default class MaskSubscribe extends React.Component {
                         <div className='sub-item'>
                           <div className='sub-content'>
                             <div className='item-1'>
-                              <div>{v.bookDate}</div>
+                              <div>{v.receiveDate}</div>
                               <div className='font-24 no-wrap'>
                                 <span className='font-gray'>可预约人数:</span>
                                 <span>{v.bookAmount}</span>

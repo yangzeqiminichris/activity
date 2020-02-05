@@ -107,7 +107,8 @@ export function get(url, data) {
 export function getBase64(url) {
   url = replacUrl(url)
   return axios.get(url, {
-    responseType: 'arraybuffer'
+    responseType: 'arraybuffer',
+    withCredentials: true
   })
 }
 

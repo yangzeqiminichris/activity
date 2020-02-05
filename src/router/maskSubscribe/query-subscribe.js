@@ -9,7 +9,6 @@ import './query-mask.scss'
 export default class MaskSubscribe extends React.Component {
   state = {
     adCard: '',
-    searchSuccess: false,
     showTips: false,
     showToast: false,
     errorMsg: '',
@@ -23,8 +22,10 @@ export default class MaskSubscribe extends React.Component {
 
   componentDidMount() {
     const idCard = this.props.match.params.id
+    document.title = '查询已预约'
     if (idCard) {
       this.getInfoByIdCard(idCard)
+      document.title = '预约结果'
     }
   }
 
@@ -38,10 +39,10 @@ export default class MaskSubscribe extends React.Component {
   }
 
   render() {
-    const { adCard, searchSuccess, showTips, showToast, errorMsg, queryList } = this.state
+    const { adCard, showTips, showToast, errorMsg, queryList } = this.state
     return (
       <div className='query-main'>
-        {queryList.length === 0 && (
+        {queryList.length === 0 && !this.props.match.params.id && (
           <div className='search'>
             <div className='input'>
               <span className='input-title'>身份证号</span>
@@ -74,7 +75,7 @@ export default class MaskSubscribe extends React.Component {
                 </div>
                 <div className='info-item'>
                   <div className='title'>到店时间:</div>
-                  <div className='content'>{`${plan.bookDate} ${plan.bookTimeStart}-${plan.bookTimeEnd}`}</div>
+                  <div className='content'>{`${plan.receiveDate} ${plan.bookTimeStart}-${plan.bookTimeEnd}`}</div>
                 </div>
                 <div className='info-item'>
                   <div className='title'>可购数量:</div>
@@ -130,6 +131,7 @@ export default class MaskSubscribe extends React.Component {
         this.setState({
           queryList: res
         })
+        document.title = '预约结果'
       }
     })
   }

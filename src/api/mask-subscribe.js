@@ -21,4 +21,8 @@ export default class api {
   static getShopList() {
     return get('/zbdx-api/mask/shop')
   }
+  // 预约时间
+  static getLimitTime() {
+    return get('/zbdx-api/mask/time')
+  }
 }
