@@ -192,7 +192,7 @@ export default class MaskSubscribe extends React.Component {
           {type === 1 && (
             <div className='bef-body'>
               <div className='bef-time-box'>
-                <div className='title'>距离下次开放预约时间</div>
+                <div className='title'>距离开放预约时间</div>
                 <div className='time'>
                   <span className='box'>{date.h}</span>
                   <span className='font'>时</span>
