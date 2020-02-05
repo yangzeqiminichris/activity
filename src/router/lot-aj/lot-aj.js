@@ -57,7 +57,6 @@ export default class ActivityModal extends React.Component {
                     :
                      <div className='btn'>活动名额已抢光！</div>
             }
-            
           </div>
           <div>
             {
