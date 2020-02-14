@@ -1,0 +1,51 @@
+.popup-rule {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  justify-content: center;
+  border-radius: 40px;
+  .disabled {
+    display: none;
+  }
+  .close {
+    color: #fff;
+    font-size: 53px;
+    position: absolute;
+    right: 26px;
+    top: -106px;
+  }
+  .bef-rule-box {
+    position: relative;
+    height: 470px;
+    background: #0068d8;
+    border-radius: 10px;
+    margin: 0 24px;
+    margin-top: 59px;
+    font-size: 26px;
+    color: #ffffff;
+    .title {
+      display: flex;
+      font-size: 36px;
+      font-weight: bold;
+      align-items: center;
+      justify-content: center;
+      height: 100px;
+      img {
+        width: 54px;
+        height: 29px;
+      }
+      .img2 {
+        transform: scaleX(-1);
+      }
+    }
+    .content {
+      margin: 0 10px;
+      background: #0562c7;
+      padding: 30px 24px;
+      height: 350px;
+    }
+  }
+}
