@@ -45,7 +45,7 @@ export default class MaskSubscribe extends React.Component {
 
   componentDidMount() {
     this.getInit()
-    document.title = '预约'
+    document.title = '预约口罩'
   }
 
   componentWillUnmount() {
