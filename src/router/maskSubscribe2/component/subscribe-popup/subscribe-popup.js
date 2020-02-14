@@ -96,6 +96,7 @@ class TipsPopup extends React.Component {
   }
 
   testName = () => {
+    window.scrollTo(0, 0)
     this.setState(
       prevState => {
         return {
@@ -124,6 +125,7 @@ class TipsPopup extends React.Component {
   }
 
   testIdCardNo = () => {
+    window.scrollTo(0, 0)
     this.setState(
       prevState => {
         return {
@@ -143,6 +145,7 @@ class TipsPopup extends React.Component {
   }
 
   testVerifyCode = () => {
+    window.scrollTo(0, 0)
     this.setState(
       prevState => {
         return {

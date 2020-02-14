@@ -3,6 +3,15 @@
   background: #0086f0;
   min-height: 100vh;
   .bef-bg {
+    .bef-btn-box {
+      width: 100%;
+      padding-top: 438px;
+      text-align: center;
+      .bef-btn {
+        width: 356px;
+        height: 78px;
+      }
+    }
     position: relative;
     color: #fff;
     font-size: 26px;
@@ -16,7 +25,7 @@
       //   left: 0;
       //   top: 0;
       width: 100%;
-      padding-top: 438px;
+      padding-top: 20px;
     }
     .bef-time-box {
       text-align: center;
@@ -104,7 +113,7 @@
     // left: 0;
     // top: 0;
     width: 100%;
-    padding-top: 462px;
+    padding-top: 20px;
     padding-bottom: 120px;
     .mask-rule-btn {
       position: absolute;

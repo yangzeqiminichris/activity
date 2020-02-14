@@ -12,6 +12,7 @@ import moment from 'moment'
 import './index.scss'
 
 import TitleImg from './img/title.png'
+import BtnImg from './img/bg_btn.png'
 
 export default class MaskSubscribe extends React.Component {
   state = {
@@ -139,6 +140,10 @@ export default class MaskSubscribe extends React.Component {
       })
   }
 
+  toDetails = () => {
+    this.props.history.push('/mask-details')
+  }
+
   // 预约按钮点击 // 打开弹窗  // 打开后获取验证码
   onSubscribe = (amount, id) => {
     if (amount === 0) {
@@ -189,6 +194,9 @@ export default class MaskSubscribe extends React.Component {
     return (
       <div className='mask-subscribe'>
         <div className='bef-bg'>
+          <div className='bef-btn-box'>
+            <img className='bef-btn' src={BtnImg} onClick={this.toDetails} />
+          </div>
           {type === 1 && (
             <div className='bef-body'>
               <div className='bef-time-box'>
@@ -212,11 +220,13 @@ export default class MaskSubscribe extends React.Component {
                   <img className='img2' src={TitleImg} />
                 </div>
                 <div className='content'>
-                  <div>1. 2月6号9：00开始预约口罩；</div>
-                  <div>2. 每人每次限购5只口罩，数量有限，预约完为止；</div>
-                  <div>3. 预约成功后请于2月6号13：00-17：00至指定预约门店领取，逾期未领取自动失效；</div>
+                  <div>1. 每人每天限购口罩2只，每5天可预约一次；</div>
                   <div>
-                    4. 指定领取地点：浙北超市红旗路店/碧浪湖店/米兰店/织里店，按照预约门店至服务台，凭个人身份证购买。
+                    2.
+                    领取时间：2020年2月15日-2月22日每天早上8点开通预约，售价19.9元/只，预约成功后次日10：00-17：00凭本人身份证号至安吉购物中心烟酒柜台付款后领取；
+                  </div>
+                  <div>
+                    3. 口罩数量有限，以提交申请的现后次序排序，口罩总量约满后即关闭当日预约通道，次日8点重新开始。
                   </div>
                 </div>
               </div>

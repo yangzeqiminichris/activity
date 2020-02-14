@@ -20,8 +20,18 @@ const DoubleTwelve = loadable(() => import('./double-twelve'))
 const ActivityModalThreeSecond = loadable(() => import('./activity-modal-three-second'))
 const MaskSubscribe = loadable(() => import('./maskSubscribe/mask-subscribe'))
 const QuerySubscribe = loadable(() => import('./maskSubscribe/query-subscribe'))
+const MaskSubscribe2 = loadable(() => import('./maskSubscribe2/mask-subscribe'))
+const MaskDetails = loadable(() => import('./maskSubscribe2/mask-details'))
 
 const routes = [
+  {
+    path: '/mask-details', // 口罩详情
+    component: MaskDetails
+  },
+  {
+    path: '/mask-subscribe2', // 口罩预约2
+    component: MaskSubscribe2
+  },
   {
     path: '/mask-subscribe', // 口罩预约
     component: MaskSubscribe
