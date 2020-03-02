@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import img from './img/details.jpg'
+import img from './img/details.png'
 
 export default class MaskDetails extends Component {
   componentDidMount() {
