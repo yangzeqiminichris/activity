@@ -18,10 +18,12 @@ const Intruduction = loadable(() => import('./introduction'))
 const LotAj = loadable(() => import('./lot-aj/lot-aj'))
 const DoubleTwelve = loadable(() => import('./double-twelve'))
 const ActivityModalThreeSecond = loadable(() => import('./activity-modal-three-second'))
+const ActivityModalFive = loadable(() => import('./activity-modal-five'))
 const MaskSubscribe = loadable(() => import('./maskSubscribe/mask-subscribe'))
 const QuerySubscribe = loadable(() => import('./maskSubscribe/query-subscribe'))
 const MaskSubscribe2 = loadable(() => import('./maskSubscribe2/mask-subscribe'))
 const MaskDetails = loadable(() => import('./maskSubscribe2/mask-details'))
+const RedirectPage = loadable(() => import('./redirect-page/redirect-page'))
 
 const routes = [
   {
@@ -93,6 +95,10 @@ const routes = [
     component: ActivityModalThreeSecond
   },
   {
+    path: '/activity-modal-five/:activityId',
+    component: ActivityModalFive
+  },
+  {
     path: '/activity-modal', // 自定义活动模块
     component: ActivityModal
   },
@@ -111,6 +117,10 @@ const routes = [
   {
     path: '/lot-aj',
     component: LotAj
+  },
+  {
+    path: '/redirect',
+    component: RedirectPage
   }
 ]
 
