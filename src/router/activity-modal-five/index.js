@@ -86,6 +86,9 @@ export default class ActivityModal extends React.Component {
           res.couponList.map((item, index) => {
             couponIds.push(item.id)
           })
+          res.limitCouponList.map((item) => {
+            couponIds.push(item.id)
+          })
           this.setState({
             couponIds
           })
@@ -106,7 +109,7 @@ export default class ActivityModal extends React.Component {
             src={activityConfig ? activityConfig.bgImg : ""}
           />
         </div>
-        <div className="coupon-list"> /* 抢购券专区 */
+        <div className="coupon-list">
           {
             activityConfig.limitCouponList && activityConfig.limitCouponList.map((item, index) => {
               if (activityConfig.limitCouponList.length % 2 === 1 && (index === (activityConfig.limitCouponList.length - 1 * 1))) {
@@ -127,19 +130,25 @@ export default class ActivityModal extends React.Component {
             })
           }
         </div>
-        <div className="coupon-list"> /* 优惠券专区 */
+        <div className="coupon-list"> {/* 优惠券专区 */}
           {
             activityConfig.couponList && activityConfig.couponList.map((item, index) => {
               if (activityConfig.couponList.length % 2 === 1 && (index === (activityConfig.couponList.length - 1 * 1))) {
                 return (
                   <div key={'coupon' + index} className='coupon-list-singleimg' onClick={ this.receiveCoupon.bind(this, item, index) }>
                     <img src={ item.img } className='coupon-list-singleimg'/>
+                    {
+                      (item.info && item.info.reachPurchaseLimit) && <img src={ item.gotImg } className='coupon-list-received' />
+                    }
                   </div>
                 )
               }
               return (
                 <div key={'coupon' + index} className='coupon-list-img' onClick={ this.receiveCoupon.bind(this, item, index) }>
                   <img src={ item.img } className='coupon-list-img'/>
+                  {
+                    (item.info && item.info.reachPurchaseLimit) && <img src={ item.gotImg } className='coupon-list-received' />
+                  }
                 </div>
               )
               /*return (
@@ -264,79 +273,36 @@ export default class ActivityModal extends React.Component {
   receiveCoupon = (coupon, index) => {
     const { id: couponId, beginAt, endAt } = coupon
     console.log('coupon', coupon)
-
-    if (coupon.info.reachPurchaseLimit || !coupon.info.stock) {
-      if (index < 2 && coupon.info.reachPurchaseLimit) {
+    if (coupon.info && (coupon.info.reachPurchaseLimit || !coupon.info.stock)) {
+      if (coupon.info.reachPurchaseLimit) {
         message.warn("您已经领取过啦~");
-      } else if (index < 2 && !coupon.info.stock) {
+      } else if (!coupon.info.stock) {
         message.warn("库存不足");
       }
       return
     } else {
-      if (beginAt && endAt) {
-        const now = new Date().getTime()
-        const start = new Date(moment(beginAt).format()).getTime()
-        const end = new Date(moment(endAt).format()).getTime()
-        if (now < start) {
-          this.setState({
-            showPopup: true,
-            twelvePopupBg: HasNotStart,
-            twelvePopupTips: '活动尚未开始~',
-            twelvePopupSmallTips: `活动时间：${beginAt}至${endAt}`
-          })
-        } else if (now > end) {
-          this.setState({
-            showPopup: true,
-            twelvePopupBg: HasNotStart,
-            twelvePopupTips: '活动已结束~',
-            twelvePopupSmallTips: `活动时间：${beginAt}至${endAt}`
-          })
-        } else {
-          let token = getToken()
-          if (token) {
-            postReceiveCoupon(coupon.id).then(() => {
-              if (coupon.gettingImg) {
-                this.setState({
-                  showPopup: true,
-                  twelvePopupTips: '',
-                  twelvePopupSmallTips: '',
-                  twelvePopupBg: coupon.gettingImg
-                })
-              } else {
-                message.success('领取成功')
-              }
-            }).catch((error) => {
-              if (/^库存不足/.test(error.msg)) {
-                message.warn("库存不足");
-
-                /* if (index < 2) {
-                  message.warn("库存不足");
-                } else {
-                  this.setState({
-                    showPopup: true,
-                    twelvePopupBg: RunOut,
-                    twelvePopupTips: '',
-                    twelvePopupSmallTips: ''
-                  })
-                } */
-              } else if (/^超过限购数量/.test(error.msg)) {
-                message.warn("您已经领取过啦~");
-                /* if (index < 2) {
-                  message.warn("您已经领取过啦~");
-                } else {
-                  this.setState({
-                    showPopup: true,
-                    twelvePopupBg: HasReceived,
-                    twelvePopupTips: '',
-                    twelvePopupSmallTips: ''
-                  })
-                } */
-              }
+      let token = getToken()
+      if (token) {
+        postReceiveCoupon(coupon.id).then(() => {
+          if (coupon.gettingImg) {
+            this.setState({
+              showPopup: true,
+              twelvePopupTips: '',
+              twelvePopupSmallTips: '',
+              twelvePopupBg: coupon.gettingImg
             })
           } else {
-            window.wx.miniProgram.navigateTo({url: '/pages/user/login/login'})
+            message.success('领取成功')
           }
-        }
+        }).catch((error) => {
+          if (/^库存不足/.test(error.msg)) {
+            message.warn("库存不足");
+          } else if (/^超过限购数量/.test(error.msg)) {
+            message.warn("您已经领取过啦~");
+          }
+        })
+      } else {
+        window.wx.miniProgram.navigateTo({url: '/pages/user/login/login'})
       }
     }
   }
@@ -381,6 +347,11 @@ export default class ActivityModal extends React.Component {
       let activityConfig = this.state.activityConfig
       detail.records.map((record) => {
         activityConfig.couponList.map((item) => {
+          if (item.id === record.id) {
+            item['info'] = record
+          }
+        })
+        activityConfig.limitCouponList.map((item) => {
           if (item.id === record.id) {
             item['info'] = record
           }

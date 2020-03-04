@@ -16,7 +16,7 @@
   }
   .coupon-list {
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     flex-direction: row;
     -webkit-overflow-scrolling: touch;
     // justify-content: space-between;
@@ -26,10 +26,19 @@
     &-img {
       flex-shrink: 1;
       flex-grow: 1;
-      width: 200px;
+      width: 375px;
+      position: relative;
     }
     &-singleimg {
       width: 750px;
+      position: relative;
+    }
+    &-received {
+      width: 176px;
+      height: 164px;
+      position: absolute;
+      top: 30px;
+      right: 52px;
     }
 
     .coupon-item {
