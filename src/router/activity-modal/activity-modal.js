@@ -44,13 +44,20 @@ export default class ActivityModal extends React.Component {
               delta: -1
             })
           }, 1500)
-          return 
+          return
         }
         if (res && res.name) {
           document.title = res.name
         }
         // 获取券详情
         res && this.getCouponList(res.couponList)
+        // 商品超过9件，显示加载更多
+        res.activityGroup && (
+          res.activityGroup.map((item, index) => {
+            item.goodsList.length > 9 && (res.activityGroup[index].showMore = true)
+            item.goodsList.length <= 9 && (res.activityGroup[index].showMore = false)
+          })
+        );
         this.setState({
           activityConfig: res,
           couponListIds: res.couponList
@@ -88,11 +95,9 @@ export default class ActivityModal extends React.Component {
       });
     }
     return <div className='activity-modal clearfix'>
-      {
-        couponList.length !== 0 && <div className='banner'>
-          <img className='img' src={ activityConfig ? activityConfig.bgImg : '' } alt='' />
-        </div>
-      }
+      <div className='banner'>
+        <img className='img' src={ activityConfig ? activityConfig.bgImg : '' } alt='' />
+      </div>
       {
         couponList.length !== 0 && <div className='coupon-list'>
           {
@@ -103,7 +108,7 @@ export default class ActivityModal extends React.Component {
           <div className='white-space'></div>
         </div>
       }
-      
+
       <div id='floor'>
         {
           activityConfig && tabs.length > 1 && this.renderActivityFloor(activityConfig, tabs)
@@ -116,17 +121,25 @@ export default class ActivityModal extends React.Component {
                   return this.renderTabsContentItem (cul, goods)
                 })
               }
-            </div> : <div className='click-autor' key={ item.id }>
+            </div> : <div className='click-autor' key={ item.id } style={{marginBottom: '22px'}}>
               <img className='banner-icon' src={ item.icon } />
               <div className='custom-list'>
                 {
                   item.goodsList.map((goods, index) => {
-                    return this.renderCustomItem (goods, index === item.goodsList.length - 1)
+                    console.log('goodsList', goods)
+                    return (
+                      <div style={{ display: (item.showMore && index > 9) ? 'none' : 'block'}}>
+                        {
+                          this.renderCustomItem (goods, index === item.goodsList.length - 1)
+                        }
+                      </div>
+                    )
                   })
                 }
-                {
+                {/*{
                   item.goodsList.length > 3 && <div className='white-space'></div>
-                }
+                }*/}
+                <div className='watch-more' style={{ display: item.showMore ? 'block' : 'none' }} onClick={ this.onClickShowMore.bind(this, index)}>查看更多</div>
               </div>
             </div>
           })
@@ -211,9 +224,9 @@ export default class ActivityModal extends React.Component {
             <span className='money'>{ item.couponGoodsInfo.couponValue }</span>
           </div>
           {
-            item.couponGoodsInfo.couponType === 5 ? <div 
-              className='reduction'>运费券</div> : item.couponGoodsInfo.thresholdAmount > 0 ? <div 
-              className='reduction'>满{ item.couponGoodsInfo.thresholdAmount }可用</div> : <div 
+            item.couponGoodsInfo.couponType === 5 ? <div
+              className='reduction'>运费券</div> : item.couponGoodsInfo.thresholdAmount > 0 ? <div
+              className='reduction'>满{ item.couponGoodsInfo.thresholdAmount }可用</div> : <div
               className='reduction'></div>
           }
           <div className='limit points'></div>
@@ -253,12 +266,12 @@ export default class ActivityModal extends React.Component {
                 {
                   goods.activityType === 2 && <span className='origin-price'>原价{ goods.goodsOriginalPrice }</span>
                 }
-                
+
                 <span className={ `btn ${ showMask ? 'btn-disabled' : '' }` }>立即抢购</span>
               </div>
             </div> : <div>
               <div className='activity'>
-                活动价：<span className='price'>{ goods.goodsPrice }</span>元 
+                活动价：<span className='price'>{ goods.goodsPrice }</span>元
                 {
                   goods.activityType === 2 && <span className='origin-price'>{ goods.goodsOriginalPrice }</span>
                 }
@@ -322,7 +335,7 @@ export default class ActivityModal extends React.Component {
     tabs[index].style.background = activityConfig.colorInfo.groupSelectedColor
     // 顶部tabs 设置选中背景色
     tabs[index + tabsLength].style.background = activityConfig.colorInfo.groupSelectedColor
-    
+
     // 滚动到 锚点
     let tabHeight = document.getElementsByClassName('am-tabs-top')[0].offsetHeight
     scroll.scrollTo(document.getElementsByClassName('click-autor')[index].offsetTop - tabHeight)
@@ -370,5 +383,13 @@ export default class ActivityModal extends React.Component {
         scroll_top = document.body.scrollTop;
     }
     return scroll_top;
+  }
+  onClickShowMore (index) {
+    let t = this.state.activityConfig
+    console.log(this.state)
+    t.activityGroup[index].showMore = false
+    this.setState({
+      activityConfig: t
+    })
   }
 }
