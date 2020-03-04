@@ -3,6 +3,7 @@ import './index.scss'
 import Mask from '@/components/mask/mask'
 import { Input, Button } from 'antd'
 import informationLogo from '../../images/information_logo.png'
+import { testPhone } from '@/utils/phone'
 
 class TipsPopup extends React.Component {
   constructor(props) {
@@ -12,16 +13,28 @@ class TipsPopup extends React.Component {
       showNameTips: false,
       idCard: '',
       showIdCardNoTips: false,
+      phone: '',
       code: '',
       showVerifyCodeTips: 0, // 1未空，2为错误，0为正确
-      confirmDisabled: true
+      confirmDisabled: true,
+      showPhoneTips: false
     }
   }
 
   componentDidMount() {}
 
   render() {
-    const { name, showNameTips, idCard, showIdCardNoTips, code, showVerifyCodeTips, confirmDisabled } = this.state
+    const {
+      name,
+      showNameTips,
+      idCard,
+      phone,
+      showIdCardNoTips,
+      code,
+      showVerifyCodeTips,
+      confirmDisabled,
+      showPhoneTips
+    } = this.state
     const { codeImg } = this.props
     return (
       <div className='subscribe-pop'>
@@ -52,6 +65,19 @@ class TipsPopup extends React.Component {
             />
           </div>
           <span className='subscribe-pop-item-tips'>{showIdCardNoTips ? '*身份信息有误请重新输入' : ''}</span>
+        </div>
+        <div className='subscribe-pop-item'>
+          <div className='subscribe-pop-item-main'>
+            <div className='subscribe-pop-item-title'>手机号：</div>
+            <Input
+              className='subscribe-pop-item-input'
+              placeholder='请输入手机号'
+              value={phone}
+              onInput={this.onInputPhone.bind(this)}
+              onBlur={this.testPhone.bind(this)}
+            />
+          </div>
+          <span className='subscribe-pop-item-tips'>{showPhoneTips ? '*手机号有误请重新输入' : ''}</span>
         </div>
         <div className='subscribe-pop-item'>
           <div className='subscribe-pop-item-main'>
@@ -109,6 +135,19 @@ class TipsPopup extends React.Component {
     )
   }
 
+  onInputPhone = e => {
+    this.setState({
+      phone: e.target.value
+    })
+  }
+
+  testPhone = e => {
+    window.scrollTo(0, 0)
+    this.setState({ showPhoneTips: !testPhone(e.target.value) }, () => {
+      this.confirmBtnState()
+    })
+  }
+
   onInputIdCardNo = e => {
     this.setState({
       idCard: e.target.value
@@ -149,7 +188,7 @@ class TipsPopup extends React.Component {
     this.setState(
       prevState => {
         return {
-          showVerifyCodeTips: prevState.code ? 0 : 1
+          showVerifyCodeTips: !prevState.code
         }
       },
       () => {
@@ -159,7 +198,17 @@ class TipsPopup extends React.Component {
   }
 
   confirmBtnState = () => {
-    if (this.state.showIdCardNoTips || this.state.showNameTips || this.state.showVerifyCodeTips !== 0) {
+    const { showIdCardNoTips, showNameTips, showVerifyCodeTips, showPhoneTips, name, idCard, phone, code } = this.state
+    if (
+      !name ||
+      !idCard ||
+      !phone ||
+      !code ||
+      showIdCardNoTips ||
+      showNameTips ||
+      showVerifyCodeTips ||
+      showPhoneTips
+    ) {
       this.setState({
         confirmDisabled: true
       })
@@ -178,8 +227,8 @@ class TipsPopup extends React.Component {
     if (this.state.confirmDisabled) {
       return
     } else {
-      const { name, idCard, code } = this.state
-      this.props.onOk({ name, idCard, code })
+      const { name, idCard, code, phone } = this.state
+      this.props.onOk({ name, idCard, code, phone })
     }
   }
 }
