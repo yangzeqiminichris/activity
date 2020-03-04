@@ -25,7 +25,7 @@ export default class MaskSubscribe extends React.Component {
     showRule: false,
     shopList: [], // 门店列表
     modalKey: 1,
-    showModal: true,
+    showModal: false,
     codeImg: '',
     planId: '', // 预约id
     errorMsg: '', // 错误msg
