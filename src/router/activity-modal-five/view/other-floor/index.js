@@ -14,7 +14,7 @@ export default function OtherFloor(props) {
             <img className="other-imgdouble" src={floor.icon} />
             <div className='goods'>
               {(floor.goodsList || []).map((item, i) => (
-                <div style={{ display: (floor.showMore && i > 8) ? 'none' : 'block'}} key={item.goodsId + index}>
+                <div style={{ display: 'block'}} key={item.goodsId + index}>
                   <CouponItem
                     goCouponDetail={props.goCouponDetail}
                     dataSource={item}
@@ -24,7 +24,7 @@ export default function OtherFloor(props) {
               ))}
             </div>
           </div>
-          <div className='watch-more' style={{ display: floor.showMore ? 'block' : 'none' }} onClick={ () => props.onClickShowMore(index)}>查看更多</div>
+          {/*<div className='watch-more' style={{ display: floor.showMore ? 'block' : 'none' }} onClick={ () => props.onClickShowMore(index)}>查看更多</div>*/}
         </div>
         ))}
     </div>

@@ -35,7 +35,8 @@ export default class ActivityModal extends React.Component {
     twelvePopupBg: HasNotStart,
     showPopup: false,
     twelvePopupTips: '',
-    twelvePopupSmallTips: ''
+    twelvePopupSmallTips: '',
+    shopCode: ''
   };
 
   async componentWillMount() {
@@ -46,6 +47,9 @@ export default class ActivityModal extends React.Component {
     let token = this.getUrlToken('token', this.props.location.search)
     let shopCode = this.getUrlToken('shopCode', this.props.location.search)
     let activityId = this.props.match.params.activityId;
+    this.setState({
+      shopCode
+    })
     await setToken(token).then(async () => {
       // 获取活动详情
       await getActivityDetail(activityId, shopCode).then(res => {
@@ -315,7 +319,7 @@ export default class ActivityModal extends React.Component {
       })
     } else {
       window.wx.miniProgram.navigateTo({
-        url: `/packageA/pages/webviewWithToken/webviewWithToken?url=${ ad.adUrl }&title=${ ad.adTitle }`
+        url: `/packageA/pages/webviewo2oWithToken/webviewo2oWithToken?url=${ ad.adUrl }&title=${ ad.adTitle }&shopCode=${ this.state.shopCode }`
       })
     }
   }
